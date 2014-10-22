@@ -6,6 +6,8 @@
 package Entidades;
 
 import java.io.Serializable;
+import java.util.LinkedList;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -21,6 +23,17 @@ public class Recepcao implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    private List<Encomenda> encomendas;
+    private List<Produto> produtos;
+
+    public Recepcao() {
+    }
+
+    public Recepcao(Long id) {
+        this.id = id;
+        this.encomendas = new LinkedList<>();
+        this.produtos = new LinkedList<>();
+    }
 
     public Long getId() {
         return id;
@@ -30,29 +43,28 @@ public class Recepcao implements Serializable {
         this.id = id;
     }
 
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
-        return hash;
+    public List<Encomenda> getEncomendas() {
+        return encomendas;
     }
 
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Recepcao)) {
-            return false;
-        }
-        Recepcao other = (Recepcao) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
-            return false;
-        }
-        return true;
+    public void addEncomenda(Encomenda encomenda) {
+        this.encomendas.add(encomenda);
     }
 
-    @Override
-    public String toString() {
-        return "Entidades.Recepcao[ id=" + id + " ]";
+    public List<Produto> getProdutos() {
+        return produtos;
     }
+
+    public void addProduto(Produto produto) {
+        this.produtos.add(produto);
+    }
+    
+    
+    public void removeProduto(Produto produto) {
+        this.produtos.remove(produto);
+    }
+
+
+
     
 }

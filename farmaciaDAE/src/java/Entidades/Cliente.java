@@ -26,13 +26,14 @@ public class Cliente implements Serializable {
     private List<Venda> vendas;
 
     public Cliente() {
+        this.vendas = new LinkedList();
     }
 
     public Cliente(String nome, String email, int contacto) {
         this.nome = nome;
         this.email = email;
         this.contacto = contacto;
-        this.vendas = new LinkedList<Venda>();
+        this.vendas = new LinkedList();
     }
 
     public String getNome() {
@@ -63,8 +64,12 @@ public class Cliente implements Serializable {
         return vendas;
     }
 
-    public void setVendas(List<Venda> vendas) {
-        this.vendas = vendas;
+    public void addVendas(Venda venda) {
+        this.vendas.add(venda);
+    }
+    
+    public void removeVendas(Venda venda) {
+        this.vendas.remove(venda);
     }
 
     

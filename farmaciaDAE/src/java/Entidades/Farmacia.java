@@ -6,6 +6,7 @@
 package Entidades;
 
 import java.io.Serializable;
+import java.util.LinkedList;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -18,6 +19,7 @@ import javax.persistence.Id;
 public class Farmacia implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
+    Long id;
     
     private List<Produto> produtos;
     private List<Utilizador> utilizadores;
@@ -27,23 +29,38 @@ public class Farmacia implements Serializable {
     private List<Fornecedor> fornecedores;
 
     public Farmacia() {
+        this.produtos = new LinkedList();
+        this.utilizadores = new LinkedList();
+        this.vendas = new LinkedList();
+        this.encomendas = new LinkedList();
+        this.stocks = new LinkedList();
+        this.fornecedores = new LinkedList();
     }
 
-    public Farmacia(List<Produto> produtos, List<Utilizador> utilizadores, List<Venda> vendas, List<Encomenda> encomendas, List<Stock> stocks, List<Fornecedor> fornecedores) {
-        this.produtos = produtos;
-        this.utilizadores = utilizadores;
-        this.vendas = vendas;
-        this.encomendas = encomendas;
-        this.stocks = stocks;
-        this.fornecedores = fornecedores;
+    public Farmacia(long id) {
+        this.id = id;
+        this.produtos = new LinkedList();
+        this.utilizadores = new LinkedList();
+        this.vendas = new LinkedList();
+        this.encomendas = new LinkedList();
+        this.stocks = new LinkedList();
+        this.fornecedores = new LinkedList();
+    }
+
+    public Long getId() {
+        return id;
     }
 
     public List<Produto> getProdutos() {
         return produtos;
     }
 
-    public void setProdutos(List<Produto> produtos) {
-        this.produtos = produtos;
+    public void addProduto(Produto produto) {
+        this.produtos.add(produto);
+    }
+    
+    public void removeProduto(Produto produto) {
+        this.produtos.remove(produto);
     }
 
     public List<Utilizador> getUtilizadores() {
@@ -53,37 +70,61 @@ public class Farmacia implements Serializable {
     public void setUtilizadores(List<Utilizador> utilizadores) {
         this.utilizadores = utilizadores;
     }
+    
+     public void addUtilizador(Utilizador utilizador) {
+        this.utilizadores.add(utilizador);
+    }
+    
+    public void removeUtilizador(Utilizador utilizador) {
+        this.utilizadores.remove(utilizador);
+    }
 
     public List<Venda> getVendas() {
         return vendas;
     }
 
-    public void setVendas(List<Venda> vendas) {
-        this.vendas = vendas;
+    public void addVenda(Venda venda) {
+        this.vendas.add(venda);
+    }
+    
+    public void removeVenda(Venda venda) {
+        this.vendas.remove(venda);
     }
 
     public List<Encomenda> getEncomendas() {
         return encomendas;
     }
 
-    public void setEncomendas(List<Encomenda> encomendas) {
-        this.encomendas = encomendas;
+    public void addEncomenda(Encomenda encomenda) {
+        this.encomendas.add(encomenda);
+    }
+    
+    public void removeEncomenda(Encomenda encomenda) {
+        this.encomendas.remove(encomenda);
     }
 
     public List<Stock> getStocks() {
         return stocks;
     }
 
-    public void setStocks(List<Stock> stocks) {
-        this.stocks = stocks;
+    public void addStock(Stock stock) {
+        this.stocks.add(stock);
+    }
+    
+    public void removeStock(Stock stock) {
+        this.stocks.remove(stock);
     }
 
     public List<Fornecedor> getFornecedores() {
         return fornecedores;
     }
 
-    public void setFornecedores(List<Fornecedor> fornecedores) {
-        this.fornecedores = fornecedores;
+    public void addFornecedor(Fornecedor fornecedor) {
+        this.fornecedores.add(fornecedor);
+    }
+    
+     public void removeFornecedor(Fornecedor fornecedor) {
+        this.fornecedores.remove(fornecedor);
     }
 
     

@@ -6,6 +6,7 @@
 package Entidades;
 
 import java.io.Serializable;
+import java.util.LinkedList;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -25,14 +26,15 @@ public class Fornecedor implements Serializable {
     private List<Farmacia> farmacias;
 
     public Fornecedor() {
+        this.farmacias = new LinkedList();
     }
 
-    public Fornecedor(String laboratorio, String email, int telemovel, String morada, List<Farmacia> farmacias) {
+    public Fornecedor(String laboratorio, String email, int telemovel, String morada) {
         this.laboratorio = laboratorio;
         this.email = email;
         this.telemovel = telemovel;
         this.morada = morada;
-        this.farmacias = farmacias;
+        this.farmacias = new LinkedList();
     }
 
     public String getLaboratorio() {
@@ -71,10 +73,14 @@ public class Fornecedor implements Serializable {
         return farmacias;
     }
 
-    public void setFarmacias(List<Farmacia> farmacias) {
-        this.farmacias = farmacias;
+    public void addFarmacia(Farmacia farmacia) {
+        this.farmacias.add(farmacia);
     }
 
+    public void removeFarmacia(Farmacia farmacia) {
+        this.farmacias.remove(farmacia);
+    }
+    
 
     
 }

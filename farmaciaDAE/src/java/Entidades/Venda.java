@@ -6,6 +6,8 @@
 package Entidades;
 
 import java.io.Serializable;
+import java.util.LinkedList;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
@@ -20,15 +22,19 @@ public class Venda implements Serializable {
     
     private Produto produto;
     private Cliente cliente;
-    private int quantidade;
+    private float preco;
+    private Farmacia farmacia;
+    private List<LinhaVenda> linhasVenda;
 
     public Venda() {
     }
 
-    public Venda(Produto produto, Cliente cliente, int quantidade) {
+    public Venda(Produto produto, Cliente cliente, float preco, Farmacia farmacia) {
         this.produto = produto;
         this.cliente = cliente;
-        this.quantidade = quantidade;
+        this.preco = preco;
+        this.farmacia = farmacia;
+        this.linhasVenda = new LinkedList();
     }
 
     public Produto getProduto() {
@@ -47,13 +53,36 @@ public class Venda implements Serializable {
         this.cliente = cliente;
     }
 
-    public int getQuantidade() {
-        return quantidade;
+    public float getPreco() {
+        return preco;
     }
 
-    public void setQuantidade(int quantidade) {
-        this.quantidade = quantidade;
+    public void setPreco(float preco) {
+        this.preco = preco;
     }
+
+    public Farmacia getFarmacia() {
+        return farmacia;
+    }
+
+    public void setFarmacia(Farmacia farmacia) {
+        this.farmacia = farmacia;
+    }
+
+    public List<LinhaVenda> getLinhasVenda() {
+        return linhasVenda;
+    }
+
+    public void addLinhaVenda(LinhaVenda linhaVenda) {
+        this.linhasVenda.add(linhaVenda);
+    }
+    
+     public void removeLinhaVenda(LinhaVenda linhaVenda) {
+        this.linhasVenda.remove(linhaVenda);
+    }
+
+    
+  
     
     
     

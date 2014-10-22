@@ -24,14 +24,19 @@ public class Encomenda implements Serializable {
     private List<Produto> produtos;
     private enum estado{Rascunho, Enviado, RecebidoIncompleto, RecebidoCompleto};
     private List<Recepcao> recepcoes;
+    private List<LinhaEncomenda> linhasEncomenda;
 
     public Encomenda() {
+        this.produtos = new LinkedList<Produto>();
+        this.recepcoes = new LinkedList<Recepcao>();
+        this.linhasEncomenda = new LinkedList();
     }
 
     public Encomenda(Fornecedor fornecedor) {
         this.fornecedor = fornecedor;
         this.produtos = new LinkedList<Produto>();
         this.recepcoes = new LinkedList<Recepcao>();
+        this.linhasEncomenda = new LinkedList();
     }
 
     public Fornecedor getFornecedor() {
@@ -46,16 +51,24 @@ public class Encomenda implements Serializable {
         return produtos;
     }
 
-    public void setProdutos(List<Produto> produtos) {
-        this.produtos = produtos;
+    public void addProduto(Produto produto) {
+        this.produtos.add(produto);
+    }
+    
+    public void removeProduto(Produto produto) {
+        this.produtos.remove(produto);
     }
 
     public List<Recepcao> getRecepcoes() {
         return recepcoes;
     }
 
-    public void setRecepcoes(List<Recepcao> recepcoes) {
-        this.recepcoes = recepcoes;
+    public void addRecepcao(Recepcao recepcao) {
+        this.recepcoes.add(recepcao);
+    }
+    
+    public void removeRecepcao(Recepcao recepcao) {
+        this.recepcoes.remove(recepcao);
     }
 
     

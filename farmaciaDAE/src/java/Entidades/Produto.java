@@ -6,6 +6,7 @@
 package Entidades;
 
 import java.io.Serializable;
+import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
@@ -18,74 +19,45 @@ public class Produto implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-    private int referencia;
-    private String nome;
-    private String laboratorio;
-    private String emailFornEleicao;
-    private String emailFornAlternativo;
-    private float preco;
+    private int id;
+    private int lote;
+    private Date dataValidade;
 
     public Produto(){
         
     }
-    
-    public Produto(int referencia, String nome, String laboratorio, String emailFornEleicao, String emailFornAlternativo, float preco) {
-        this.referencia = referencia;
-        this.nome = nome;
-        this.laboratorio = laboratorio;
-        this.emailFornEleicao = emailFornEleicao;
-        this.emailFornAlternativo = emailFornAlternativo;
-        this.preco = preco;
+
+    public Produto(int id, int lote, Date dataValidade) {
+        this.id = id;
+        this.lote = lote;
+        this.dataValidade = dataValidade;
     }
 
-    public int getReferencia() {
-        return referencia;
+    public int getId() {
+        return id;
     }
 
-    public void setReferencia(int referencia) {
-        this.referencia = referencia;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public String getNome() {
-        return nome;
+    public int getLote() {
+        return lote;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setLote(int lote) {
+        this.lote = lote;
     }
 
-    public String getLaboratorio() {
-        return laboratorio;
+    public Date getDataValidade() {
+        return dataValidade;
     }
 
-    public void setLaboratorio(String laboratorio) {
-        this.laboratorio = laboratorio;
-    }
-
-    public String getEmailFornEleicao() {
-        return emailFornEleicao;
-    }
-
-    public void setEmailFornEleicao(String emailFornEleicao) {
-        this.emailFornEleicao = emailFornEleicao;
-    }
-
-    public String getEmailFornAlternativo() {
-        return emailFornAlternativo;
-    }
-
-    public void setEmailFornAlternativo(String emailFornAlternativo) {
-        this.emailFornAlternativo = emailFornAlternativo;
-    }
-
-    public float getPreco() {
-        return preco;
-    }
-
-    public void setPreco(float preco) {
-        this.preco = preco;
+    public void setDataValidade(Date dataValidade) {
+        this.dataValidade = dataValidade;
     }
     
+
     
     
     
