@@ -10,6 +10,8 @@ import java.util.LinkedList;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotNull;
 
 /**
  *
@@ -20,9 +22,14 @@ public class Cliente implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     
+    @NotNull
     private String nome;
+    @NotNull
     private String email;
+    @NotNull
     private int contacto;
+    @ManyToOne
+    @NotNull
     private List<Venda> vendas;
 
     public Cliente() {

@@ -8,8 +8,13 @@ package Entidades;
 import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.validation.constraints.NotNull;
 
 /**
  *
@@ -20,10 +25,20 @@ public class Encomenda implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
 
+    @ManyToOne
+    //join column?
+    @NotNull
     private Fornecedor fornecedor;
+    @OneToMany(mappedBy = "encomenda", cascade = CascadeType.REMOVE)
+    @NotNull
     private List<Produto> produtos;
+    //será que este estado esta bem?
     private enum estado{Rascunho, Enviado, RecebidoIncompleto, RecebidoCompleto};
+    @OneToOne (mappedBy = "encomenda")
+    @NotNull
     private List<Recepcao> recepcoes;
+    @OneToOne (mappedBy = "encomenda")
+    @NotNull
     private List<LinhaEncomenda> linhasEncomenda;
 
     public Encomenda() {
