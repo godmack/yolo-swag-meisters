@@ -12,6 +12,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 /**
  *
@@ -27,7 +28,10 @@ public class Venda implements Serializable {
     @JoinColumn(name="_CLIENTE"-)
     private Cliente cliente;
     private float preco;
+    @OneToMany(mappedBy="vendas")
     private Farmacia farmacia;
+    @ManyToOne
+    @JoinColumn(name="ID_LINHAVENDA")
     private List<LinhaVenda> linhasVenda;
 
     public Venda() {
