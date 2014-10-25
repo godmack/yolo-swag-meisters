@@ -13,6 +13,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Temporal;
 import static javax.persistence.TemporalType.DATE;
+import javax.validation.constraints.NotNull;
 
 
 /**
@@ -28,6 +29,7 @@ public class Produto implements Serializable {
     private int id;
     private int lote;
     @Temporal(DATE)
+    @NotNull
     private Date dataValidade;
 
     public Produto(){

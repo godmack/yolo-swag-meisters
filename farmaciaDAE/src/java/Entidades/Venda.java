@@ -12,7 +12,11 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+<<<<<<< .mine
+import javax.validation.constraints.NotNull;
+=======
 import javax.persistence.OneToMany;
+>>>>>>> .r9
 
 /**
  *
@@ -23,15 +27,25 @@ public class Venda implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     
+    @NotNull
     private Produto produto;
     @ManyToOne
     @JoinColumn(name="_CLIENTE"-)
     private Cliente cliente;
+    @NotNull
     private float preco;
+<<<<<<< .mine
+    @NotNull
+=======
     @OneToMany(mappedBy="vendas")
+>>>>>>> .r9
     private Farmacia farmacia;
+<<<<<<< .mine
+    @NotNull
+=======
     @ManyToOne
     @JoinColumn(name="ID_LINHAVENDA")
+>>>>>>> .r9
     private List<LinhaVenda> linhasVenda;
 
     public Venda() {

@@ -12,6 +12,7 @@ import static javax.persistence.CascadeType.ALL;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.NotNull;
 
 /**
  *
@@ -21,16 +22,25 @@ import javax.persistence.OneToMany;
 public class Catalogo implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
+    @NotNull
     private int referencia;
-    
+    @NotNull
     private Produto produto;
     @OneToMany(cascade=ALL, mappedBy="catalogo")
+    @NotNull
     private List<Stock> stocks;
+    
+    //associacao com o catalogo_fornecedor? o q fazer?
     private List<Fornecedor> fornecedores;
+    @NotNull
     private String nome;
+    @NotNull
     private String laboratorio;
+    @NotNull
     private String emailFornEleicao;
+    @NotNull
     private String emailFornAlternativo;
+    @NotNull
     private float preco;
 
     public Catalogo() {

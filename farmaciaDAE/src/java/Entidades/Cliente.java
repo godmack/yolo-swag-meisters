@@ -26,7 +26,6 @@ public class Cliente implements Serializable {
     
     @NotNull
     private String nome;
-    @NotNull
     private String email;
     @NotNull
     private int contacto;

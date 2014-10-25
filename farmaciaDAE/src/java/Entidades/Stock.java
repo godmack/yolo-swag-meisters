@@ -21,8 +21,11 @@ public class Stock implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     
+    @NotNull
     private int id;
+    @NotNull
     private int stockActual;
+    @NotNull
     private int stockMinimo;
     @ManyToOne
     @JoinColumn(name="REFERENCIA_CATALOGO")

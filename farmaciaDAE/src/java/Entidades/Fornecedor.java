@@ -13,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.validation.constraints.NotNull;
 
 /**
  *
@@ -22,9 +23,13 @@ import javax.persistence.ManyToMany;
 public class Fornecedor implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
+    @NotNull
     private String laboratorio;
+    @NotNull
     private String email;
+    @NotNull
     private int telemovel;
+    @NotNull
     private String morada;
     @ManyToMany
     @JoinTable(

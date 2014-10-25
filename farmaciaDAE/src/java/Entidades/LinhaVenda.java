@@ -24,6 +24,7 @@ public class LinhaVenda implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @NotNull
     private Long id;
     @ManyToOne
     @JoinColumn(name="ID_VENDA"-)
@@ -33,7 +34,9 @@ public class LinhaVenda implements Serializable {
     @JoinColumn(name="REFERENCIA_CATALOGO")
     @NotNull
     private Catalogo catalogo;
+    @NotNull
     private float preco;
+    @NotNull
     private int quantidade;
 
     public LinhaVenda() {
