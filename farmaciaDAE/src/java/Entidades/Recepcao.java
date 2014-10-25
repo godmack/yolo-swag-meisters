@@ -12,6 +12,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
 /**
  *
@@ -23,7 +27,17 @@ public class Recepcao implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    @ManyToMany
+    @JoinTable(
+            name = "RECEPCAO_ENCOMENDA",
+            joinColumns
+            = @JoinColumn(name = "RECEPCAO_ID", referencedColumnName = "ID"),
+            inverseJoinColumns
+            = @JoinColumn(name = "ENCOMENDA_ID", referencedColumnName = "ID"-)
+    )
     private List<Encomenda> encomendas;
+    @OneToMany
+    @JoinColumn(name="PRODUTO_ID")
     private List<Produto> produtos;
 
     public Recepcao() {

@@ -10,6 +10,9 @@ import java.util.LinkedList;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 
 /**
  *
@@ -23,6 +26,14 @@ public class Fornecedor implements Serializable {
     private String email;
     private int telemovel;
     private String morada;
+    @ManyToMany
+    @JoinTable(
+            name = "FORNECEDOR_FARMACIA",
+            joinColumns
+            = @JoinColumn(name = "FORNECEDOR_ID", referencedColumnName = "LABORATORIO"),
+            inverseJoinColumns
+            = @JoinColumn(name = "FARMACIA_ID", referencedColumnName = "ID")
+    )
     private List<Farmacia> farmacias;
 
     public Fornecedor() {

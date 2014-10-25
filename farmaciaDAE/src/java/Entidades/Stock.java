@@ -8,6 +8,9 @@ package Entidades;
 import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotNull;
 
 /**
  *
@@ -21,7 +24,13 @@ public class Stock implements Serializable {
     private int id;
     private int stockActual;
     private int stockMinimo;
+    @ManyToOne
+    @JoinColumn(name="REFERENCIA_CATALOGO")
+    @NotNull
     private Catalogo catalogo;
+    @ManyToOne
+    @JoinColumn(name="ID_FARMACIA")
+    @NotNull
     private Farmacia farmacia;
 
     public Stock() {

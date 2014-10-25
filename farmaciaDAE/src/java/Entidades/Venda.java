@@ -10,6 +10,8 @@ import java.util.LinkedList;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 /**
  *
@@ -21,6 +23,8 @@ public class Venda implements Serializable {
     @Id
     
     private Produto produto;
+    @ManyToOne
+    @JoinColumn(name="_CLIENTE"-)
     private Cliente cliente;
     private float preco;
     private Farmacia farmacia;

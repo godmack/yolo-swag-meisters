@@ -8,6 +8,8 @@ package Entidades;
 import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
@@ -32,6 +34,9 @@ public class Utilizador implements Serializable {
             + "(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?",
             message = "{invalid.email}")
     protected String email;
+    @ManyToOne
+    @JoinColumn(name="ID_FARMACIA")
+    @NotNull
     private Farmacia farmacia;
     
     public Utilizador(){

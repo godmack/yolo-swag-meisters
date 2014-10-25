@@ -8,9 +8,11 @@ package Entidades;
 import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.List;
+import static javax.persistence.CascadeType.ALL;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 
 /**
@@ -28,7 +30,7 @@ public class Cliente implements Serializable {
     private String email;
     @NotNull
     private int contacto;
-    @ManyToOne
+    @OneToMany(cascade=ALL, mappedBy="cliente")
     @NotNull
     private List<Venda> vendas;
 

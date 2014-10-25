@@ -8,8 +8,10 @@ package Entidades;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import static javax.persistence.CascadeType.ALL;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 /**
  *
@@ -22,6 +24,7 @@ public class Catalogo implements Serializable {
     private int referencia;
     
     private Produto produto;
+    @OneToMany(cascade=ALL, mappedBy="catalogo")
     private List<Stock> stocks;
     private List<Fornecedor> fornecedores;
     private String nome;

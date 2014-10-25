@@ -8,8 +8,11 @@ package Entidades;
 import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.List;
+import static javax.persistence.CascadeType.ALL;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
 /**
  *
@@ -21,11 +24,17 @@ public class Farmacia implements Serializable {
     @Id
     Long id;
     
+    @OneToMany(cascade=ALL, mappedBy="farmacia")
     private List<Produto> produtos;
+    @OneToMany(cascade=ALL, mappedBy="farmacia")
     private List<Utilizador> utilizadores;
+    @OneToMany(cascade=ALL, mappedBy="farmacia")
     private List<Venda> vendas;
+    @OneToMany(cascade=ALL, mappedBy="farmacia")
     private List<Encomenda> encomendas;
+    @OneToMany(cascade=ALL, mappedBy="farmacia")
     private List<Stock> stocks;
+    @ManyToMany(mappedBy="farmacias")
     private List<Fornecedor> fornecedores;
 
     public Farmacia() {

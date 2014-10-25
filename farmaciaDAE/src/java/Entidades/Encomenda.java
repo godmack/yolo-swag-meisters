@@ -11,6 +11,8 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -26,7 +28,7 @@ public class Encomenda implements Serializable {
     @Id
 
     @ManyToOne
-    //join column?
+    @JoinColumn(name="ID_FORNECEDOR"-)
     @NotNull
     private Fornecedor fornecedor;
     @OneToMany(mappedBy = "encomenda", cascade = CascadeType.REMOVE)
@@ -34,12 +36,14 @@ public class Encomenda implements Serializable {
     private List<Produto> produtos;
     //será que este estado esta bem?
     private enum estado{Rascunho, Enviado, RecebidoIncompleto, RecebidoCompleto};
-    @OneToOne (mappedBy = "encomenda")
-    @NotNull
+    @ManyToMany(mappedBy="encomendas")
     private List<Recepcao> recepcoes;
-    @OneToOne (mappedBy = "encomenda")
-    @NotNull
+    @OneToMany (mappedBy = "encomenda", cascade = CascadeType.REMOVE)
     private List<LinhaEncomenda> linhasEncomenda;
+    
+    @ManyToOne
+    @JoinColumn(name="ID_FARMACIA")
+    private Farmacia farmacia;
 
     public Encomenda() {
         this.produtos = new LinkedList<Produto>();
@@ -47,11 +51,12 @@ public class Encomenda implements Serializable {
         this.linhasEncomenda = new LinkedList();
     }
 
-    public Encomenda(Fornecedor fornecedor) {
+    public Encomenda(Fornecedor fornecedor, Farmacia farmacia) {
         this.fornecedor = fornecedor;
         this.produtos = new LinkedList<Produto>();
         this.recepcoes = new LinkedList<Recepcao>();
         this.linhasEncomenda = new LinkedList();
+        this.farmacia = farmacia;
     }
 
     public Fornecedor getFornecedor() {
@@ -84,6 +89,14 @@ public class Encomenda implements Serializable {
     
     public void removeRecepcao(Recepcao recepcao) {
         this.recepcoes.remove(recepcao);
+    }
+
+    public Farmacia getFarmacia() {
+        return farmacia;
+    }
+
+    public void setFarmacia(Farmacia farmacia) {
+        this.farmacia = farmacia;
     }
 
     
