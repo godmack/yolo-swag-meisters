@@ -1,0 +1,21 @@
+O que alterei que ja tinha sido mexido:
+
+Na encomenda:
+as linhas de encomenda tava one to one, meti one to many, podemos ter varias linhas de encomenda.
+Retirei o not null das linhas de encomenda, quando abrimos uma encomenda começa sem linha de encomenda depois é que se vai adicionando.
+Retirei o not null das recepcoes.
+?????Eu nao estava a colocar os produtos nas encomendas mas sim nas linhas de encomenda (cada linha de encomenda tinha 1 produto e era de catalogo, normalmente um farmaceutico passa o codigo de barras de 1 produto(ou referencia) e nao sabe ao certo qual é o produto, nos produtos usava-se o first in first out, isto é como eu tava a imaginar o problema)?????
+Acrescentei a farmácia pois cada encomenda tem 1 farmácia associada
+????O Id podia ser gerado????
+@JoinColumn(name="ID_FORNECEDOR")??? no projeto do prof usamos assim... mas no order usam tudo junto sem "_"
+relacão para a recepcao é many to many (segundo o professor numa recepcao podem chegar medicamentos de varias encomendas, e uma encomenda pode chegar em varias recepcoes, de manha chega metade e o resto chega a tarde)
+
+No Cliente:
+Relacao é de OneToMany e nao ManyToOne, um cliente para varias vendas, uma venda para um cliente.
+??? falta id... por mim era o contacto, o email uma velhota de 70 anos quase de certeza nao tem e os nomes repetem-se.
+
+
+
+
+
+
