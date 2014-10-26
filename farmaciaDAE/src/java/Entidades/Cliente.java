@@ -23,12 +23,11 @@ import javax.validation.constraints.NotNull;
 public class Cliente implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
+    private int contacto;
     
     @NotNull
     private String nome;
     private String email;
-    @NotNull
-    private int contacto;
     @OneToMany(cascade=ALL, mappedBy="cliente")
     @NotNull
     private List<Venda> vendas;

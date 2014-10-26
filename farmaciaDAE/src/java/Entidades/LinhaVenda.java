@@ -10,8 +10,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.IdClass;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.TableGenerator;
 import javax.validation.constraints.NotNull;
 
 /**
@@ -19,17 +21,23 @@ import javax.validation.constraints.NotNull;
  * @author Andre
  */
 @Entity
+@IdClass(LinhaVendaKey.class)
 public class LinhaVenda implements Serializable {
 
     private static final long serialVersionUID = 1L;
+    @TableGenerator(
+        name="linhaVendaGen",
+        table="PERSISTENCE_ORDER_SEQUENCE_GENERATOR",
+        pkColumnName="GEN_KEY",
+        valueColumnName="GEN_VALUE",
+        pkColumnValue="LINHA_VENDA_ID",
+        allocationSize=10)
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @NotNull
-    private Long id;
     @ManyToOne
-    @JoinColumn(name="ID_VENDA"-)
+    @JoinColumn(name="ID_VENDA")
     @NotNull
     private Venda venda;
+    @Id
     @ManyToOne
     @JoinColumn(name="REFERENCIA_CATALOGO")
     @NotNull
@@ -42,25 +50,13 @@ public class LinhaVenda implements Serializable {
     public LinhaVenda() {
     }
 
-    public LinhaVenda(Long id, Venda venda, Catalogo catalogo, float preco, int quantidade) {
-        this.id = id;
+    public LinhaVenda(Venda venda, Catalogo catalogo, float preco, int quantidade) {
         this.venda = venda;
         this.catalogo = catalogo;
         this.preco = preco;
         this.quantidade = quantidade;
     }
 
-  
-    
-    
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public Venda getVenda() {
         return venda;

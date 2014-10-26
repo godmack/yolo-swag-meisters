@@ -26,36 +26,30 @@ public class Recepcao implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private Long idRecepcao;
     @ManyToMany
     @JoinTable(
             name = "RECEPCAO_ENCOMENDA",
             joinColumns
-            = @JoinColumn(name = "RECEPCAO_ID", referencedColumnName = "ID"),
+            = @JoinColumn(name = "RECEPCAO_ID", referencedColumnName = "IDRECEPCAO"),
             inverseJoinColumns
-            = @JoinColumn(name = "ENCOMENDA_ID", referencedColumnName = "ID"-)
+            = @JoinColumn(name = "ENCOMENDA_ID", referencedColumnName = "IDENCOMENDA"-)
     )
     private List<Encomenda> encomendas;
     @OneToMany
     @JoinColumn(name="PRODUTO_ID")
     private List<Produto> produtos;
 
-    public Recepcao() {
-    }
 
-    public Recepcao(Long id) {
-        this.id = id;
+    public Recepcao() {
         this.encomendas = new LinkedList<>();
         this.produtos = new LinkedList<>();
     }
 
-    public Long getId() {
-        return id;
+    public Long getIdRecepcao() {
+        return idRecepcao;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public List<Encomenda> getEncomendas() {
         return encomendas;

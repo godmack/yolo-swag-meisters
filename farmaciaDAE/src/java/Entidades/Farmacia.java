@@ -10,9 +10,12 @@ import java.util.LinkedList;
 import java.util.List;
 import static javax.persistence.CascadeType.ALL;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.persistence.TableGenerator;
 
 /**
  *
@@ -21,8 +24,16 @@ import javax.persistence.OneToMany;
 @Entity
 public class Farmacia implements Serializable {
     private static final long serialVersionUID = 1L;
+    @TableGenerator(
+        name="farmaciaGen",
+        table="PERSISTENCE_ORDER_SEQUENCE_GENERATOR",
+        pkColumnName="GEN_KEY",
+        valueColumnName="GEN_VALUE",
+        pkColumnValue="FARMACIA_ID",
+        allocationSize=10)
     @Id
-    Long id;
+    @GeneratedValue(strategy=GenerationType.TABLE, generator="farmaciaGen")
+    private Long idFarmacia;
     
     @OneToMany(cascade=ALL, mappedBy="farmacia")
     private List<Produto> produtos;
@@ -46,18 +57,9 @@ public class Farmacia implements Serializable {
         this.fornecedores = new LinkedList();
     }
 
-    public Farmacia(long id) {
-        this.id = id;
-        this.produtos = new LinkedList();
-        this.utilizadores = new LinkedList();
-        this.vendas = new LinkedList();
-        this.encomendas = new LinkedList();
-        this.stocks = new LinkedList();
-        this.fornecedores = new LinkedList();
-    }
 
-    public Long getId() {
-        return id;
+    public Long getIdFarmacia() {
+        return idFarmacia;
     }
 
     public List<Produto> getProdutos() {

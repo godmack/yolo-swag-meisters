@@ -9,14 +9,15 @@ import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-<<<<<<< .mine
 import javax.validation.constraints.NotNull;
-=======
 import javax.persistence.OneToMany;
->>>>>>> .r9
+import javax.persistence.TableGenerator;
+
 
 /**
  *
@@ -25,46 +26,46 @@ import javax.persistence.OneToMany;
 @Entity
 public class Venda implements Serializable {
     private static final long serialVersionUID = 1L;
+        @TableGenerator(
+        name="vendaGen",
+        table="PERSISTENCE_ORDER_SEQUENCE_GENERATOR",
+        pkColumnName="GEN_KEY",
+        valueColumnName="GEN_VALUE",
+        pkColumnValue="VENDA_ID",
+        allocationSize=10)
     @Id
+    @GeneratedValue(strategy=GenerationType.TABLE, generator="vendaGen")
+    private Long idVenda;
     
-    @NotNull
-    private Produto produto;
     @ManyToOne
-    @JoinColumn(name="_CLIENTE"-)
+    @JoinColumn(name="CONTATO_CLIENTE")
     private Cliente cliente;
     @NotNull
     private float preco;
-<<<<<<< .mine
     @NotNull
-=======
-    @OneToMany(mappedBy="vendas")
->>>>>>> .r9
-    private Farmacia farmacia;
-<<<<<<< .mine
-    @NotNull
-=======
     @ManyToOne
-    @JoinColumn(name="ID_LINHAVENDA")
->>>>>>> .r9
+    @JoinColumn(name="ID_FARMACIA")
+    private Farmacia farmacia;
+    @NotNull
+    @OneToMany(mappedBy="venda")
     private List<LinhaVenda> linhasVenda;
+
+    public Long getIdVenda() {
+        return idVenda;
+    }
+
+    public void setIdVenda(Long idVenda) {
+        this.idVenda = idVenda;
+    }
 
     public Venda() {
     }
 
-    public Venda(Produto produto, Cliente cliente, float preco, Farmacia farmacia) {
-        this.produto = produto;
+    public Venda(Cliente cliente, float preco, Farmacia farmacia) {
         this.cliente = cliente;
         this.preco = preco;
         this.farmacia = farmacia;
         this.linhasVenda = new LinkedList();
-    }
-
-    public Produto getProduto() {
-        return produto;
-    }
-
-    public void setProduto(Produto produto) {
-        this.produto = produto;
     }
 
     public Cliente getCliente() {
