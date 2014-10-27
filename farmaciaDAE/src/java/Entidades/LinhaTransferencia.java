@@ -25,12 +25,15 @@ public class LinhaTransferencia extends Linhas implements Serializable {
     @NotNull
     private Transferencia transferencia;
 
+    private int quantidadeRecebida;
+    
     public LinhaTransferencia() {
     }
 
     public LinhaTransferencia(Transferencia transferencia, Catalogo catalogo, int quantidade) {
         super(catalogo,quantidade);
         this.transferencia = transferencia;
+        this.quantidadeRecebida = 0;
     }
 
 

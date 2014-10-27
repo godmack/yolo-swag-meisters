@@ -5,13 +5,14 @@
  */
 package Entidades;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 /**
  *
  * @author Andre
  */
-public class LinhaTransferenciaKey {
+public class LinhaTransferenciaKey implements Serializable{
     private int produto;
     private Long transferencia;
 

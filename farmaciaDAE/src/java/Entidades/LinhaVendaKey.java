@@ -5,13 +5,14 @@
  */
 package Entidades;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 /**
  *
  * @author Andre
  */
-public class LinhaVendaKey {
+public class LinhaVendaKey implements Serializable{
 
     private Long venda;
     private int catalogo;

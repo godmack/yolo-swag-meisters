@@ -24,12 +24,16 @@ public class LinhaEncomenda extends Linhas implements Serializable {
     @JoinColumn(name="ID_ENCOMENDA")
     @NotNull
     private Encomenda encomenda;
+    
+    private int quantidadeRecebida;
 
     public LinhaEncomenda() {
     }
 
     public LinhaEncomenda(Encomenda encomenda, Catalogo catalogo, int quantidade) {
+        super(catalogo, quantidade);
         this.encomenda = encomenda;
+        this.quantidadeRecebida = 0;
 
     }
 
@@ -41,6 +45,14 @@ public class LinhaEncomenda extends Linhas implements Serializable {
 
     public void setEncomenda(Encomenda encomenda) {
         this.encomenda = encomenda;
+    }
+
+    public int getQuantidadeRecebida() {
+        return quantidadeRecebida;
+    }
+
+    public void setQuantidadeRecebida(int quantidadeRecebida) {
+        this.quantidadeRecebida = quantidadeRecebida;
     }
 
 
