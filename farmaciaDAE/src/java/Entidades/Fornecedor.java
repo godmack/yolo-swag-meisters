@@ -107,6 +107,18 @@ public class Fornecedor implements Serializable {
     public void removeFarmacia(Farmacia farmacia) {
         this.farmacias.remove(farmacia);
     }
+
+    public List<Catalogo> getCatalogos() {
+        return catalogos;
+    }
+    
+    public void addCatalogo(Catalogo catalogo) {
+        this.catalogos.add(catalogo);
+    }
+
+    public void removeCatalogo(Catalogo catalogo) {
+        this.catalogos.remove(catalogo);
+    }
     
 
     

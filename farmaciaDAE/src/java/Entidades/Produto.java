@@ -47,8 +47,11 @@ public class Produto implements Serializable {
     @JoinColumn(name = "REFERENCIA_CATALOGO")
     private Catalogo catalogo;
     @ManyToOne
-    @JoinColumn(name = "IDFARMACIA")
+    @JoinColumn(name = "ID_FARMACIA")
     private Farmacia farmacia;
+    @ManyToOne
+    @JoinColumn(name = "ID_STOCK")
+    private Stock stock;
 
     public Produto(){
         
@@ -61,6 +64,22 @@ public class Produto implements Serializable {
 
     public Long getIdProduto() {
         return idProduto;
+    }
+
+    public Catalogo getCatalogo() {
+        return catalogo;
+    }
+
+    public void setCatalogo(Catalogo catalogo) {
+        this.catalogo = catalogo;
+    }
+
+    public Farmacia getFarmacia() {
+        return farmacia;
+    }
+
+    public void setFarmacia(Farmacia farmacia) {
+        this.farmacia = farmacia;
     }
 
 
@@ -78,6 +97,14 @@ public class Produto implements Serializable {
 
     public void setDataValidade(Date dataValidade) {
         this.dataValidade = dataValidade;
+    }
+
+    public Stock getStock() {
+        return stock;
+    }
+
+    public void setStock(Stock stock) {
+        this.stock = stock;
     }
     
 

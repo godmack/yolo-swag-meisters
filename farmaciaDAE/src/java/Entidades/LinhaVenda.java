@@ -22,7 +22,7 @@ import javax.validation.constraints.NotNull;
  */
 @Entity
 @IdClass(LinhaVendaKey.class)
-public class LinhaVenda implements Serializable {
+public class LinhaVenda extends Linhas implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -30,24 +30,16 @@ public class LinhaVenda implements Serializable {
     @JoinColumn(name="ID_VENDA")
     @NotNull
     private Venda venda;
-    @Id
-    @ManyToOne
-    @JoinColumn(name="REFERENCIA_CATALOGO")
-    @NotNull
-    private Catalogo catalogo;
     @NotNull
     private float preco;
-    @NotNull
-    private int quantidade;
 
     public LinhaVenda() {
     }
 
     public LinhaVenda(Venda venda, Catalogo catalogo, float preco, int quantidade) {
+        super(catalogo, quantidade);
         this.venda = venda;
-        this.catalogo = catalogo;
         this.preco = preco;
-        this.quantidade = quantidade;
     }
 
 
@@ -59,13 +51,6 @@ public class LinhaVenda implements Serializable {
         this.venda = venda;
     }
 
-    public Catalogo getCatalogo() {
-        return catalogo;
-    }
-
-    public void setCatalogo(Catalogo catalogo) {
-        this.catalogo = catalogo;
-    }
 
     public float getPreco() {
         return preco;
@@ -75,12 +60,6 @@ public class LinhaVenda implements Serializable {
         this.preco = preco;
     }
     
-      public int getQuantidade() {
-        return quantidade;
-    }
 
-    public void setQuantidade(int quantidade) {
-        this.quantidade = quantidade;
-    }
 
 }

@@ -92,6 +92,26 @@ public class Transferencia implements Serializable {
         return idTransferencia;
     }
 
+    public Farmacia getFarmaciaFornecedora() {
+        return farmaciaFornecedora;
+    }
+
+    public List<LinhaTransferencia> getLinhasTransferencia() {
+        return linhasTransferencia;
+    }
+    
+    public void addLinhaTransferencia(LinhaTransferencia linha){
+        this.linhasTransferencia.add(linha);
+    }
+    
+    public void removeLinhaTransferencia(LinhaTransferencia linha){
+        this.linhasTransferencia.remove(linha);
+    }
+
+    public Date getData() {
+        return data;
+    }
+
     
     
     

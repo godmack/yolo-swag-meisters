@@ -6,10 +6,12 @@
 package Entidades;
 
 import java.io.Serializable;
+import java.util.LinkedList;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 
 /**
@@ -35,8 +37,11 @@ public class Stock implements Serializable {
     @JoinColumn(name="ID_FARMACIA")
     @NotNull
     private Farmacia farmacia;
+    @OneToMany(mappedBy="stock")
+    private LinkedList<Produto> produtos;
 
     public Stock() {
+        this.produtos = new LinkedList<>();
     }
 
     public Stock(int id, int stockActual, int stockMinimo, Catalogo catalogo, Farmacia farmacia) {
@@ -45,6 +50,7 @@ public class Stock implements Serializable {
         this.stockMinimo = stockMinimo;
         this.catalogo = catalogo;
         this.farmacia = farmacia;
+        this.produtos = new LinkedList<>();
     }
 
     public int getId() {

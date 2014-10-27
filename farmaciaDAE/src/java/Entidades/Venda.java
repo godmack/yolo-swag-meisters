@@ -65,6 +65,10 @@ public class Venda implements Serializable {
         this.linhasVenda = new LinkedList();
         this.data = new Date();
     }
+    
+     public Long getIdVenda() {
+        return idVenda;
+    }
 
     public Cliente getCliente() {
         return cliente;

@@ -17,27 +17,20 @@ import javax.validation.constraints.NotNull;
  * @author Andre
  */
 @Entity
-public class LinhaEncomenda implements Serializable {
+public class LinhaEncomenda extends Linhas implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @ManyToOne
     @JoinColumn(name="ID_ENCOMENDA")
     @NotNull
     private Encomenda encomenda;
-    @ManyToOne
-    @JoinColumn(name="REFERENCIA_CATALOGO")
-    @NotNull
-    private Catalogo catalogo;
-    @NotNull
-    private int quantidade;
 
     public LinhaEncomenda() {
     }
 
     public LinhaEncomenda(Encomenda encomenda, Catalogo catalogo, int quantidade) {
         this.encomenda = encomenda;
-        this.catalogo = catalogo;
-        this.quantidade = quantidade;
+
     }
 
     
@@ -50,21 +43,7 @@ public class LinhaEncomenda implements Serializable {
         this.encomenda = encomenda;
     }
 
-    public Catalogo getCatalogo() {
-        return catalogo;
-    }
 
-    public void setCatalogo(Catalogo catalogo) {
-        this.catalogo = catalogo;
-    }
-
-    public int getQuantidade() {
-        return quantidade;
-    }
-
-    public void setQuantidade(int quantidade) {
-        this.quantidade = quantidade;
-    }
     
     
 

@@ -92,16 +92,28 @@ public class Farmacia implements Serializable {
         return transferenciasEnviadas;
     }
 
-    public void setTransferenciasEnviadas(List<Transferencia> transferenciasEnviadas) {
-        this.transferenciasEnviadas = transferenciasEnviadas;
+
+
+    public void addTransferenciaEnviada(Transferencia transferencia) {
+        this.transferenciasEnviadas.add(transferencia);
     }
+    
+    public void removeTransferenciaEnviada(Transferencia transferencia) {
+        this.transferenciasEnviadas.remove(transferencia);
+    }
+    
+    
 
     public List<Transferencia> getTransferenciasRecebidas() {
         return transferenciasRecebidas;
     }
 
-    public void setTransferenciasRecebidas(List<Transferencia> transferenciasRecebidas) {
-        this.transferenciasRecebidas = transferenciasRecebidas;
+     public void addTransferenciaRecebida(Transferencia transferencia) {
+        this.transferenciasRecebidas.add(transferencia);
+    }
+    
+    public void removeTransferenciaRecebida(Transferencia transferencia) {
+        this.transferenciasRecebidas.remove(transferencia);
     }
 
     

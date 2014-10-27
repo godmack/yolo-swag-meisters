@@ -70,6 +70,11 @@ public class Encomenda implements Serializable {
         estado = Estado.Rascunho;
         this.data = new Date();
     }
+    
+     public Long getIdEncomenda() {
+        return idEncomenda;
+    }
+
 
     public Fornecedor getFornecedor() {
         return fornecedor;
@@ -87,6 +92,19 @@ public class Encomenda implements Serializable {
         this.farmacia = farmacia;
     }
 
+    public List<LinhaEncomenda> getLinhasEncomenda() {
+        return linhasEncomenda;
+    }
+    
+    public void addLinhaEncomenda(LinhaEncomenda linha){
+        this.linhasEncomenda.add(linha);
+    }
+    
+    public void removeLinhaEncomenda(LinhaEncomenda linha){
+        this.linhasEncomenda.remove(linha);
+    }
+
+   
     
     
     
