@@ -6,6 +6,9 @@
 package Entidades;
 
 import java.io.Serializable;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 import javax.persistence.Entity;
@@ -17,6 +20,8 @@ import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 import javax.persistence.OneToMany;
 import javax.persistence.TableGenerator;
+import javax.persistence.Temporal;
+import static javax.persistence.TemporalType.DATE;
 
 
 /**
@@ -41,8 +46,6 @@ public class Venda implements Serializable {
     @JoinColumn(name="CONTATO_CLIENTE")
     private Cliente cliente;
     @NotNull
-    private float preco;
-    @NotNull
     @ManyToOne
     @JoinColumn(name="ID_FARMACIA")
     private Farmacia farmacia;
@@ -50,22 +53,17 @@ public class Venda implements Serializable {
     @OneToMany(mappedBy="venda")
     private List<LinhaVenda> linhasVenda;
 
-    public Long getIdVenda() {
-        return idVenda;
-    }
-
-    public void setIdVenda(Long idVenda) {
-        this.idVenda = idVenda;
-    }
-
+    @Temporal(DATE)
+    private Date data;
+        
     public Venda() {
     }
 
-    public Venda(Cliente cliente, float preco, Farmacia farmacia) {
+    public Venda(Cliente cliente, Farmacia farmacia) {
         this.cliente = cliente;
-        this.preco = preco;
         this.farmacia = farmacia;
         this.linhasVenda = new LinkedList();
+        this.data = new Date();
     }
 
     public Cliente getCliente() {
@@ -74,14 +72,6 @@ public class Venda implements Serializable {
 
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
-    }
-
-    public float getPreco() {
-        return preco;
-    }
-
-    public void setPreco(float preco) {
-        this.preco = preco;
     }
 
     public Farmacia getFarmacia() {

@@ -6,6 +6,9 @@
 package Entidades;
 
 import java.io.Serializable;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 import javax.persistence.CascadeType;
@@ -17,6 +20,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.TableGenerator;
+import javax.persistence.Temporal;
+import static javax.persistence.TemporalType.DATE;
 import javax.validation.constraints.NotNull;
 
 /**
@@ -49,6 +54,9 @@ public class Encomenda implements Serializable {
     @ManyToOne
     @JoinColumn(name="ID_FARMACIA")
     private Farmacia farmacia;
+    
+    @Temporal(DATE)
+    private Date data;
 
     public Encomenda() {
         this.linhasEncomenda = new LinkedList();
@@ -60,6 +68,7 @@ public class Encomenda implements Serializable {
         this.linhasEncomenda = new LinkedList();
         this.farmacia = farmacia;
         estado = Estado.Rascunho;
+        this.data = new Date();
     }
 
     public Fornecedor getFornecedor() {
