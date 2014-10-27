@@ -40,6 +40,16 @@ public class Fornecedor implements Serializable {
             = @JoinColumn(name = "FARMACIA_ID", referencedColumnName = "ID")
     )
     private List<Farmacia> farmacias;
+    @ManyToMany
+        @JoinTable(
+            name = "FORNECEDOR_CATALOGO",
+            joinColumns
+            = @JoinColumn(name = "FORNECEDOR_ID", referencedColumnName = "LABORATORIO"),
+            inverseJoinColumns
+            = @JoinColumn(name = "CATALOGO_ID", referencedColumnName = "REFERENCIA")
+    )
+    @NotNull
+    private List<Catalogo> catalogos;
 
     public Fornecedor() {
         this.farmacias = new LinkedList();

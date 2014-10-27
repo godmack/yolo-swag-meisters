@@ -34,7 +34,7 @@ public class Farmacia implements Serializable {
     @Id
     @GeneratedValue(strategy=GenerationType.TABLE, generator="farmaciaGen")
     private Long idFarmacia;
-    
+    private String nome;
     @OneToMany(cascade=ALL, mappedBy="farmacia")
     private List<Produto> produtos;
     @OneToMany(cascade=ALL, mappedBy="farmacia")
@@ -57,6 +57,18 @@ public class Farmacia implements Serializable {
         this.fornecedores = new LinkedList();
     }
 
+    public Farmacia(String nome) {
+        this.nome = nome;
+        this.produtos = new LinkedList();
+        this.utilizadores = new LinkedList();
+        this.vendas = new LinkedList();
+        this.encomendas = new LinkedList();
+        this.stocks = new LinkedList();
+        this.fornecedores = new LinkedList();
+    }
+
+    
+    
 
     public Long getIdFarmacia() {
         return idFarmacia;

@@ -33,7 +33,7 @@ public class Recepcao implements Serializable {
             joinColumns
             = @JoinColumn(name = "RECEPCAO_ID", referencedColumnName = "IDRECEPCAO"),
             inverseJoinColumns
-            = @JoinColumn(name = "ENCOMENDA_ID", referencedColumnName = "IDENCOMENDA"-)
+            = @JoinColumn(name = "ENCOMENDA_ID", referencedColumnName = "IDENCOMENDA")
     )
     private List<Encomenda> encomendas;
     @OneToMany

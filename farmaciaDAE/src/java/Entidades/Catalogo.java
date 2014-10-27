@@ -11,6 +11,7 @@ import java.util.List;
 import static javax.persistence.CascadeType.ALL;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 
@@ -24,13 +25,13 @@ public class Catalogo implements Serializable {
     @Id
     @NotNull
     private int referencia;
-    @NotNull
-    private Produto produto;
+    @OneToMany(cascade = ALL, mappedBy = "catalogo")
+    private List<Produto> produtos;
     @OneToMany(cascade=ALL, mappedBy="catalogo")
     @NotNull
     private List<Stock> stocks;
     
-    //associacao com o catalogo_fornecedor? o q fazer?
+    @ManyToMany(mappedBy = "catalogos")
     private List<Fornecedor> fornecedores;
     @NotNull
     private String nome;
@@ -48,17 +49,19 @@ public class Catalogo implements Serializable {
         this.fornecedores = new ArrayList();
     }
 
-    public Catalogo(int referencia, Produto produto, String nome, String laboratorio, String emailFornEleicao, String emailFornAlternativo, float preco) {
+    public Catalogo(int referencia, List<Produto> produtos, List<Stock> stocks, List<Fornecedor> fornecedores, String nome, String laboratorio, String emailFornEleicao, String emailFornAlternativo, float preco) {
         this.referencia = referencia;
-        this.produto = produto;
-        this.stocks = new ArrayList();
-        this.fornecedores = new ArrayList();
+        this.produtos = produtos;
+        this.stocks = stocks;
+        this.fornecedores = fornecedores;
         this.nome = nome;
         this.laboratorio = laboratorio;
         this.emailFornEleicao = emailFornEleicao;
         this.emailFornAlternativo = emailFornAlternativo;
         this.preco = preco;
     }
+
+
 
     public int getReferencia() {
         return referencia;
@@ -68,12 +71,20 @@ public class Catalogo implements Serializable {
         this.referencia = referencia;
     }
 
-    public Produto getProduto() {
-        return produto;
+    public List<Produto> getProdutos() {
+        return produtos;
     }
 
-    public void setProduto(Produto produto) {
-        this.produto = produto;
+    public void setProdutos(List<Produto> produtos) {
+        this.produtos = produtos;
+    }
+
+    public void addProdutos(Produto produtos) {
+        this.produtos.add(produtos);
+    }
+    
+    public void removeProdutos(Produto produtos) {
+        this.produtos.remove(produtos);
     }
 
     public List<Stock> getStocks() {

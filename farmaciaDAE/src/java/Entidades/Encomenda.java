@@ -46,8 +46,8 @@ public class Encomenda implements Serializable {
     @OneToMany(mappedBy = "encomenda", cascade = CascadeType.REMOVE)
     @NotNull
     private List<Produto> produtos;
-    //será que este estado esta bem?
-    private enum estado{Rascunho, Enviado, RecebidoIncompleto, RecebidoCompleto};
+    
+    private Estado estado;
     @ManyToMany(mappedBy="encomendas")
     private List<Recepcao> recepcoes;
     @OneToMany (mappedBy = "encomenda", cascade = CascadeType.REMOVE)
@@ -61,6 +61,7 @@ public class Encomenda implements Serializable {
         this.produtos = new LinkedList<Produto>();
         this.recepcoes = new LinkedList<Recepcao>();
         this.linhasEncomenda = new LinkedList();
+        estado = Estado.Rascunho;
     }
 
     public Encomenda(Fornecedor fornecedor, Farmacia farmacia) {
@@ -69,6 +70,7 @@ public class Encomenda implements Serializable {
         this.recepcoes = new LinkedList<Recepcao>();
         this.linhasEncomenda = new LinkedList();
         this.farmacia = farmacia;
+        estado = Estado.Rascunho;
     }
 
     public Fornecedor getFornecedor() {

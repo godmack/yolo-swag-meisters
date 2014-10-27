@@ -15,7 +15,7 @@ import javax.persistence.Entity;
 @Entity
 public class Funcionario extends Utilizador implements Serializable {
 
-    private boolean eFuncBalcao;
+    private boolean FuncBalcao;
     
     public Funcionario(){
 
@@ -23,15 +23,15 @@ public class Funcionario extends Utilizador implements Serializable {
     
     public Funcionario(String nome, String username,String password, String email, boolean eFuncBalcao){
         super(username, password, nome, email);
-        this.eFuncBalcao = eFuncBalcao;
+        this.FuncBalcao = eFuncBalcao;
     }
 
-    public boolean iseFuncBalcao() {
-        return eFuncBalcao;
+    public boolean isFuncBalcao() {
+        return FuncBalcao;
     }
 
-    public void seteFuncBalcao(boolean eFuncBalcao) {
-        this.eFuncBalcao = eFuncBalcao;
+    public void setFuncBalcao(boolean FuncBalcao) {
+        this.FuncBalcao = FuncBalcao;
     }
     
 }
