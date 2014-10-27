@@ -3,9 +3,16 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/andre_000/Desktop/Universidade/DAE/farmaciaDAE/src/java/Entidades/LinhaVenda.java</file>
-            <file>file:/C:/Users/andre_000/Desktop/Universidade/DAE/farmaciaDAE/src/java/Entidades/Recepcao.java</file>
-            <file>file:/C:/Users/andre_000/Desktop/Universidade/DAE/farmaciaDAE/src/java/Entidades/LinhaEncomenda.java</file>
+            <file>file:/D:/Escola/1ºSemestre/DAE/projecto/trunk/farmaciaDAE/src/java/ejbs/AdministradorBean.java</file>
+            <file>file:/D:/Escola/1ºSemestre/DAE/projecto/trunk/farmaciaDAE/src/java/Entidades/Produto.java</file>
+            <file>file:/D:/Escola/1ºSemestre/DAE/projecto/trunk/farmaciaDAE/src/java/Entidades/LinhaEncomenda.java</file>
+            <file>file:/D:/Escola/1ºSemestre/DAE/projecto/trunk/farmaciaDAE/src/java/ejbs/UtilizadorBean.java</file>
+            <file>file:/D:/Escola/1ºSemestre/DAE/projecto/trunk/farmaciaDAE/src/java/Entidades/Stock.java</file>
+            <file>file:/D:/Escola/1ºSemestre/DAE/projecto/trunk/farmaciaDAE/src/java/Entidades/Encomenda.java</file>
+            <file>file:/D:/Escola/1ºSemestre/DAE/projecto/trunk/farmaciaDAE/src/java/Entidades/Fornecedor.java</file>
+            <file>file:/D:/Escola/1ºSemestre/DAE/projecto/trunk/farmaciaDAE/src/java/Entidades/GuiaEncomenda.java</file>
+            <file>file:/D:/Escola/1ºSemestre/DAE/projecto/trunk/farmaciaDAE/src/java/Entidades/Catalogo.java</file>
+            <file>file:/D:/Escola/1ºSemestre/DAE/projecto/trunk/farmaciaDAE/nbproject/build-impl.xml</file>
         </group>
     </open-files>
 </project-private>

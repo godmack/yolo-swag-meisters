@@ -43,13 +43,8 @@ public class Encomenda implements Serializable {
     @JoinColumn(name="ID_FORNECEDOR")
     @NotNull
     private Fornecedor fornecedor;
-    @OneToMany(mappedBy = "encomenda", cascade = CascadeType.REMOVE)
-    @NotNull
-    private List<Produto> produtos;
-    
     private Estado estado;
-    @ManyToMany(mappedBy="encomendas")
-    private List<Recepcao> recepcoes;
+
     @OneToMany (mappedBy = "encomenda", cascade = CascadeType.REMOVE)
     private List<LinhaEncomenda> linhasEncomenda;
     
@@ -58,16 +53,12 @@ public class Encomenda implements Serializable {
     private Farmacia farmacia;
 
     public Encomenda() {
-        this.produtos = new LinkedList<Produto>();
-        this.recepcoes = new LinkedList<Recepcao>();
         this.linhasEncomenda = new LinkedList();
         estado = Estado.Rascunho;
     }
 
     public Encomenda(Fornecedor fornecedor, Farmacia farmacia) {
         this.fornecedor = fornecedor;
-        this.produtos = new LinkedList<Produto>();
-        this.recepcoes = new LinkedList<Recepcao>();
         this.linhasEncomenda = new LinkedList();
         this.farmacia = farmacia;
         estado = Estado.Rascunho;
@@ -79,30 +70,6 @@ public class Encomenda implements Serializable {
 
     public void setFornecedor(Fornecedor fornecedor) {
         this.fornecedor = fornecedor;
-    }
-
-    public List<Produto> getProdutos() {
-        return produtos;
-    }
-
-    public void addProduto(Produto produto) {
-        this.produtos.add(produto);
-    }
-    
-    public void removeProduto(Produto produto) {
-        this.produtos.remove(produto);
-    }
-
-    public List<Recepcao> getRecepcoes() {
-        return recepcoes;
-    }
-
-    public void addRecepcao(Recepcao recepcao) {
-        this.recepcoes.add(recepcao);
-    }
-    
-    public void removeRecepcao(Recepcao recepcao) {
-        this.recepcoes.remove(recepcao);
     }
 
     public Farmacia getFarmacia() {

@@ -24,7 +24,6 @@ public class LinhaEncomenda implements Serializable {
     @JoinColumn(name="ID_ENCOMENDA")
     @NotNull
     private Encomenda encomenda;
-    @Id
     @ManyToOne
     @JoinColumn(name="REFERENCIA_CATALOGO")
     @NotNull

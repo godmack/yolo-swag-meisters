@@ -46,6 +46,9 @@ public class Produto implements Serializable {
     @ManyToOne
     @JoinColumn(name = "REFERENCIA_CATALOGO")
     private Catalogo catalogo;
+    @ManyToOne
+    @JoinColumn(name = "IDFARMACIA")
+    private Farmacia farmacia;
 
     public Produto(){
         

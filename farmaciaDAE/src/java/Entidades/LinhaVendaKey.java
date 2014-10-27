@@ -12,30 +12,32 @@ import java.util.Objects;
  * @author Andre
  */
 public class LinhaVendaKey {
-    private int produto;
-    private Integer venda;
+
+    private Long venda;
+    private int catalogo;
 
     public LinhaVendaKey() {
     }
 
-    public LinhaVendaKey(int produto, Integer venda) {
-        this.produto = produto;
+    public LinhaVendaKey(Long venda, int catalogo) {
         this.venda = venda;
+        this.catalogo = catalogo;
     }
 
-    public int getProduto() {
-        return produto;
+    public int getCatalogo() {
+        return catalogo;
     }
 
-    public void setProduto(int produto) {
-        this.produto = produto;
+    public void setCatalogo(int catalogo) {
+        this.catalogo = catalogo;
+ 
     }
 
-    public Integer getVenda() {
+    public Long getVenda() {
         return venda;
     }
 
-    public void setVenda(Integer venda) {
+    public void setVenda(Long venda) {
         this.venda = venda;
     }
 
@@ -45,7 +47,7 @@ public class LinhaVendaKey {
        public int hashCode() {
         return ((this.getVenda() == null
                 ? 0 : this.getVenda().hashCode())
-                ^ ((int) this.getProduto()));
+                ^ ((int) this.getCatalogo()));
     }
 
     @Override
@@ -61,12 +63,12 @@ public class LinhaVendaKey {
         return ((this.getVenda() == null
                 ? other.getVenda() == null : this.getVenda()
                 .equals(other.getVenda()))
-                && (this.getProduto() == other.getProduto()));
+                && (this.getCatalogo() == other.getCatalogo()));
     }
 
     @Override
     public String toString() {
-        return "" + getVenda() + "-" + getProduto();
+        return "" + getVenda() + "-" + getCatalogo();
     }
     
 }

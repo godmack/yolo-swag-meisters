@@ -50,6 +50,7 @@ public class Fornecedor implements Serializable {
     )
     @NotNull
     private List<Catalogo> catalogos;
+    
 
     public Fornecedor() {
         this.farmacias = new LinkedList();
