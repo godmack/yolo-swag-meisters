@@ -25,13 +25,6 @@ import javax.validation.constraints.NotNull;
 public class LinhaVenda implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    @TableGenerator(
-        name="linhaVendaGen",
-        table="PERSISTENCE_ORDER_SEQUENCE_GENERATOR",
-        pkColumnName="GEN_KEY",
-        valueColumnName="GEN_VALUE",
-        pkColumnValue="LINHA_VENDA_ID",
-        allocationSize=10)
     @Id
     @ManyToOne
     @JoinColumn(name="ID_VENDA")
