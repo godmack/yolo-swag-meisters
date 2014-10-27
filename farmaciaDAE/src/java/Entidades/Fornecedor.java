@@ -37,7 +37,7 @@ public class Fornecedor implements Serializable {
             joinColumns
             = @JoinColumn(name = "FORNECEDOR_ID", referencedColumnName = "LABORATORIO"),
             inverseJoinColumns
-            = @JoinColumn(name = "FARMACIA_ID", referencedColumnName = "ID")
+            = @JoinColumn(name = "FARMACIA_ID", referencedColumnName = "IDFARMACIA")
     )
     private List<Farmacia> farmacias;
     @ManyToMany

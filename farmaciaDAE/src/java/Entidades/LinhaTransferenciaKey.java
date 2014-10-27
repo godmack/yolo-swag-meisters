@@ -11,16 +11,16 @@ import java.util.Objects;
  *
  * @author Andre
  */
-public class LinhaEncomendaKey {
+public class LinhaTransferenciaKey {
     private int produto;
-    private Long encomenda;
+    private Long transferencia;
 
-    public LinhaEncomendaKey() {
+    public LinhaTransferenciaKey() {
     }
 
-    public LinhaEncomendaKey(int produto, Long encomenda) {
+    public LinhaTransferenciaKey(int produto, Long encomenda) {
         this.produto = produto;
-        this.encomenda = encomenda;
+        this.transferencia = transferencia;
     }
 
     public int getProduto() {
@@ -31,20 +31,20 @@ public class LinhaEncomendaKey {
         this.produto = produto;
     }
 
-    public Long getEncomenda() {
-        return encomenda;
+    public Long getTransferencia() {
+        return transferencia;
     }
 
-    public void setEncomenda(Long encomenda) {
-        this.encomenda = encomenda;
+    public void setTransferencia(Long transferencia) {
+        this.transferencia = transferencia;
     }
 
   
 
     @Override
        public int hashCode() {
-        return ((this.getEncomenda() == null
-                ? 0 : this.getEncomenda().hashCode())
+        return ((this.getTransferencia() == null
+                ? 0 : this.getTransferencia().hashCode())
                 ^ ((int) this.getProduto()));
     }
 
@@ -54,19 +54,19 @@ public class LinhaEncomendaKey {
         if (this == otherOb) {
             return true;
         }
-        if (!(otherOb instanceof LinhaEncomendaKey)) {
+        if (!(otherOb instanceof LinhaTransferenciaKey)) {
             return false;
         }
-        LinhaEncomendaKey other = (LinhaEncomendaKey) otherOb;
-        return ((this.getEncomenda() == null
-                ? other.getEncomenda() == null : this.getEncomenda()
-                .equals(other.getEncomenda()))
+        LinhaTransferenciaKey other = (LinhaTransferenciaKey) otherOb;
+        return ((this.getTransferencia() == null
+                ? other.getTransferencia() == null : this.getTransferencia()
+                .equals(other.getTransferencia()))
                 && (this.getProduto() == other.getProduto()));
     }
 
     @Override
     public String toString() {
-        return "" + getEncomenda() + "-" + getProduto();
+        return "" + getTransferencia() + "-" + getProduto();
     }
     
 }

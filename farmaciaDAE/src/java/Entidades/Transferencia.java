@@ -24,50 +24,51 @@ import javax.validation.constraints.NotNull;
  * @author Cristiano
  */
 @Entity
-public class Encomenda implements Serializable {
+public class Transferencia implements Serializable {
     private static final long serialVersionUID = 1L;
     @TableGenerator(
-        name="encomendaGen",
+        name="transferenciaGen",
         table="PERSISTENCE_ORDER_SEQUENCE_GENERATOR",
         pkColumnName="GEN_KEY",
         valueColumnName="GEN_VALUE",
-        pkColumnValue="ENCOMENDA_ID",
+        pkColumnValue="TRANSFERENCIA_ID",
         allocationSize=10)
     @Id
-    @GeneratedValue(strategy=GenerationType.TABLE, generator="encomendaGen")
-    private Long idEncomenda;
+    @GeneratedValue(strategy=GenerationType.TABLE, generator="transferenciaGen")
+    private Long idTransferencia;
 
     @ManyToOne
-    @JoinColumn(name="ID_FORNECEDOR")
+    @JoinColumn(name="ID_FARMACIA_FORNECEDORA")
     @NotNull
-    private Fornecedor fornecedor;
+    private Farmacia farmaciaFornecedora;
+    
     private Estado estado;
 
-    @OneToMany (mappedBy = "encomenda", cascade = CascadeType.REMOVE)
-    private List<LinhaEncomenda> linhasEncomenda;
+    @OneToMany (mappedBy = "transferencia", cascade = CascadeType.REMOVE)
+    private List<LinhaTransferencia> linhasTransferencia;
     
     @ManyToOne
     @JoinColumn(name="ID_FARMACIA")
     private Farmacia farmacia;
 
-    public Encomenda() {
-        this.linhasEncomenda = new LinkedList();
+    public Transferencia() {
+        this.linhasTransferencia = new LinkedList();
         estado = Estado.Rascunho;
     }
 
-    public Encomenda(Fornecedor fornecedor, Farmacia farmacia) {
-        this.fornecedor = fornecedor;
-        this.linhasEncomenda = new LinkedList();
+    public Transferencia(Farmacia farmaciaFornecedora, Farmacia farmacia) {
+        this.farmaciaFornecedora = farmacia;
+        this.linhasTransferencia = new LinkedList();
         this.farmacia = farmacia;
         estado = Estado.Rascunho;
     }
 
-    public Fornecedor getFornecedor() {
-        return fornecedor;
+    public Farmacia getFornecedor() {
+        return farmaciaFornecedora;
     }
 
-    public void setFornecedor(Fornecedor fornecedor) {
-        this.fornecedor = fornecedor;
+    public void setFornecedor(Farmacia farmaciaFornecedora) {
+        this.farmaciaFornecedora = farmaciaFornecedora;
     }
 
     public Farmacia getFarmacia() {
@@ -76,6 +77,10 @@ public class Encomenda implements Serializable {
 
     public void setFarmacia(Farmacia farmacia) {
         this.farmacia = farmacia;
+    }
+
+    public Long getIdTransferencia() {
+        return idTransferencia;
     }
 
     

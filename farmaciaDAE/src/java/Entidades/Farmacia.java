@@ -34,6 +34,7 @@ public class Farmacia implements Serializable {
     @Id
     @GeneratedValue(strategy=GenerationType.TABLE, generator="farmaciaGen")
     private Long idFarmacia;
+    
     private String nome;
     @OneToMany(cascade=ALL, mappedBy="farmacia")
     private List<Produto> produtos;
@@ -47,6 +48,14 @@ public class Farmacia implements Serializable {
     private List<Stock> stocks;
     @ManyToMany(mappedBy="farmacias")
     private List<Fornecedor> fornecedores;
+    
+    @OneToMany(cascade = ALL, mappedBy = "farmacia")
+    private List<Transferencia> transferenciasEnviadas;
+    
+    @OneToMany(cascade = ALL, mappedBy = "farmaciaFornecedora")
+    private List<Transferencia> transferenciasRecebidas;
+    
+    
 
     public Farmacia() {
         this.produtos = new LinkedList();
@@ -55,6 +64,8 @@ public class Farmacia implements Serializable {
         this.encomendas = new LinkedList();
         this.stocks = new LinkedList();
         this.fornecedores = new LinkedList();
+        this.transferenciasEnviadas = new LinkedList();
+        this.transferenciasRecebidas = new LinkedList();
     }
 
     public Farmacia(String nome) {
@@ -65,6 +76,32 @@ public class Farmacia implements Serializable {
         this.encomendas = new LinkedList();
         this.stocks = new LinkedList();
         this.fornecedores = new LinkedList();
+        this.transferenciasEnviadas = new LinkedList();
+        this.transferenciasRecebidas = new LinkedList();
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public List<Transferencia> getTransferenciasEnviadas() {
+        return transferenciasEnviadas;
+    }
+
+    public void setTransferenciasEnviadas(List<Transferencia> transferenciasEnviadas) {
+        this.transferenciasEnviadas = transferenciasEnviadas;
+    }
+
+    public List<Transferencia> getTransferenciasRecebidas() {
+        return transferenciasRecebidas;
+    }
+
+    public void setTransferenciasRecebidas(List<Transferencia> transferenciasRecebidas) {
+        this.transferenciasRecebidas = transferenciasRecebidas;
     }
 
     
