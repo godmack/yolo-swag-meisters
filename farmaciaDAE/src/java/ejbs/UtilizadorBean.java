@@ -5,6 +5,8 @@
  */
 package ejbs;
 
+import Entidades.Utilizador;
+import javax.ejb.EJBException;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -29,6 +31,15 @@ public class UtilizadorBean {
     public void UtilizadorBean(){
         
     }
+    
+    
+    public boolean existeUsername(String username) {
+        try {
+            return em.find(Utilizador.class, username) != null;
+        } catch (Exception e) {
+            throw new EJBException(e.getMessage());
+        }
+    } 
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")
 }
