@@ -26,12 +26,12 @@ public abstract class Linhas{
     @ManyToOne
     @JoinColumn(name="REFERENCIA_CATALOGO")
     @NotNull
-    private Catalogo catalogo;
+    private ProdutoCatalogo produtoCatalogo;
     @NotNull
     private int quantidade;
 
-    public Linhas(Catalogo catalogo, int quantidade) {
-        this.catalogo = catalogo;
+    public Linhas(ProdutoCatalogo produtoCatalogo, int quantidade) {
+        this.produtoCatalogo = produtoCatalogo;
         this.quantidade = quantidade;
     }
 
@@ -39,12 +39,12 @@ public abstract class Linhas{
     }
     
     
-        public Catalogo getCatalogo() {
-        return catalogo;
+        public ProdutoCatalogo getProdutoCatalogo() {
+        return produtoCatalogo;
     }
 
-    public void setCatalogo(Catalogo catalogo) {
-        this.catalogo = catalogo;
+    public void setCatalogo(ProdutoCatalogo produtoCatalogo) {
+        this.produtoCatalogo = produtoCatalogo;
     }
     
           public int getQuantidade() {

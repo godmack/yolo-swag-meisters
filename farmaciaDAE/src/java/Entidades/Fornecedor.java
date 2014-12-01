@@ -49,7 +49,7 @@ public class Fornecedor implements Serializable {
             = @JoinColumn(name = "CATALOGO_ID", referencedColumnName = "REFERENCIA")
     )
     @NotNull
-    private List<ProdutoCatalogo> catalogos;
+    private List<ProdutoCatalogo> produtosCatalogo;
     
 
     public Fornecedor() {
@@ -108,16 +108,16 @@ public class Fornecedor implements Serializable {
         this.farmacias.remove(farmacia);
     }
 
-    public List<Catalogo> getCatalogos() {
-        return catalogos;
+    public List<ProdutoCatalogo> getProdutosCatalogo() {
+        return produtosCatalogo;
     }
     
-    public void addCatalogo(Catalogo catalogo) {
-        this.catalogos.add(catalogo);
+    public void addProdutoCatalogo(ProdutoCatalogo produtoCatalogo) {
+        this.produtosCatalogo.add(produtoCatalogo);
     }
 
-    public void removeCatalogo(Catalogo catalogo) {
-        this.catalogos.remove(catalogo);
+    public void removeProdutoCatalogo(ProdutoCatalogo produtoCatalogo) {
+        this.produtosCatalogo.remove(produtoCatalogo);
     }
     
 

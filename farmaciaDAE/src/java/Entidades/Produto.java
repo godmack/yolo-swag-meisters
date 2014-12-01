@@ -66,11 +66,11 @@ public class Produto implements Serializable {
         return idProduto;
     }
 
-    public Catalogo getCatalogo() {
+    public ProdutoCatalogo getProdutoCatalogo() {
         return catalogo;
     }
 
-    public void setCatalogo(Catalogo catalogo) {
+    public void setCatalogo(ProdutoCatalogo produtoCatalogo) {
         this.catalogo = catalogo;
     }
 

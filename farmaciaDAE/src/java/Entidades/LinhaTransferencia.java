@@ -24,16 +24,6 @@ public class LinhaTransferencia extends Linhas implements Serializable {
     @JoinColumn(name="ID_TRANSFENCIA")
     @NotNull
     private Transferencia transferencia;
-<<<<<<< .mine
-    @ManyToOne
-    @JoinColumn(name="REFERENCIA_CATALOGO")
-    @NotNull
-    private ProdutoCatalogo catalogo;
-    @NotNull
-    private int quantidade;
-=======
->>>>>>> .r28
-
     private int quantidadeRecebida;
     
     public LinhaTransferencia() {
@@ -54,24 +44,6 @@ public class LinhaTransferencia extends Linhas implements Serializable {
         this.transferencia = transferencia;
     }
 
-<<<<<<< .mine
-    public ProdutoCatalogo getCatalogo() {
-        return catalogo;
-    }
-
-    public void setCatalogo(ProdutoCatalogo catalogo) {
-        this.catalogo = catalogo;
-    }
-
-    public int getQuantidade() {
-        return quantidade;
-    }
-
-    public void setQuantidade(int quantidade) {
-        this.quantidade = quantidade;
-    }
-=======
->>>>>>> .r28
     
     
 
