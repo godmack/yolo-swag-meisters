@@ -31,12 +31,17 @@ public class LinhaVenda extends Linhas implements Serializable {
     @NotNull
     private Venda venda;
     @NotNull
+<<<<<<< .mine
+    private ProdutoCatalogo catalogo;
+    @NotNull
+=======
+>>>>>>> .r28
     private float preco;
 
     public LinhaVenda() {
     }
 
-    public LinhaVenda(Venda venda, Catalogo catalogo, float preco, int quantidade) {
+    public LinhaVenda(Venda venda, ProdutoCatalogo catalogo, float preco, int quantidade) {
         super(catalogo, quantidade);
         this.venda = venda;
         this.preco = preco;
@@ -51,7 +56,20 @@ public class LinhaVenda extends Linhas implements Serializable {
         this.venda = venda;
     }
 
+<<<<<<< .mine
+    public ProdutoCatalogo getCatalogo() {
+        return catalogo;
+    }
+=======
+>>>>>>> .r28
 
+<<<<<<< .mine
+    public void setCatalogo(ProdutoCatalogo catalogo) {
+        this.catalogo = catalogo;
+    }
+
+=======
+>>>>>>> .r28
     public float getPreco() {
         return preco;
     }

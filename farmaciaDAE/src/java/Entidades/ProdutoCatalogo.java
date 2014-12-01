@@ -20,7 +20,7 @@ import javax.validation.constraints.NotNull;
  * @author Cristiano
  */
 @Entity
-public class Catalogo implements Serializable {
+public class ProdutoCatalogo implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @NotNull
@@ -44,12 +44,12 @@ public class Catalogo implements Serializable {
     @NotNull
     private float preco;
 
-    public Catalogo() {
+    public ProdutoCatalogo() {
         this.stocks = new ArrayList();
         this.fornecedores = new ArrayList();
     }
 
-    public Catalogo(int referencia, List<Produto> produtos, List<Stock> stocks, List<Fornecedor> fornecedores, String nome, String laboratorio, String emailFornEleicao, String emailFornAlternativo, float preco) {
+    public ProdutoCatalogo(int referencia, List<Produto> produtos, List<Stock> stocks, List<Fornecedor> fornecedores, String nome, String laboratorio, String emailFornEleicao, String emailFornAlternativo, float preco) {
         this.referencia = referencia;
         this.produtos = produtos;
         this.stocks = stocks;

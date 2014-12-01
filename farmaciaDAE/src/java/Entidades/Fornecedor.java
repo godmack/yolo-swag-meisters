@@ -49,7 +49,7 @@ public class Fornecedor implements Serializable {
             = @JoinColumn(name = "CATALOGO_ID", referencedColumnName = "REFERENCIA")
     )
     @NotNull
-    private List<Catalogo> catalogos;
+    private List<ProdutoCatalogo> catalogos;
     
 
     public Fornecedor() {
