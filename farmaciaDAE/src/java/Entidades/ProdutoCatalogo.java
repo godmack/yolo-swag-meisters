@@ -25,7 +25,7 @@ public class ProdutoCatalogo implements Serializable {
     @Id
     @NotNull
     private int referencia;
-    @OneToMany(cascade = ALL, mappedBy = "catalogo")
+    @OneToMany(cascade = ALL, mappedBy = "produtoCatalogo")
     private List<Produto> produtos;
     @OneToMany(cascade=ALL, mappedBy="catalogo")
     @NotNull

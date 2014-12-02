@@ -44,11 +44,11 @@ public class Stock implements Serializable {
         this.produtos = new LinkedList<>();
     }
 
-    public Stock(int id, int stockActual, int stockMinimo, ProdutoCatalogo catalogo, Farmacia farmacia) {
+    public Stock(int id, int stockActual, int stockMinimo, ProdutoCatalogo produtoCatalogo, Farmacia farmacia) {
         this.id = id;
         this.stockActual = stockActual;
         this.stockMinimo = stockMinimo;
-        this.catalogo = catalogo;
+        this.catalogo = produtoCatalogo;
         this.farmacia = farmacia;
         this.produtos = new LinkedList<>();
     }

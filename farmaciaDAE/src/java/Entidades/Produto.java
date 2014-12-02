@@ -45,7 +45,7 @@ public class Produto implements Serializable {
     private Date dataValidade;
     @ManyToOne
     @JoinColumn(name = "REFERENCIA_CATALOGO")
-    private ProdutoCatalogo catalogo;
+    private ProdutoCatalogo produtoCatalogo;
     @ManyToOne
     @JoinColumn(name = "ID_FARMACIA")
     private Farmacia farmacia;
@@ -67,11 +67,11 @@ public class Produto implements Serializable {
     }
 
     public ProdutoCatalogo getProdutoCatalogo() {
-        return catalogo;
+        return produtoCatalogo;
     }
 
     public void setCatalogo(ProdutoCatalogo produtoCatalogo) {
-        this.catalogo = catalogo;
+        this.produtoCatalogo = produtoCatalogo;
     }
 
     public Farmacia getFarmacia() {
