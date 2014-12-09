@@ -10,6 +10,8 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.validation.constraints.NotNull;
 
 /**
@@ -17,6 +19,10 @@ import javax.validation.constraints.NotNull;
  * @author Andre
  */
 @Entity
+@NamedQueries({
+@NamedQuery(name = "findExistentEncomenda", query = "SELECT le FROM LinhaEncomenda le WHERE le.encomenda = :encomenda && le.produtoCatalogo = :produtoCatalogo"),
+@NamedQuery(name="findAllLinhasEncomendaDeUmaEncomenda",query="SELECT le FROM LinhaEncomenda le WHERE le.encomenda = :encomenda")
+})
 public class LinhaEncomenda extends Linhas implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id

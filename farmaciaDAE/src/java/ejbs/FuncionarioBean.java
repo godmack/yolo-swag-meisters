@@ -6,7 +6,10 @@
 package ejbs;
 
 import Entidades.Funcionario;
+import dtos.FuncionarioDTO;
 import excecoes.EntidadeExistenteException;
+import java.util.ArrayList;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.EJBException;
 import javax.ejb.Stateless;
@@ -47,6 +50,32 @@ public class FuncionarioBean {
             throw new EJBException(e.getMessage());
         }
         
+    }
+    
+    public List<FuncionarioDTO> getAllFuncionario(){
+        try {
+            List<Funcionario> funcionarios = (List<Funcionario>) em.createNamedQuery("findAllFuncionarios").getResultList();
+            return copiarFuncionariosParaDTOs(funcionarios);
+        } catch (Exception e) {
+            throw new EJBException(e.getMessage());
+        }
+    }
+    
+     private FuncionarioDTO copiarFuncionarioParaDTO(Funcionario funcionario) {
+        return new FuncionarioDTO(
+                funcionario.getUsername(),
+                funcionario.getNome(),
+                funcionario.getEmail(),
+                funcionario.isFuncBalcao()
+        );
+    }
+     
+     private List<FuncionarioDTO> copiarFuncionariosParaDTOs(List<Funcionario> docentes) {
+        List<FuncionarioDTO> dtos = new ArrayList<>();
+        for (Funcionario docente : docentes) {
+            dtos.add(copiarFuncionarioParaDTO(docente));
+        }
+        return dtos;
     }
     
 }
