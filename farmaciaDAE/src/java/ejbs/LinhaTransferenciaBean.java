@@ -5,11 +5,11 @@
  */
 package ejbs;
 
-import Entidades.Encomenda;
-import Entidades.LinhaEncomenda;
-import Entidades.LinhaEncomendaKey;
+import Entidades.Transferencia;
+import Entidades.LinhaTransferencia;
+import Entidades.LinhaTransferenciaKey;
 import Entidades.ProdutoCatalogo;
-import dtos.LinhaEncomendaDTO;
+import dtos.LinhaTransferenciaDTO;
 import excecoes.EntidadeExistenteException;
 import excecoes.EntidadeNaoExistenteException;
 import java.util.ArrayList;
@@ -30,12 +30,12 @@ public class LinhaTransferenciaBean {
     @PersistenceContext
     private EntityManager em;
     
-    public void criarLinhaEncomenda(Encomenda encomenda, ProdutoCatalogo produtoCatalogo, int quantidade) throws EntidadeExistenteException{
+    public void criarLinhaTransferencia(Transferencia transferencia, ProdutoCatalogo produtoCatalogo, int quantidade) throws EntidadeExistenteException{
         try {
-            if(existeLinhaEncomenda(encomenda,produtoCatalogo)){
+            if(existeLinhaTransferencia(transferencia,produtoCatalogo)){
                 throw new EntidadeExistenteException("Já existe uma linha relativa a este produto");
             }            
-            em.persist(new LinhaEncomenda(encomenda, produtoCatalogo, quantidade));
+            em.persist(new LinhaTransferencia(transferencia, produtoCatalogo, quantidade));
         } catch (EntidadeExistenteException e) {
             throw e;
         } catch (Exception e) {
@@ -43,14 +43,14 @@ public class LinhaTransferenciaBean {
         }
     }
     
-    public boolean existeLinhaEncomenda(Encomenda encomenda, ProdutoCatalogo produtoCatalogo){
+    public boolean existeLinhaTransferencia(Transferencia transferencia, ProdutoCatalogo produtoCatalogo){
         
-        Query queryExisteLinhaEncomenda = em.createNamedQuery(
+        Query queryExisteLinhaTransferencia = em.createNamedQuery(
             "findAllEmployeesByFirstName"
         );
-        queryExisteLinhaEncomenda.setParameter("encomenda", encomenda.getIdEncomenda());
-        queryExisteLinhaEncomenda.setParameter("produtoCatalogo", produtoCatalogo.getReferencia());
-        int numResults = queryExisteLinhaEncomenda.getMaxResults();
+        queryExisteLinhaTransferencia.setParameter("transferencia", transferencia.getIdTransferencia());
+        queryExisteLinhaTransferencia.setParameter("produtoCatalogo", produtoCatalogo.getReferencia());
+        int numResults = queryExisteLinhaTransferencia.getMaxResults();
         
         if(numResults != 0){
             return true;
@@ -58,14 +58,14 @@ public class LinhaTransferenciaBean {
         return false;
     }
     
-    public List<LinhaEncomendaDTO> getLinhasDeUmaEncomenda(int codigoEncomenda) throws EntidadeNaoExistenteException{
+    public List<LinhaTransferenciaDTO> getLinhasDeUmaTransferencia(int codigoTransferencia) throws EntidadeNaoExistenteException{
         try {
-            Encomenda encomenda = em.find(Encomenda.class, codigoEncomenda);
-            if(encomenda == null){
-                throw new EntidadeNaoExistenteException("Encomenda não existente!");
+            Transferencia transferencia = em.find(Transferencia.class, codigoTransferencia);
+            if(transferencia == null){
+                throw new EntidadeNaoExistenteException("Transferencia não existente!");
             }
-            List<LinhaEncomenda> les = (List<LinhaEncomenda>) encomenda.getLinhasEncomenda();
-            return copiarLinhasEncomendaParaDTOs(les);
+            List<LinhaTransferencia> les = (List<LinhaTransferencia>) transferencia.getLinhasTransferencia();
+            return copiarLinhasTransferenciaParaDTOs(les);
         } catch (EntidadeNaoExistenteException e) {
             throw e;            
         } catch (Exception e) {
@@ -73,19 +73,19 @@ public class LinhaTransferenciaBean {
         }
     }
     
-    public void removerLinhaEncomenda(int codigoEncomenda, int codigoProdutoCatalogo) throws EntidadeNaoExistenteException {
+    public void removerLinhaTransferencia(int codigoTransferencia, int codigoProdutoCatalogo) throws EntidadeNaoExistenteException {
         try {
-            if(em.find(Encomenda.class, codigoEncomenda) == null){
+            if(em.find(Transferencia.class, codigoTransferencia) == null){
                 throw new EntidadeNaoExistenteException("UC não existente!");
             }
             
-            LinhaEncomendaKey chave = new LinhaEncomendaKey(codigoProdutoCatalogo, (long) codigoEncomenda);
-            LinhaEncomenda le = em.find(LinhaEncomenda.class, chave);
+            LinhaTransferenciaKey chave = new LinhaTransferenciaKey(codigoProdutoCatalogo, (long) codigoTransferencia);
+            LinhaTransferencia le = em.find(LinhaTransferencia.class, chave);
             if(le == null){
                 throw new EntidadeNaoExistenteException("Elemento de avaliação não existente!");
             }
             
-            le.getEncomenda().removeLinhaEncomenda(le);
+            le.getTransferencia().removeLinhaTransferencia(le);
 
             em.remove(le);
 
@@ -97,14 +97,14 @@ public class LinhaTransferenciaBean {
     }
     
     
-    public void alterarQuantidadeLinhaEncomenda(int codigoEncomenda, int codigoProdutoCatalogo, int quantidade) throws EntidadeNaoExistenteException {
+    public void alterarQuantidadeLinhaTransferencia(int codigoTransferencia, int codigoProdutoCatalogo, int quantidade) throws EntidadeNaoExistenteException {
         try {
-            if(em.find(Encomenda.class, codigoEncomenda) == null){
+            if(em.find(Transferencia.class, codigoTransferencia) == null){
                 throw new EntidadeNaoExistenteException("UC não existente!");
             }
             
-            LinhaEncomendaKey chave = new LinhaEncomendaKey(codigoProdutoCatalogo, (long) codigoEncomenda);
-            LinhaEncomenda le = em.find(LinhaEncomenda.class, chave);
+            LinhaTransferenciaKey chave = new LinhaTransferenciaKey(codigoProdutoCatalogo, (long) codigoTransferencia);
+            LinhaTransferencia le = em.find(LinhaTransferencia.class, chave);
             if(le == null){
                 throw new EntidadeNaoExistenteException("Elemento de avaliação não existente!");
             }
@@ -118,30 +118,30 @@ public class LinhaTransferenciaBean {
         }
     }
     
-     public List<LinhaEncomendaDTO> getAllLinhasEncomendaDeUmaEncomenda(Encomenda encomenda) {
+     public List<LinhaTransferenciaDTO> getAllLinhasTransferenciaDeUmaTransferencia(Transferencia transferencia) {
         try {
-             Query queryExisteLinhaEncomenda = em.createNamedQuery(
-                "findAllLinhasEncomendaDeUmaEncomenda"
+             Query queryExisteLinhaTransferencia = em.createNamedQuery(
+                "findAllLinhasTransferenciaDeUmaTransferencia"
             );
-            queryExisteLinhaEncomenda.setParameter("encomenda", encomenda.getIdEncomenda());
-            List<LinhaEncomenda> linhasEncomenda = (List<LinhaEncomenda>) queryExisteLinhaEncomenda.getResultList();
-            return copiarLinhasEncomendaParaDTOs(linhasEncomenda);
+            queryExisteLinhaTransferencia.setParameter("transferencia", transferencia.getIdTransferencia());
+            List<LinhaTransferencia> linhasTransferencia = (List<LinhaTransferencia>) queryExisteLinhaTransferencia.getResultList();
+            return copiarLinhasTransferenciaParaDTOs(linhasTransferencia);
         } catch (Exception e) {
             throw new EJBException(e.getMessage());
         }
     }
     
-    private LinhaEncomendaDTO copiarLinhaEncomendaParaDTO(LinhaEncomenda linhaEncomenda) {
-        return new LinhaEncomendaDTO(
-                linhaEncomenda.getProdutoCatalogo().getReferencia(),
-                linhaEncomenda.getEncomenda().getIdEncomenda(),
-                linhaEncomenda.getQuantidade());
+    private LinhaTransferenciaDTO copiarLinhaTransferenciaParaDTO(LinhaTransferencia linhaTransferencia) {
+        return new LinhaTransferenciaDTO(
+                linhaTransferencia.getProdutoCatalogo().getReferencia(),
+                linhaTransferencia.getTransferencia().getIdTransferencia(),
+                linhaTransferencia.getQuantidade());
     }
     
-    private List<LinhaEncomendaDTO> copiarLinhasEncomendaParaDTOs(List<LinhaEncomenda> linhasEncomenda) {
-        List<LinhaEncomendaDTO> dtos = new ArrayList<>();
-        for (LinhaEncomenda linhaEncomenda : linhasEncomenda) {
-            dtos.add(copiarLinhaEncomendaParaDTO(linhaEncomenda));
+    private List<LinhaTransferenciaDTO> copiarLinhasTransferenciaParaDTOs(List<LinhaTransferencia> linhasTransferencia) {
+        List<LinhaTransferenciaDTO> dtos = new ArrayList<>();
+        for (LinhaTransferencia linhaTransferencia : linhasTransferencia) {
+            dtos.add(copiarLinhaTransferenciaParaDTO(linhaTransferencia));
         }
         return dtos;
     }

@@ -10,7 +10,9 @@
             <file>file:/C:/Users/andre_000/Desktop/Universidade/DAE/projeto/trunk/farmaciaDAE/src/java/Entidades/LinhaVenda.java</file>
             <file>file:/C:/Users/andre_000/Desktop/Universidade/DAE/projeto/trunk/farmaciaDAE/src/java/dtos/LinhaVendaDTO.java</file>
             <file>file:/C:/Users/andre_000/Desktop/Universidade/DAE/projeto/trunk/farmaciaDAE/src/java/dtos/LinhaEncomendaDTO.java</file>
+            <file>file:/C:/Users/andre_000/Desktop/Universidade/DAE/projeto/trunk/farmaciaDAE/src/java/Entidades/LinhaTransferencia.java</file>
             <file>file:/C:/Users/andre_000/Desktop/Universidade/DAE/projeto/trunk/farmaciaDAE/src/java/Entidades/Venda.java</file>
+            <file>file:/C:/Users/andre_000/Desktop/Universidade/DAE/projeto/trunk/farmaciaDAE/src/java/ejbs/LinhaTransferenciaBean.java</file>
         </group>
     </open-files>
 </project-private>
