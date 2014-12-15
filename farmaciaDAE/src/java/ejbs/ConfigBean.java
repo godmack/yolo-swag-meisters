@@ -5,7 +5,15 @@
  */
 package ejbs;
 
+import Entidades.Farmacia;
+import Entidades.Fornecedor;
+import excecoes.EntidadeExistenteException;
+import excecoes.EntidadeNaoExistenteException;
 import java.io.Serializable;
+import javax.annotation.PostConstruct;
+import javax.ejb.EJB;
+import javax.ejb.Singleton;
+import javax.ejb.Startup;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,44 +23,24 @@ import javax.persistence.Id;
  *
  * @author Ruben
  */
-@Entity
+@Singleton
+@Startup
 public class ConfigBean implements Serializable {
-    private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    
+    @EJB
+    private EncomendaBean encomendaBean;
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof ConfigBean)) {
-            return false;
+    @PostConstruct
+    public void popularBD() {
+        
+        try {
+            Farmacia farmacia = new Farmacia("rubacia");
+            Fornecedor fornecedor = new Fornecedor("ruboratorio", null, 917121212, null);
+            encomendaBean.criarEncomenda(fornecedor, farmacia);
+        } catch (Exception e) {
         }
-        ConfigBean other = (ConfigBean) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public String toString() {
-        return "ejbs.ConfigBean[ id=" + id + " ]";
+        
+        
     }
     
 }

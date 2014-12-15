@@ -20,12 +20,9 @@ public class EncomendaBean {
 
     @PersistenceContext
     private EntityManager em;
-    @EJB
-    FarmaciaBean farmaciaBean;
 
     public void criarEncomenda(Fornecedor fornecedor, Farmacia farmacia) throws EntidadeExistenteException, EntidadeNaoExistenteException {
         try {
-            
             Encomenda encomenda = new Encomenda(fornecedor, farmacia);
             em.persist(encomenda);
             farmacia.addEncomenda(encomenda);
@@ -36,8 +33,8 @@ public class EncomendaBean {
 
     public List<EncomendaDTO> getAllEncomendas() {
         try {
-            List<Encomenda> ucs = (List<Encomenda>) em.createNamedQuery("findAllEncomendas").getResultList();
-            return copiarEncomendasParaDTOs(ucs);
+            List<Encomenda> encomendas = (List<Encomenda>) em.createNamedQuery("findAllEncomendas").getResultList();
+            return copiarEncomendasParaDTOs(encomendas);
         } catch (Exception e) {
             throw new EJBException(e.getMessage());
         }
