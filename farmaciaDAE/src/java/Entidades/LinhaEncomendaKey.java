@@ -13,23 +13,23 @@ import java.util.Objects;
  * @author Andre
  */
 public class LinhaEncomendaKey implements Serializable{
-    private int produto;
+    private int produtoCatalogo;
     private Long encomenda;
 
     public LinhaEncomendaKey() {
     }
 
-    public LinhaEncomendaKey(int produto, Long encomenda) {
-        this.produto = produto;
+    public LinhaEncomendaKey(int produtoCatalogo, Long encomenda) {
+        this.produtoCatalogo = produtoCatalogo;
         this.encomenda = encomenda;
     }
 
     public int getProduto() {
-        return produto;
+        return produtoCatalogo;
     }
 
     public void setProduto(int produto) {
-        this.produto = produto;
+        this.produtoCatalogo = produto;
     }
 
     public Long getEncomenda() {

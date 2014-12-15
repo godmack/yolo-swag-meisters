@@ -32,7 +32,7 @@ public class Stock implements Serializable {
     @ManyToOne
     @JoinColumn(name="REFERENCIA_CATALOGO")
     @NotNull
-    private ProdutoCatalogo catalogo;
+    private ProdutoCatalogo produtoCatalogo;
     @ManyToOne
     @JoinColumn(name="ID_FARMACIA")
     @NotNull
@@ -48,7 +48,7 @@ public class Stock implements Serializable {
         this.id = id;
         this.stockActual = stockActual;
         this.stockMinimo = stockMinimo;
-        this.catalogo = produtoCatalogo;
+        this.produtoCatalogo = produtoCatalogo;
         this.farmacia = farmacia;
         this.produtos = new LinkedList<>();
     }
@@ -78,12 +78,12 @@ public class Stock implements Serializable {
         this.stockMinimo = stockMinimo;
     }
 
-    public ProdutoCatalogo getCatalogo() {
-        return catalogo;
+    public ProdutoCatalogo getProdutoCatalogo() {
+        return produtoCatalogo;
     }
 
-    public void setCatalogo(ProdutoCatalogo catalogo) {
-        this.catalogo = catalogo;
+    public void setProdutoCatalogo(ProdutoCatalogo produtoCatalogo) {
+        this.produtoCatalogo = produtoCatalogo;
     }
 
     public Farmacia getFarmacia() {

@@ -13,23 +13,23 @@ import java.util.Objects;
  * @author Andre
  */
 public class LinhaTransferenciaKey implements Serializable{
-    private int produto;
+    private int produtoCatalogo;
     private Long transferencia;
 
     public LinhaTransferenciaKey() {
     }
 
-    public LinhaTransferenciaKey(int produto, Long encomenda) {
-        this.produto = produto;
+    public LinhaTransferenciaKey(int produtoCatalogo, Long encomenda) {
+        this.produtoCatalogo = produtoCatalogo;
         this.transferencia = transferencia;
     }
 
     public int getProduto() {
-        return produto;
+        return produtoCatalogo;
     }
 
-    public void setProduto(int produto) {
-        this.produto = produto;
+    public void setProduto(int produtoCatalogo) {
+        this.produtoCatalogo = produtoCatalogo;
     }
 
     public Long getTransferencia() {

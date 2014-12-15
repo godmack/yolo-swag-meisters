@@ -27,11 +27,11 @@ public class ProdutoCatalogo implements Serializable {
     private int referencia;
     @OneToMany(cascade = ALL, mappedBy = "produtoCatalogo")
     private List<Produto> produtos;
-    @OneToMany(cascade=ALL, mappedBy="catalogo")
+    @OneToMany(cascade=ALL, mappedBy="produtoCatalogo")
     @NotNull
     private List<Stock> stocks;
     
-    @ManyToMany(mappedBy = "catalogos")
+    @ManyToMany(mappedBy = "produtosCatalogo")
     private List<Fornecedor> fornecedores;
     @NotNull
     private String nome;

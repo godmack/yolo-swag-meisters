@@ -5,6 +5,9 @@
  */
 package ejbs;
 
+import Entidades.Administrador;
+import excecoes.EntidadeExistenteException;
+import javax.ejb.EJBException;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -25,9 +28,20 @@ public class AdministradorBean {
         this.em = em;
     }
     
-    public void criarAdministrador(){
-        
-    }
+    UtilizadorBean uBean;
+    
+    public void criarAdministrador(String username, String password, String nome, String email) throws EntidadeExistenteException{
+        try {
+            if(uBean.existeUsername(username)){
+                throw new EntidadeExistenteException("Utilizador já existente!");
+            }
+            em.persist(new Administrador(username, password, nome, email));
+        } catch (EntidadeExistenteException e) {
+            throw e;
+        } catch (Exception e) {
+            throw new EJBException(e.getMessage());
+        }
+    }  
     
     
     // Add business logic below. (Right-click in editor and choose

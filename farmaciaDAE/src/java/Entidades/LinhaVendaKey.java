@@ -15,22 +15,22 @@ import java.util.Objects;
 public class LinhaVendaKey implements Serializable{
 
     private Long venda;
-    private int catalogo;
+    private int produtoCatalogo;
 
     public LinhaVendaKey() {
     }
 
-    public LinhaVendaKey(Long venda, int catalogo) {
+    public LinhaVendaKey(Long venda, int produtoCatalogo) {
         this.venda = venda;
-        this.catalogo = catalogo;
+        this.produtoCatalogo = produtoCatalogo;
     }
 
     public int getCatalogo() {
-        return catalogo;
+        return produtoCatalogo;
     }
 
-    public void setCatalogo(int catalogo) {
-        this.catalogo = catalogo;
+    public void setCatalogo(int produtoCatalogo) {
+        this.produtoCatalogo = produtoCatalogo;
  
     }
 

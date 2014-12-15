@@ -18,9 +18,11 @@ import javax.validation.constraints.NotNull;
  *
  * @author Andre
  */
+
+//WHERE (le.encomenda = :encomenda && le.produtoCatalogo = :produtoCatalogo)
 @Entity
 @NamedQueries({
-@NamedQuery(name = "findExistentEncomenda", query = "SELECT le FROM LinhaEncomenda le WHERE le.encomenda = :encomenda && le.produtoCatalogo = :produtoCatalogo"),
+@NamedQuery(name = "findExistentEncomenda", query = "SELECT le FROM LinhaEncomenda le "),
 @NamedQuery(name="findAllLinhasEncomendaDeUmaEncomenda",query="SELECT le FROM LinhaEncomenda le WHERE le.encomenda = :encomenda")
 })
 public class LinhaEncomenda extends Linhas implements Serializable {
