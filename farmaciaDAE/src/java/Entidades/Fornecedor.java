@@ -48,7 +48,6 @@ public class Fornecedor implements Serializable {
             inverseJoinColumns
             = @JoinColumn(name = "CATALOGO_ID", referencedColumnName = "REFERENCIA")
     )
-    @NotNull
     private List<ProdutoCatalogo> produtosCatalogo;
     
 

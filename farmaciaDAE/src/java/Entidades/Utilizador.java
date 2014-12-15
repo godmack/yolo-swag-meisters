@@ -28,15 +28,14 @@ public class Utilizador implements Serializable {
     private String password;
     @NotNull
     protected String nome;
-    @NotNull
     @Pattern(regexp = "[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\."
             + "[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@"
             + "(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?",
             message = "{invalid.email}")
+    @NotNull
     protected String email;
     @ManyToOne
     @JoinColumn(name="ID_FARMACIA")
-    @NotNull
     private Farmacia farmacia;
     
     public Utilizador(){

@@ -10,6 +10,7 @@ import excecoes.EntidadeExistenteException;
 import javax.ejb.EJB;
 import javax.ejb.EJBException;
 import Entidades.Administrador;
+import Entidades.Utilizador;
 import excecoes.EntidadeExistenteException;
 import javax.ejb.EJBException;
 import javax.ejb.Stateless;

@@ -1,12 +1,18 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ejbs;
 
+import java.util.List;
+import javax.annotation.PostConstruct;
+import javax.ejb.EJB;
+import javax.ejb.Singleton;
+import javax.ejb.Startup;
+import excecoes.EntidadeExistenteException;
+import excecoes.EntidadeNaoExistenteException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import Entidades.Farmacia;
 import Entidades.Fornecedor;
+import dtos.FarmaciaDTO;
+import dtos.FornecedorDTO;
 import excecoes.EntidadeExistenteException;
 import excecoes.EntidadeNaoExistenteException;
 import java.io.Serializable;
@@ -19,28 +25,42 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-/**
- *
- * @author Ruben
- */
 @Singleton
 @Startup
 public class ConfigBean implements Serializable {
     
     @EJB
     private EncomendaBean encomendaBean;
+    @EJB
+    private AdministradorBean administradorBean;
+    
+    @EJB
+    private FarmaciaBean farmaciaBean;
+    
+    @EJB
+    private FornecedorBean fornecedorBean;
+    
+    @EJB
+    private UtilizadorBean uBean;
 
     @PostConstruct
     public void popularBD() {
-        
+
         try {
-            Farmacia farmacia = new Farmacia("rubacia");
-            Fornecedor fornecedor = new Fornecedor("ruboratorio", null, 917121212, null);
-            encomendaBean.criarEncomenda(fornecedor, farmacia);
-        } catch (Exception e) {
+
+            //PERSISTIR
+            
+            farmaciaBean.criarFarmacia("rubacia");
+            farmaciaBean.criarFarmacia("farmacia2");
+            farmaciaBean.criarFarmacia("farmacia3");
+            //fornecedorBean.criarFornecedor("ruboratorio", "rua das pinhas", 917121212, "ruboratorio@gmail.com");
+
+            administradorBean.criarAdministrador("admin", "admin123", "Admin", "rubacia@gmail.com");
+
+           
+        } catch (EntidadeExistenteException e) {
+            System.out.println("Erro: " + e.getMessage());
         }
-        
-        
     }
-    
 }
+

@@ -16,14 +16,9 @@ public class FarmaciaBean {
     @PersistenceContext
     private EntityManager em;
 
-    public void criarFarmacia(String nome) throws EntidadeExistenteException{
-        try {
-            if(existeFarmacia(nome)){
-                throw new EntidadeExistenteException("Farmacia já existente!");
-            }            
+    public void criarFarmacia( String nome) throws EntidadeExistenteException{
+        try {          
             em.persist(new Farmacia(nome));
-        } catch (EntidadeExistenteException e) {
-            throw e;
         } catch (Exception e) {
             throw new EJBException(e.getMessage());
         }
@@ -38,8 +33,8 @@ public class FarmaciaBean {
         }
     }
        
-    public boolean existeFarmacia(String nome){
-        return em.find(Farmacia.class, nome) != null;
+    public boolean existeFarmacia(Long id){
+        return em.find(Farmacia.class, id) != null;
     }    
 
     private List<FarmaciaDTO> copiarFarmaciasParaDTOs(List<Farmacia> farmacias) {
@@ -47,7 +42,10 @@ public class FarmaciaBean {
         List<FarmaciaDTO> dtos = new ArrayList<>();
 
         for (Farmacia farmacia : farmacias) {
-            dtos.add(new FarmaciaDTO(farmacia.getNome()));
+            System.out.println(farmacia.getIdFarmacia());
+            System.out.println(farmacia.getNome());
+                    
+            dtos.add(new FarmaciaDTO(farmacia.getIdFarmacia(), farmacia.getNome()));
         }
         return dtos;
     }

@@ -19,7 +19,7 @@ import javax.validation.constraints.NotNull;
  * @author Andre
  */
 
-//WHERE (le.encomenda = :encomenda && le.produtoCatalogo = :produtoCatalogo)
+//WHERE (le.encomenda = :encomenda AND le.produtoCatalogo = :produtoCatalogo)
 @Entity
 @NamedQueries({
 @NamedQuery(name = "findExistentEncomenda", query = "SELECT le FROM LinhaEncomenda le "),

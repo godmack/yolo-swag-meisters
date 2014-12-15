@@ -3,26 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< .mine
-            <file>file:/D:/Escola/1Semestre/DAE/projecto/trunk/farmaciaDAE/src/java/ejbs/FarmaciaBean.java</file>
-            <file>file:/D:/Escola/1Semestre/DAE/projecto/trunk/farmaciaDAE/src/java/ejbs/FuncionarioBean.java</file>
-            <file>file:/D:/Escola/1Semestre/DAE/projecto/trunk/farmaciaDAE/src/java/Entidades/Cliente.java</file>
-            <file>file:/D:/Escola/1Semestre/DAE/projecto/trunk/farmaciaDAE/src/java/Entidades/Farmacia.java</file>
-            <file>file:/D:/Escola/1Semestre/DAE/projecto/trunk/farmaciaDAE/src/java/Entidades/Linhas.java</file>
-            <file>file:/D:/Escola/1Semestre/DAE/projecto/trunk/farmaciaDAE/src/java/ejbs/ClienteBean.java</file>
-=======
-            <file>file:/C:/Users/andre_000/Desktop/Universidade/DAE/projeto/trunk/farmaciaDAE/src/java/Entidades/Administrador.java</file>
-            <file>file:/C:/Users/andre_000/Desktop/Universidade/DAE/projeto/trunk/farmaciaDAE/src/java/Entidades/LinhaTransferenciaKey.java</file>
-            <file>file:/C:/Users/andre_000/Desktop/Universidade/DAE/projeto/trunk/farmaciaDAE/src/java/Entidades/LinhaEncomenda.java</file>
-            <file>file:/C:/Users/andre_000/Desktop/Universidade/DAE/projeto/trunk/farmaciaDAE/src/java/Entidades/LinhaVenda.java</file>
-            <file>file:/C:/Users/andre_000/Desktop/Universidade/DAE/projeto/trunk/farmaciaDAE/src/java/Entidades/Stock.java</file>
-            <file>file:/C:/Users/andre_000/Desktop/Universidade/DAE/projeto/trunk/farmaciaDAE/src/java/ejbs/StockBean.java</file>
-            <file>file:/C:/Users/andre_000/Desktop/Universidade/DAE/projeto/trunk/farmaciaDAE/src/java/ejbs/AdministradorBean.java</file>
-            <file>file:/C:/Users/andre_000/Desktop/Universidade/DAE/projeto/trunk/farmaciaDAE/src/java/Entidades/LinhaTransferencia.java</file>
-            <file>file:/C:/Users/andre_000/Desktop/Universidade/DAE/projeto/trunk/farmaciaDAE/src/java/web/UtilizadorManager.java</file>
-            <file>file:/C:/Users/andre_000/Desktop/Universidade/DAE/projeto/trunk/farmaciaDAE/src/java/ejbs/ConfigBean.java</file>
-            <file>file:/C:/Users/andre_000/Desktop/Universidade/DAE/projeto/trunk/farmaciaDAE/src/java/ejbs/LinhaTransferenciaBean.java</file>
->>>>>>> .r35
+            <file>file:/C:/Users/andre_000/Desktop/Universidade/DAE/projeto/trunk/farmaciaDAE/src/java/dtos/FarmaciaDTO.java</file>
+            <file>file:/C:/Users/andre_000/Desktop/Universidade/DAE/projeto/trunk/farmaciaDAE/web/admin/admin_index.xhtml</file>
+            <file>file:/C:/Users/andre_000/Desktop/Universidade/DAE/projeto/trunk/farmaciaDAE/src/java/ejbs/FarmaciaBean.java</file>
+            <file>file:/C:/Users/andre_000/Desktop/Universidade/DAE/projeto/trunk/farmaciaDAE/src/java/web/AdministradorManager.java</file>
+            <file>file:/C:/Users/andre_000/Desktop/Universidade/DAE/projeto/trunk/farmaciaDAE/web/admin/admin_farmacias_listar.xhtml</file>
         </group>
     </open-files>
 </project-private>

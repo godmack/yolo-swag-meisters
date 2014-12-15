@@ -14,6 +14,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.TableGenerator;
 
@@ -22,17 +23,11 @@ import javax.persistence.TableGenerator;
  * @author Cristiano
  */
 @Entity
+@NamedQuery(name = "findAllFarmacias", query = "SELECT d FROM Farmacia d ORDER BY d.nome")
 public class Farmacia implements Serializable {
-    private static final long serialVersionUID = 1L;
-    @TableGenerator(
-        name="farmaciaGen",
-        table="PERSISTENCE_ORDER_SEQUENCE_GENERATOR",
-        pkColumnName="GEN_KEY",
-        valueColumnName="GEN_VALUE",
-        pkColumnValue="FARMACIA_ID",
-        allocationSize=10)
+
     @Id
-    @GeneratedValue(strategy=GenerationType.TABLE, generator="farmaciaGen")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idFarmacia;
     
     private String nome;

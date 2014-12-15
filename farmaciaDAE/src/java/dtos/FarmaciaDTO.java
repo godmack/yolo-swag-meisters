@@ -5,14 +5,14 @@ import java.io.Serializable;
 public class FarmaciaDTO  implements Serializable{
 
     private Long idFarmacia;
-    
     private String nome;
 
     public FarmaciaDTO() {
     }
 
-    public FarmaciaDTO(String nome) {
+    public FarmaciaDTO(Long id, String nome) {
         this.nome = nome;
+        this.idFarmacia = id;
     }
 
     public Long getIdFarmacia() {
