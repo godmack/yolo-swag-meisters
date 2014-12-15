@@ -7,6 +7,10 @@ package ejbs;
 
 import Entidades.Administrador;
 import excecoes.EntidadeExistenteException;
+import javax.ejb.EJB;
+import javax.ejb.EJBException;
+import Entidades.Administrador;
+import excecoes.EntidadeExistenteException;
 import javax.ejb.EJBException;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -18,8 +22,11 @@ import javax.persistence.PersistenceContext;
  */
 @Stateless
 public class AdministradorBean {
-    @PersistenceContext (name="farmaciaDAEPU")
+
+    @PersistenceContext
     private EntityManager em;
+    @EJB
+    UtilizadorBean uBean;    
 
     public AdministradorBean() {
     }
@@ -28,7 +35,6 @@ public class AdministradorBean {
         this.em = em;
     }
     
-    UtilizadorBean uBean;
     
     public void criarAdministrador(String username, String password, String nome, String email) throws EntidadeExistenteException{
         try {

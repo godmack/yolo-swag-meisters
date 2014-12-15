@@ -20,14 +20,6 @@ public class FuncionarioDTO  implements Serializable{
         this.eFuncBalcao = eFuncBalcao;
     }
     
-    public void reiniciar() {
-        setUsername(null);
-        setPassword(null);
-        setNome(null);
-        setEmail(null);
-        setEFuncBalcao(false);
-    }    
-    
     public String getUsername() {
         return username;
     }

@@ -96,6 +96,7 @@ public class Encomenda implements Serializable {
         return linhasEncomenda;
     }
     
+    
     public void addLinhaEncomenda(LinhaEncomenda linha){
         this.linhasEncomenda.add(linha);
     }

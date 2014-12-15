@@ -91,7 +91,7 @@ public class Farmacia implements Serializable {
     public List<Transferencia> getTransferenciasEnviadas() {
         return transferenciasEnviadas;
     }
-
+    
 
 
     public void addTransferenciaEnviada(Transferencia transferencia) {
