@@ -1,6 +1,7 @@
 package ejbs;
 
 import Entidades.Farmacia;
+import dtos.FarmaciaDTO;
 import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.EJBException;
@@ -46,7 +47,7 @@ public class FarmaciaBean {
         List<FarmaciaDTO> dtos = new ArrayList<>();
 
         for (Farmacia farmacia : farmacias) {
-            dtos.add(new farmaciaDTO(farmacia.getIdFarmacia(), farmacia.getNome()));
+            dtos.add(new FarmaciaDTO(farmacia.getNome()));
         }
         return dtos;
     }

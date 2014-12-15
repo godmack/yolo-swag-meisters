@@ -10,7 +10,6 @@ public class ClienteDTO  implements Serializable{
     private int contacto;
     private String nome;
     private String email;
-    private List<VendaDTO> vendas;
 
     public ClienteDTO() {
     }    
@@ -19,7 +18,6 @@ public class ClienteDTO  implements Serializable{
         this.nome = nome;
         this.email = email;
         this.contacto = contacto;
-        this.vendas = new LinkedList();
     }
 
     public int getContacto() {
@@ -44,14 +42,6 @@ public class ClienteDTO  implements Serializable{
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public List<VendaDTO> getVendas() {
-        return vendas;
-    }
-
-    public void setVendas(List<VendaDTO> vendas) {
-        this.vendas = vendas;
     }
     
     

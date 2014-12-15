@@ -15,18 +15,15 @@ public class EncomendaDTO  implements Serializable{
     private Long idEncomenda;
     private Fornecedor fornecedor;
     private Estado estado;
-    private List<LinhaEncomendaDTO> linhasEncomenda;
     private Farmacia farmacia;
     private Date data;
 
     public EncomendaDTO() {
-        this.linhasEncomenda = new LinkedList();
         estado = Estado.Rascunho;
     }
 
     public EncomendaDTO(Fornecedor fornecedor, Farmacia farmacia) {
         this.fornecedor = fornecedor;
-        this.linhasEncomenda = new LinkedList();
         this.farmacia = farmacia;
         estado = Estado.Rascunho;
         this.data = new Date();
@@ -56,13 +53,6 @@ public class EncomendaDTO  implements Serializable{
         this.estado = estado;
     }
 
-    public List<LinhaEncomendaDTO> getLinhasEncomenda() {
-        return linhasEncomenda;
-    }
-
-    public void setLinhasEncomenda(List<LinhaEncomendaDTO> linhasEncomenda) {
-        this.linhasEncomenda = linhasEncomenda;
-    }
 
     public Farmacia getFarmacia() {
         return farmacia;

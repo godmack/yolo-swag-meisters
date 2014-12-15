@@ -1,9 +1,7 @@
 package dtos;
 
-import Entidades.Venda;
+
 import java.io.Serializable;
-import java.util.LinkedList;
-import java.util.List;
 
 public class FornecedorDTO  implements Serializable{
 
@@ -11,33 +9,23 @@ public class FornecedorDTO  implements Serializable{
     private String email;
     private int telemovel;
     private String morada;
-    private List<FarmaciaDTO> farmacias;
-    private List<ProdutoCatalogo> produtosCatalogo;
 
     public FornecedorDTO() {
-    }    
-    
-    public FornecedorDTO(String nome, String email, int contacto) {
-        this.nome = nome;
+    }
+
+    public FornecedorDTO(String laboratorio, String email, int telemovel, String morada) {
+        this.laboratorio = laboratorio;
         this.email = email;
-        this.contacto = contacto;
-        this.vendas = new LinkedList();
+        this.telemovel = telemovel;
+        this.morada = morada;
     }
 
-    public int getContacto() {
-        return contacto;
+    public String getLaboratorio() {
+        return laboratorio;
     }
 
-    public void setContacto(int contacto) {
-        this.contacto = contacto;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setLaboratorio(String laboratorio) {
+        this.laboratorio = laboratorio;
     }
 
     public String getEmail() {
@@ -48,13 +36,20 @@ public class FornecedorDTO  implements Serializable{
         this.email = email;
     }
 
-    public List<VendaDTO> getVendas() {
-        return vendas;
+    public int getTelemovel() {
+        return telemovel;
     }
 
-    public void setVendas(List<VendaDTO> vendas) {
-        this.vendas = vendas;
+    public void setTelemovel(int telemovel) {
+        this.telemovel = telemovel;
     }
-    
+
+    public String getMorada() {
+        return morada;
+    }
+
+    public void setMorada(String morada) {
+        this.morada = morada;
+    }
     
 }
