@@ -1,0 +1,60 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"      
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+    <h:body>
+
+        <ui:composition template="./../templates/templateNCS.xhtml">
+
+            <ui:define name="top">
+                Encomendas
+            </ui:define>         
+
+            <ui:define name="content">
+                <h:dataTable
+                    var="encomenda"
+                    summary="Encomendas"
+                    value="#{funcBalcaoManager.allEncomendas}"
+                    rules="all"
+                    cellpadding="5">
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Fornecedor" />
+                        </f:facet>
+                        <h:outputText value="#{encomenda.fornecedor}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Estado" />
+                        </f:facet>
+                        <h:outputText value="#{encomenda.estado}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Farmacia" />
+                        </f:facet>
+                        <h:outputText value="#{encomenda.farmacia}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Data" />
+                        </f:facet>
+                        <h:outputText value="#{encomenda.data}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Ações" />
+                        </f:facet>
+                    </h:column>                        
+                </h:dataTable>
+				
+				<h:messages errorStyle="color: red" />
+            </ui:define>
+
+        </ui:composition>
+
+    </h:body>
+</html>
