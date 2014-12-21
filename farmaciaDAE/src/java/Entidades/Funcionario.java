@@ -7,12 +7,14 @@ package Entidades;
 
 import java.io.Serializable;
 import javax.persistence.Entity;
+import javax.persistence.NamedQuery;
 
 /**
  *
  * @author Cristiano
  */
 @Entity
+@NamedQuery(name = "findAllFuncionarios", query = "SELECT d FROM Funcionario d ORDER BY d.nome")
 public class Funcionario extends Utilizador implements Serializable {
 
     private boolean FuncBalcao;

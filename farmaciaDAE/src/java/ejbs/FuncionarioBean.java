@@ -8,6 +8,7 @@ package ejbs;
 import Entidades.Funcionario;
 import dtos.FuncionarioDTO;
 import excecoes.EntidadeExistenteException;
+import excecoes.EntidadeNaoExistenteException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.EJB;
@@ -37,13 +38,13 @@ public class FuncionarioBean {
         this.em = em;
     }
     
-    public void criarFuncionario(String nome, String username,String password, String email, boolean eFuncBalcao) throws EntidadeExistenteException{
+    public void criarFuncionario(String nome, String username, String password, String email, boolean eFuncBalcao) throws EntidadeExistenteException, EntidadeNaoExistenteException{
         
         try {
             if (uBean.existeUsername(username)) {
                 throw new EntidadeExistenteException("Utilizador já existente!");
             }
-            em.persist(new Funcionario(username, password, nome, email, eFuncBalcao));
+            em.persist(new Funcionario(nome, username, email, password,  eFuncBalcao));
         } catch (EntidadeExistenteException e) {
             throw e;
         } catch (Exception e) {

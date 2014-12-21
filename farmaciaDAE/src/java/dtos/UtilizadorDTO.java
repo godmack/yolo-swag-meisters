@@ -2,7 +2,7 @@ package dtos;
 
 import java.io.Serializable;
 
-public class FuncionarioDTO  implements Serializable{
+public class UtilizadorDTO  implements Serializable{
 
     private String username;
     private String password;
@@ -10,22 +10,14 @@ public class FuncionarioDTO  implements Serializable{
     private String email;
     private boolean eFuncBalcao;
 
-    public FuncionarioDTO() {
+    public UtilizadorDTO() {
     }    
     
-    public FuncionarioDTO(String username, String nome, String email, boolean eFuncBalcao) {
+    public UtilizadorDTO(String username, String nome, String email, boolean eFuncBalcao) {
         this.username = username;     
         this.nome = nome;
         this.email = email;
         this.eFuncBalcao = eFuncBalcao;
-    }
-    
-    public void reiniciar(){
-        setUsername(null);
-        setPassword(null);
-        setEmail(null);
-        setNome(null);
-        setEFuncBalcao(true);
     }
     
     public String getUsername() {

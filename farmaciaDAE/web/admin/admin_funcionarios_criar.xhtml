@@ -1,0 +1,79 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"               
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+    <h:body>
+
+        <ui:composition template="./../templates/templateNECS.xhtml">
+
+            <ui:define name="top">
+                Criar um novo funcionario
+            </ui:define>
+
+            <ui:define name="left">
+                <h:outputLink value="./../index.xhtml">Página inicial</h:outputLink>                
+            </ui:define>
+
+            <ui:define name="content">
+                <h:form>                  
+                    <h:panelGrid columns="3">
+                        
+                        <h:outputLabel for="username" value="Username: " />
+                        <h:inputText 
+                            id="username"
+                            size="20"
+                            required="true"
+                            requiredMessage="Erro: Deve inserir um username."                            
+                            value="#{administradorManager.funcionarioNovo.username}"
+                            validator="#{administradorManager.validarUsername}"/>
+                        <h:message for="username" errorStyle="color: red" />
+
+                        <h:outputLabel for="password" value="Palavra passe: " />
+                        <h:inputSecret
+                            id="password"
+                            size="20"
+                            required="true"
+                            requiredMessage="Erro: Deve inserir uma palavra passe."
+                            value="#{administradorManager.funcionarioNovo.password}"/>
+                        <h:message for="password" errorStyle="color: red" />                        
+
+                        <h:outputLabel for="nome" value="Nome: " />
+                        <h:inputText 
+                            id="nome"
+                            size="52"
+                            required="true"
+                            requiredMessage="Erro: Deve inserir um nome."                            
+                            value="#{administradorManager.funcionarioNovo.nome}" />
+                        <h:message for="nome" errorStyle="color: red" />
+                        
+                        <h:outputLabel for="email" value="Email: " />
+                        <h:inputText
+                            id="email"
+                            size="52"
+                            required="true"
+                            requiredMessage="Erro: Deve inserir um endereço de email."                            
+                            value="#{administradorManager.funcionarioNovo.email}" >
+                            <f:validateRegex pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />
+                        </h:inputText>    
+                        <h:message for="email" errorStyle="color: red" />
+                        
+                        
+                        <h:commandButton
+                            id="submit"
+                            binding="#{administradorManager.componente}" 
+                            value="Criar"
+                            action="#{administradorManager.criarFuncionario}" />
+                        <h:message for="submit" style="color: red"/>                         
+                    </h:panelGrid >                       
+
+                </h:form>
+            </ui:define>
+
+        </ui:composition>
+
+    </h:body>
+</html>
+
