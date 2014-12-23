@@ -38,7 +38,7 @@ public class FuncionarioBean {
         this.em = em;
     }
     
-    public void criarFuncionario(String nome, String username, String password, String email, boolean eFuncBalcao) throws EntidadeExistenteException, EntidadeNaoExistenteException{
+    public void criarFuncionario(String nome, String username, String password, String email, boolean eFuncBalcao) throws EntidadeExistenteException{
         
         try {
             if (uBean.existeUsername(username)) {
