@@ -1,0 +1,62 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+    <h:body>
+
+        <ui:composition template="./../templates/templateNECS.xhtml">
+
+            <ui:define name="top">
+                Criar um novo docente
+            </ui:define>
+
+            <ui:define name="left">
+                <h:outputLink value="admin_funcionarios_listar.xhtml">Gerir UCs</h:outputLink>
+                <br /><br />
+                <h:outputLink value="./../index.xhtml">Página inicial</h:outputLink>                
+            </ui:define>
+
+            <ui:define name="content">
+                <h:form>                  
+                    <h:panelGrid columns="3">
+
+                        <h:outputLabel for="username" value="User name: " />
+                        <h:outputText 
+                            id="username"
+                            value="#{administradorManager.funcionarioAtual.username}" />
+                        <br></br>
+                        
+                        <h:outputLabel for="nome" value="Nome: " />
+                        <h:inputText 
+                            id="nome"
+                            size="52"
+                            required="true"
+                            requiredMessage="Erro: Deve inserir um nome."
+                            value="#{administradorManager.funcionarioAtual.nome}" />
+                        <h:message for="nome" errorStyle="color: red" />
+                        
+                        <h:outputLabel for="email" value="Email: " />
+                        <h:inputText 
+                            id="email"
+                            size="52"
+                            required="true"
+                            requiredMessage="Erro: Deve inserir um endereço de email."
+                            value="#{administradorManager.funcionarioAtual.email}" />
+                        <h:message for="email" errorStyle="color: red" />                                                
+
+                        <h:commandButton
+                            id="submit"
+                            value="Atualizar"
+                            action="#{administradorManager.atualizarFuncionario}" />
+                        <h:message for="submit" style="color: red"/>                        
+                    </h:panelGrid >
+                </h:form>
+            </ui:define>
+
+        </ui:composition>
+
+    </h:body>
+</html>
+

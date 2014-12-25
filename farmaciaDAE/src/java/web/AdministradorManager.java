@@ -27,8 +27,8 @@ import utils.FacesExceptionHandler;
 public class AdministradorManager implements Serializable{
     
     private FuncionarioDTO funcionarioNovo;
-            
-
+    private FuncionarioDTO funcionarioAtual;
+    
     @EJB
     FarmaciaBean farmaciaBean;
     @EJB
@@ -40,7 +40,7 @@ public class AdministradorManager implements Serializable{
 
 
     public AdministradorManager() {
-
+        funcionarioNovo = new FuncionarioDTO();
     }
     
      public UIComponent getComponente() {
@@ -81,23 +81,48 @@ public class AdministradorManager implements Serializable{
     public void setFuncionarioNovo(FuncionarioDTO funcionarioNovo) {
         this.funcionarioNovo = funcionarioNovo;
     }
+
+    public FuncionarioDTO getFuncionarioAtual() {
+        return funcionarioAtual;
+    }
+
+    public void setFuncionarioAtual(FuncionarioDTO funcionarioAtual) {
+        this.funcionarioAtual = funcionarioAtual;
+    }
+    
+    
     
      public String criarFuncionario() {
         try {
             funcionarioBean.criarFuncionario(
-                    funcionarioNovo.getUsername(),
-                    funcionarioNovo.getPassword(),
                     funcionarioNovo.getNome(),
+                    funcionarioNovo.getUsername(),
                     funcionarioNovo.getEmail(),
+                    funcionarioNovo.getPassword(),
                     funcionarioNovo.getEFuncBalcao());
             funcionarioNovo.reiniciar();
-            return "admin_estudantes_listar?faces-redirect=true";
-        } catch (EntidadeExistenteException | EntidadeNaoExistenteException e) {
+            return "admin_funcionarios_listar?faces-redirect=true";
+        } catch (EntidadeExistenteException e) {
             FacesExceptionHandler.tratarExcecaoBinding(e, e.getMessage(), componente, logger);
         } catch (Exception e) {
             FacesExceptionHandler.tratarExcecao(e, "Erro do sistema.", logger);
         }
         return "admin_funcionarios_criar";
+    }
+     
+     public String atualizarFuncionario() {
+        try {
+            funcionarioBean.atualizar(
+                    funcionarioAtual.getUsername(),
+                    funcionarioAtual.getNome(),
+                    funcionarioAtual.getEmail());
+            return "admin_funcionarios_listar?faces-redirect=true";
+        } catch (EntidadeNaoExistenteException e) {
+            FacesExceptionHandler.tratarExcecaoBinding(e, e.getMessage(), componente, logger);
+        } catch (Exception e) {
+            FacesExceptionHandler.tratarExcecao(e, "Erro do sistema.", logger);
+        }
+        return "admin_funcionarios_editar";
     }
      
      

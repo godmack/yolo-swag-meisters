@@ -60,6 +60,11 @@
                         </h:inputText>    
                         <h:message for="email" errorStyle="color: red" />
                         
+                        <h:selectOneRadio value="#{administradorManager.funcionarioNovo.EFuncBalcao}">
+                            <f:selectItem itemValue="true" itemLabel="Funcionario Balcão" />
+                            <f:selectItem itemValue="false" itemLabel="Funcionario Armazém" />
+                        </h:selectOneRadio>
+                        
                         
                         <h:commandButton
                             id="submit"

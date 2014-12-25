@@ -29,6 +29,16 @@
                         cellpadding="5">
                         <h:column>
                             <f:facet name="header">
+                                <h:outputText value="Username" />
+                            </f:facet>
+                            <h:commandLink
+                                value="#{funcionario.username}"
+                                action="admin_funcionarios_editar?faces-redirect=true">
+                                <f:setPropertyActionListener target="#{administradorManager.funcionarioAtual}" value="#{funcionario}" />
+                            </h:commandLink>                            
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
                                 <h:outputText value="Nome" />
                             </f:facet>
                             <h:outputText value="#{funcionario.nome}" />

@@ -78,5 +78,21 @@ public class FuncionarioBean {
         }
         return dtos;
     }
+     
+     public void atualizar(String username, String nome, String email) throws EntidadeNaoExistenteException{
+        try {
+            Funcionario funcionario = em.find(Funcionario.class, username);
+            if(funcionario == null){
+                throw new EntidadeNaoExistenteException("Docente nao existente!");
+            }
+            funcionario.setNome(nome);
+            funcionario.setEmail(email);
+            em.merge(funcionario);
+        } catch (EntidadeNaoExistenteException e) {
+            throw e;
+        } catch (Exception e) {
+            throw new EJBException(e.getMessage());
+        }
+    }
     
 }
