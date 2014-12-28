@@ -31,4 +31,8 @@ public class FarmaciaDTO  implements Serializable{
         this.nome = nome;
     }
     
+    public void reiniciar(){
+        setNome(null); 
+    }
+    
 }

@@ -36,6 +36,8 @@ public class Farmacia implements Serializable {
     @OneToMany(cascade=ALL, mappedBy="farmacia")
     private List<Utilizador> utilizadores;
     @OneToMany(cascade=ALL, mappedBy="farmacia")
+    private List<Funcionario> funcionarios;
+    @OneToMany(cascade=ALL, mappedBy="farmacia")
     private List<Venda> vendas;
     @OneToMany(cascade=ALL, mappedBy="farmacia")
     private List<Encomenda> encomendas;

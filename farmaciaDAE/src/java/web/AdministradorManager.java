@@ -3,6 +3,7 @@ package web;
 
 import dtos.FarmaciaDTO;
 import dtos.FuncionarioDTO;
+import dtos.UtilizadorDTO;
 import ejbs.FarmaciaBean;
 import ejbs.FuncionarioBean;
 import ejbs.UtilizadorBean;
@@ -29,6 +30,9 @@ public class AdministradorManager implements Serializable{
     private FuncionarioDTO funcionarioNovo;
     private FuncionarioDTO funcionarioAtual;
     
+    private FarmaciaDTO farmaciaNovo;
+    private FarmaciaDTO farmaciaAtual;
+    
     @EJB
     FarmaciaBean farmaciaBean;
     @EJB
@@ -40,7 +44,8 @@ public class AdministradorManager implements Serializable{
 
 
     public AdministradorManager() {
-        funcionarioNovo = new FuncionarioDTO();
+        this.funcionarioNovo = new FuncionarioDTO();
+        this.farmaciaNovo = new FarmaciaDTO();
     }
     
      public UIComponent getComponente() {
@@ -62,6 +67,93 @@ public class AdministradorManager implements Serializable{
             return null;
         }
     }
+    
+    public String criarFarmacia() {
+        try {
+            farmaciaBean.criarFarmacia( farmaciaNovo.getNome() );
+            
+            farmaciaNovo.reiniciar();
+            return "admin_farmacias_listar?faces-redirect=true";
+        } catch (EntidadeExistenteException e) {
+            FacesExceptionHandler.tratarExcecaoBinding(e, e.getMessage(), componente, logger);
+        } catch (Exception e) {
+            FacesExceptionHandler.tratarExcecao(e, "Erro do sistema.", logger);
+        }
+        return "admin_farmacias_criar";
+    }
+    
+    public String atualizarFarmacia() {
+        try {
+            farmaciaBean.atualizar(farmaciaAtual.getIdFarmacia(), farmaciaAtual.getNome());
+            return "admin_farmacias_listar?faces-redirect=true";
+        } catch (EntidadeNaoExistenteException e) {
+            FacesExceptionHandler.tratarExcecaoBinding(e, e.getMessage(), componente, logger);
+        } catch (Exception e) {
+            FacesExceptionHandler.tratarExcecao(e, "Erro do sistema.", logger);
+        }
+        return "admin_farmacias_editar";
+    }
+    
+    public List<UtilizadorDTO> getUtilizadoresPertencemFarmacia() {
+        try {
+            return utilizadorBean.getUtilizadoresPertencemFarmacia(farmaciaAtual.getIdFarmacia());
+        } catch (Exception e) {
+            FacesExceptionHandler.tratarExcecao(e, "Erro do sistema.", logger);
+        }
+        return null;
+    }
+
+    public List<UtilizadorDTO> getUtilizadoresNaoPertencemFarmacia() {
+        try {
+            return utilizadorBean.getUtilizadoresNaoPertencemFarmacia(farmaciaAtual.getIdFarmacia());
+        } catch (Exception e) {
+            FacesExceptionHandler.tratarExcecao(e, "Erro do sistema.", logger);
+        }
+        return null;
+    }
+
+    public void atribuirUtilizadorFarmacia(ActionEvent event) {
+        try {
+            UIParameter param = (UIParameter) event.getComponent().findComponent("usernameUtilizador");
+            String usernameUtilizador = param.getValue().toString();
+            utilizadorBean.atribuirUtilizadorFarmacia(farmaciaAtual.getIdFarmacia(), usernameUtilizador);
+        } catch (Exception e) {
+            FacesExceptionHandler.tratarExcecao(e, "Erro do sistema.", logger);
+        }
+    }
+
+    public void retirarUtilizadorFarmacia(ActionEvent event) {
+        try {
+            UIParameter param = (UIParameter) event.getComponent().findComponent("usernameUtilizador");
+            String usernameUtilizador = param.getValue().toString();
+            utilizadorBean.retirarUtilizadorFarmacia(farmaciaAtual.getIdFarmacia(), usernameUtilizador);
+        } catch (Exception e) {
+            FacesExceptionHandler.tratarExcecao(e, "Erro do sistema.", logger);
+        }
+    }
+
+    public FarmaciaDTO getFarmaciaNovo() {
+        return farmaciaNovo;
+    }
+
+    public void setFarmaciaNovo(FarmaciaDTO farmaciaNovo) {
+        this.farmaciaNovo = farmaciaNovo;
+    }
+
+    public FarmaciaDTO getFarmaciaAtual() {
+        return farmaciaAtual;
+    }
+
+    public void setFarmaciaAtual(FarmaciaDTO farmaciaAtual) {
+        this.farmaciaAtual = farmaciaAtual;
+    }
+    
+    
+    
+    
+    
+    
+    
     
     
     ////////////// FUNCIONARIOS ///////////////////

@@ -8,16 +8,16 @@ public class UtilizadorDTO  implements Serializable{
     private String password;
     private String nome;
     private String email;
-    private boolean eFuncBalcao;
+    private String farmacia;
 
     public UtilizadorDTO() {
     }    
     
-    public UtilizadorDTO(String username, String nome, String email, boolean eFuncBalcao) {
+    public UtilizadorDTO(String username, String nome, String email, String Farmacia) {
         this.username = username;     
         this.nome = nome;
         this.email = email;
-        this.eFuncBalcao = eFuncBalcao;
+        this.farmacia = farmacia;
     }
     
     public String getUsername() {
@@ -52,11 +52,13 @@ public class UtilizadorDTO  implements Serializable{
         this.email = email;
     }
 
-    public boolean getEFuncBalcao() {
-        return eFuncBalcao;
+    public String getFarmacia() {
+        return farmacia;
     }
 
-    public void setEFuncBalcao(boolean eFuncBalcao) {
-        this.eFuncBalcao = eFuncBalcao;
+    public void setFarmacia(String farmacia) {
+        this.farmacia = farmacia;
     }
+
+ 
 }

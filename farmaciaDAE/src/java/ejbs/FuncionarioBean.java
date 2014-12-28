@@ -5,6 +5,7 @@
  */
 package ejbs;
 
+import Entidades.Farmacia;
 import Entidades.Funcionario;
 import dtos.FuncionarioDTO;
 import excecoes.EntidadeExistenteException;
@@ -71,9 +72,9 @@ public class FuncionarioBean {
         );
     }
      
-     private List<FuncionarioDTO> copiarFuncionariosParaDTOs(List<Funcionario> docentes) {
+     private List<FuncionarioDTO> copiarFuncionariosParaDTOs(List<Funcionario> Funcionarios) {
         List<FuncionarioDTO> dtos = new ArrayList<>();
-        for (Funcionario docente : docentes) {
+        for (Funcionario docente : Funcionarios) {
             dtos.add(copiarFuncionarioParaDTO(docente));
         }
         return dtos;
@@ -94,5 +95,7 @@ public class FuncionarioBean {
             throw new EJBException(e.getMessage());
         }
     }
+     
+    
     
 }

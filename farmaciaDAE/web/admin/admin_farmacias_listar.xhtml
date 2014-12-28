@@ -18,7 +18,7 @@
 
             <ui:define name="content">
                 <h:form>                    
-                    <h:commandButton value="Criar farmácia" action="index.html?faces-redirect=true" />
+                    <h:commandButton value="Criar farmácia" action="admin_farmacias_criar.xhtml?faces-redirect=true" />
                     <br/>
 
                     <h:dataTable
@@ -26,18 +26,16 @@
                         summary="Lista de todas as farmacias"
                         value="#{administradorManager.farmacias}"
                         rules="all"
-                        cellpadding="5">
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="ID" />
-                            </f:facet>
-                            <h:outputText value="#{farmacia.idFarmacia}" />
-                        </h:column>                        
+                        cellpadding="5">                       
                         <h:column>
                             <f:facet name="header">
                                 <h:outputText value="Nome" />
                             </f:facet>
-                            <h:outputText value="#{farmacia.nome}" />
+                            <h:commandLink
+                                value="#{farmacia.nome}"
+                                action="admin_farmacias_editar?faces-redirect=true">
+                                <f:setPropertyActionListener target="#{administradorManager.farmaciaAtual}" value="#{farmacia}" />
+                            </h:commandLink>
                         </h:column>                                      
                     </h:dataTable>
                 </h:form>
