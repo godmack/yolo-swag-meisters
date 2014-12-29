@@ -98,14 +98,14 @@ public class AdministradorManager implements Serializable{
         try {
             return utilizadorBean.getUtilizadoresPertencemFarmacia(farmaciaAtual.getIdFarmacia());
         } catch (Exception e) {
-            FacesExceptionHandler.tratarExcecao(e, "Erro do sistema.", logger);
+            FacesExceptionHandler.tratarExcecao(e, "Erro do sistema LOL.", logger);
         }
         return null;
     }
 
     public List<UtilizadorDTO> getUtilizadoresNaoPertencemFarmacia() {
         try {
-            return utilizadorBean.getUtilizadoresNaoPertencemFarmacia(farmaciaAtual.getIdFarmacia());
+            return utilizadorBean.getUtilizadoresNaoPertencemFarmacia();
         } catch (Exception e) {
             FacesExceptionHandler.tratarExcecao(e, "Erro do sistema.", logger);
         }

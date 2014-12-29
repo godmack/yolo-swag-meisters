@@ -61,19 +61,20 @@ public class UtilizadorBean {
             throw new EJBException(e.getMessage());
         }
     }
-     public List<UtilizadorDTO> getUtilizadoresNaoPertencemFarmacia(Long codigoFarmacia) throws EntidadeNaoExistenteException{
+     public List<UtilizadorDTO> getUtilizadoresNaoPertencemFarmacia() throws EntidadeNaoExistenteException{
         try {
             List<Farmacia> farmacias = (List<Farmacia>) em.createNamedQuery("findAllFarmacias").getResultList();
             if(farmacias == null){
                 throw new EntidadeNaoExistenteException("Farmacia não existente!");
-            }            
+            }  
+            System.out.println("antes query users");
             List<Utilizador> utilizadores = (List<Utilizador>) em.createNamedQuery("findAllUtilizadores").getResultList();
-            
-            
+            System.out.println("depois query users");
             for (Farmacia farmacia : farmacias) { 
                 List<Utilizador> pertencem = farmacia.getUtilizadores();
                 utilizadores.removeAll(pertencem);
             }
+            System.out.println("depois do for each");
             
             return copiarUtilizadoresParaDTOs(utilizadores);
         } catch (EntidadeNaoExistenteException e) {
@@ -122,18 +123,22 @@ public class UtilizadorBean {
     }
      
       private UtilizadorDTO copiarUtilizadorParaDTO(Utilizador utilizador) {
+          System.out.println("Entrou no DTO");
+          
         return new UtilizadorDTO(
                 utilizador.getUsername(),
                 utilizador.getNome(),
                 utilizador.getEmail(),
-                utilizador.getFarmacia().getNome());
+                "NEIN");
     }
 
     private List<UtilizadorDTO> copiarUtilizadoresParaDTOs(List<Utilizador> utilizadores) {
+        System.out.println("entrou nos dtos");
         List<UtilizadorDTO> dtos = new ArrayList<>();
         for (Utilizador utilizador : utilizadores) {
             dtos.add(copiarUtilizadorParaDTO(utilizador));
         }
+        System.out.println("return dtos");
         return dtos;
     }
 }

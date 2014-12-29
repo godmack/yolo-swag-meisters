@@ -20,8 +20,8 @@ import javax.validation.constraints.Pattern;
  * @author Cristiano
  */
 @Entity
-@NamedQuery(name = "findAllUtilizadores", query = "SELECT d FROM Utilizador d ORDER BY d.username")
-@Table(name="UTILIZADORES")
+@NamedQuery(name = "findAllUtilizadores", query = "SELECT d FROM Utilizador d")
+@Table(name="UTILIZADOR")
 public class Utilizador implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -49,6 +49,7 @@ public class Utilizador implements Serializable {
         this.password = password;
         this.nome = nome;
         this.email = email;
+        this.farmacia = null;
     }
 
     public Farmacia getFarmacia() {
