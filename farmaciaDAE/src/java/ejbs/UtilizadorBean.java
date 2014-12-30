@@ -86,6 +86,7 @@ public class UtilizadorBean {
 
     public void atribuirUtilizadorFarmacia(Long codigoFarmacia, String username) throws EntidadeNaoExistenteException{
         try {
+            System.out.println("entrou atribuirUtilizadorFarmacia");
             Farmacia farmacia = em.find(Farmacia.class, codigoFarmacia);
             if(farmacia == null){
                 throw new EntidadeNaoExistenteException("Farmacia não existente!");
@@ -93,9 +94,12 @@ public class UtilizadorBean {
             Utilizador utilizador = em.find(Utilizador.class, username);
             if(utilizador == null){
                 throw new EntidadeNaoExistenteException("Utilizador não existente!");
-            }            
+            }
+           System.out.println("entrou farmacia.addUtilizador(utilizador)");
             farmacia.addUtilizador(utilizador);
+            System.out.println("entrou utilizador.setFarmacia(farmacia);");
             utilizador.setFarmacia(farmacia);
+            System.out.println("saiu utilizador.setFarmacia(farmacia);");
         } catch (EntidadeNaoExistenteException e) {
             throw e;             
         } catch (Exception e) {

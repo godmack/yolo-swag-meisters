@@ -114,8 +114,11 @@ public class AdministradorManager implements Serializable{
 
     public void atribuirUtilizadorFarmacia(ActionEvent event) {
         try {
-            UIParameter param = (UIParameter) event.getComponent().findComponent("usernameUtilizador");
+            System.out.println("entrou atribuirUtilizadorFarmacia");
+            UIParameter param = (UIParameter) event.getComponent().findComponent("usernameFarmacia");
+            System.out.println("Passou o component");
             String usernameUtilizador = param.getValue().toString();
+ 
             utilizadorBean.atribuirUtilizadorFarmacia(farmaciaAtual.getIdFarmacia(), usernameUtilizador);
         } catch (Exception e) {
             FacesExceptionHandler.tratarExcecao(e, "Erro do sistema.", logger);
