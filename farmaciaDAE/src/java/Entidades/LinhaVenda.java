@@ -31,12 +31,12 @@ public class LinhaVenda extends Linhas implements Serializable {
     @NotNull
     private Venda venda;
     @NotNull
-    private float preco;
+    private Double preco;
 
     public LinhaVenda() {
     }
 
-    public LinhaVenda(Venda venda, ProdutoCatalogo catalogo, float preco, int quantidade) {
+    public LinhaVenda(Venda venda, ProdutoCatalogo catalogo, Double preco, int quantidade) {
         super(catalogo, quantidade);
         this.venda = venda;
         this.preco = preco;
@@ -51,11 +51,11 @@ public class LinhaVenda extends Linhas implements Serializable {
         this.venda = venda;
     }
 
-    public float getPreco() {
+    public Double getPreco() {
         return preco;
     }
 
-    public void setPreco(float preco) {
+    public void setPreco(Double preco) {
         this.preco = preco;
     }
     

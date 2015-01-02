@@ -28,7 +28,6 @@ public class ProdutoCatalogo implements Serializable {
     @OneToMany(cascade = ALL, mappedBy = "produtoCatalogo")
     private List<Produto> produtos;
     @OneToMany(cascade=ALL, mappedBy="produtoCatalogo")
-    @NotNull
     private List<Stock> stocks;
     
     @ManyToMany(mappedBy = "produtosCatalogo")
@@ -37,27 +36,23 @@ public class ProdutoCatalogo implements Serializable {
     private String nome;
     @NotNull
     private String laboratorio;
-    @NotNull
     private String emailFornEleicao;
-    @NotNull
     private String emailFornAlternativo;
     @NotNull
-    private float preco;
+    private Double preco;
 
     public ProdutoCatalogo() {
         this.stocks = new ArrayList();
         this.fornecedores = new ArrayList();
     }
 
-    public ProdutoCatalogo(int referencia, List<Produto> produtos, List<Stock> stocks, List<Fornecedor> fornecedores, String nome, String laboratorio, String emailFornEleicao, String emailFornAlternativo, float preco) {
+    public ProdutoCatalogo(int referencia, String nome, String laboratorio, Double preco) {
         this.referencia = referencia;
-        this.produtos = produtos;
-        this.stocks = stocks;
-        this.fornecedores = fornecedores;
+        this.produtos = new ArrayList();
+        this.stocks = new ArrayList();
+        this.fornecedores = new ArrayList();
         this.nome = nome;
         this.laboratorio = laboratorio;
-        this.emailFornEleicao = emailFornEleicao;
-        this.emailFornAlternativo = emailFornAlternativo;
         this.preco = preco;
     }
 
@@ -143,11 +138,11 @@ public class ProdutoCatalogo implements Serializable {
         this.emailFornAlternativo = emailFornAlternativo;
     }
 
-    public float getPreco() {
+    public Double getPreco() {
         return preco;
     }
 
-    public void setPreco(float preco) {
+    public void setPreco(Double preco) {
         this.preco = preco;
     }
 

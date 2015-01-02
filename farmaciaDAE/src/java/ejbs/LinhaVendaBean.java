@@ -38,7 +38,7 @@ public class LinhaVendaBean {
                 throw new EntidadeExistenteException("Já existe uma linha relativa a este produto");
             }
             
-            float preco = produtoCatalogo.getPreco();
+            Double preco = produtoCatalogo.getPreco();
             
             preco = preco*quantidade;
             

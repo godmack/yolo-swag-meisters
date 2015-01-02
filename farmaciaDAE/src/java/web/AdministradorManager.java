@@ -1,14 +1,17 @@
 package web;
 
 
+import Entidades.ProdutoCatalogo;
 import dtos.FarmaciaDTO;
 import dtos.FornecedorDTO;
 import dtos.FuncionarioDTO;
+import dtos.ProdutoCatalogoDTO;
 import dtos.UtilizadorDTO;
 import ejbs.AdministradorBean;
 import ejbs.FarmaciaBean;
 import ejbs.FornecedorBean;
 import ejbs.FuncionarioBean;
+import ejbs.ProdutoCatalogoBean;
 import ejbs.UtilizadorBean;
 import java.util.List;
 import javax.ejb.EJB;
@@ -39,6 +42,9 @@ public class AdministradorManager implements Serializable{
     private FornecedorDTO fornecedorNovo;
     private FornecedorDTO fornecedorAtual;
     
+    private ProdutoCatalogoDTO pCatalogoNovo;
+    private ProdutoCatalogoDTO pCatalogoAtual;
+    
     @EJB
     FarmaciaBean farmaciaBean;
     @EJB
@@ -49,6 +55,8 @@ public class AdministradorManager implements Serializable{
     private FornecedorBean fornecedorBean;
     @EJB
     private AdministradorBean administradorBean;
+    @EJB
+    private ProdutoCatalogoBean produtoCatalogoBean;
     private static final Logger logger = Logger.getLogger("web.AdministradorManager");
     private UIComponent componente;
 
@@ -317,7 +325,42 @@ public class AdministradorManager implements Serializable{
     public void setFornecedorAtual(FornecedorDTO fornecedorAtual) {
         this.fornecedorAtual = fornecedorAtual;
     }
-
+    
+    
+    
+    /************PRODUTO CATALOGO*****************/
+     public String criarProdutoCatalogo() {
+        try {
+            produtoCatalogoBean.criarProdutoCatalogo(
+                pCatalogoNovo.getReferencia(),
+                pCatalogoNovo.getNome(),
+                pCatalogoNovo.getLaboratorio(),
+                pCatalogoNovo.getPreco());
+            pCatalogoNovo.reiniciar();
+            return "admin_produtosCatalogo_listar?faces-redirect=true";
+        } catch (EntidadeExistenteException e) {
+            FacesExceptionHandler.tratarExcecaoBinding(e, e.getMessage(), componente, logger);
+        } catch (Exception e) {
+            FacesExceptionHandler.tratarExcecao(e, "Erro do sistema.", logger);
+        }
+        return "admin_produtosCatalogo_criar";
+    }
+     
+     public String atualizarProdutoCatalogo() {
+        try {
+            produtoCatalogoBean.atualizar(
+                    pCatalogoAtual.getReferencia(),
+                    pCatalogoAtual.getNome(),
+                    pCatalogoAtual.getLaboratorio(),
+                    pCatalogoAtual.getPreco());
+            return "admin_pCatalogoAtual_listar?faces-redirect=true";
+        } catch (EntidadeNaoExistenteException e) {
+            FacesExceptionHandler.tratarExcecaoBinding(e, e.getMessage(), componente, logger);
+        } catch (Exception e) {
+            FacesExceptionHandler.tratarExcecao(e, "Erro do sistema.", logger);
+        }
+        return "admin_pCatalogoAtual_editar";
+    }
     
     
 }
