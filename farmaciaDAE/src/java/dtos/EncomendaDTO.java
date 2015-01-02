@@ -13,16 +13,16 @@ import java.util.List;
 public class EncomendaDTO  implements Serializable{
 
     private Long idEncomenda;
-    private Fornecedor fornecedor;
+    private Long fornecedor;
     private Estado estado;
-    private Farmacia farmacia;
+    private int farmacia;
     private Date data;
 
     public EncomendaDTO() {
         estado = Estado.Rascunho;
     }
 
-    public EncomendaDTO(Fornecedor fornecedor, Farmacia farmacia) {
+    public EncomendaDTO(String fornecedorID, Long farmaciaID) {
         this.fornecedor = fornecedor;
         this.farmacia = farmacia;
         estado = Estado.Rascunho;
@@ -37,11 +37,11 @@ public class EncomendaDTO  implements Serializable{
         this.idEncomenda = idEncomenda;
     }
 
-    public Fornecedor getFornecedor() {
+    public Long getFornecedor() {
         return fornecedor;
     }
 
-    public void setFornecedor(Fornecedor fornecedor) {
+    public void setFornecedor(Long fornecedor) {
         this.fornecedor = fornecedor;
     }
 
@@ -54,11 +54,11 @@ public class EncomendaDTO  implements Serializable{
     }
 
 
-    public Farmacia getFarmacia() {
+    public int getFarmacia() {
         return farmacia;
     }
 
-    public void setFarmacia(Farmacia farmacia) {
+    public void setFarmacia(int farmacia) {
         this.farmacia = farmacia;
     }
 

@@ -13,27 +13,27 @@ import java.io.Serializable;
  * @author Ruben
  */
 public class TransferenciaDTO implements Serializable{
-    Farmacia farmacia;
-    Farmacia farmaciaFornecedora;
+    Long farmacia;
+    Long farmaciaFornecedora;
 
-    public TransferenciaDTO(Farmacia farmacia, Farmacia farmaciaFornecedora) {
+    public TransferenciaDTO(Long farmaciaID, Long farmaciaFornecedoraID) {
         this.farmacia = farmacia;
         this.farmaciaFornecedora = farmaciaFornecedora;
     }
 
-    public Farmacia getFarmacia() {
+    public Long getFarmacia() {
         return farmacia;
     }
 
-    public void setFarmacia(Farmacia farmacia) {
+    public void setFarmacia(Long farmacia) {
         this.farmacia = farmacia;
     }
 
-    public Farmacia getFarmaciaFornecedora() {
+    public Long getFarmaciaFornecedora() {
         return farmaciaFornecedora;
     }
 
-    public void setFarmaciaFornecedora(Farmacia farmaciaFornecedora) {
+    public void setFarmaciaFornecedora(Long farmaciaFornecedora) {
         this.farmaciaFornecedora = farmaciaFornecedora;
     }
     

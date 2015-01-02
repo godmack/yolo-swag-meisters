@@ -42,9 +42,8 @@ public class EncomendaBean {
     
      private EncomendaDTO copiarEncomendaParaDTO(Encomenda encomenda) {
         return new EncomendaDTO(
-                encomenda.getFornecedor(),
-                encomenda.getFarmacia()
-        );
+                encomenda.getFornecedor().getLaboratorio(),
+                encomenda.getFarmacia().getIdFarmacia());
     }
      
      private List<EncomendaDTO> copiarEncomendasParaDTOs(List<Encomenda> encomendas) {

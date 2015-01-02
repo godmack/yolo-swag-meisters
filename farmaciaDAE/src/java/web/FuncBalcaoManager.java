@@ -6,10 +6,12 @@
 package web;
 
 import dtos.EncomendaDTO;
+import dtos.VendaDTO;
 import ejbs.EncomendaBean;
 import ejbs.ProdutoBean;
 import ejbs.StockBean;
 import ejbs.TransferenciaBean;
+import ejbs.VendaBean;
 import java.util.List;
 import java.util.logging.Logger;
 import javax.ejb.EJB;
@@ -23,6 +25,9 @@ public class FuncBalcaoManager {
     
     @EJB
     private EncomendaBean encomendaBean;
+    
+    @EJB
+    private VendaBean vendaBean;
     
     @EJB
     private StockBean stockBean;
@@ -44,6 +49,15 @@ public class FuncBalcaoManager {
             FacesExceptionHandler.tratarExcecao(e, "Erro do sistema.", logger);
             return null;
         }
-    }   
+    }
+    
+    public List<VendaDTO> getAllVendas() {
+        try {
+            return vendaBean.getAllVendas();
+        } catch (Exception e) {
+            FacesExceptionHandler.tratarExcecao(e, "Erro do sistema.", logger);
+            return null;
+        }
+    }  
     
 }

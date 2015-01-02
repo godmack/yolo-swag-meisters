@@ -9,15 +9,15 @@ import java.util.List;
 public class VendaDTO  implements Serializable{
 
     private Long idVenda;
-    private ClienteDTO cliente;
-    private FarmaciaDTO farmacia;
+    private int cliente;
+    private Long farmacia;
     private List<LinhaVendaDTO> linhasVenda;
     private Date data;
         
     public VendaDTO() {
     }
 
-    public VendaDTO(ClienteDTO cliente, FarmaciaDTO farmacia) {
+    public VendaDTO(int clienteID, Long farmaciaID) {
         this.cliente = cliente;
         this.farmacia = farmacia;
         this.linhasVenda = new LinkedList();
@@ -32,19 +32,19 @@ public class VendaDTO  implements Serializable{
         this.idVenda = idVenda;
     }
 
-    public ClienteDTO getCliente() {
+    public int getCliente() {
         return cliente;
     }
 
-    public void setCliente(ClienteDTO cliente) {
+    public void setCliente(int cliente) {
         this.cliente = cliente;
     }
 
-    public FarmaciaDTO getFarmacia() {
+    public Long getFarmacia() {
         return farmacia;
     }
 
-    public void setFarmacia(FarmaciaDTO farmacia) {
+    public void setFarmacia(Long farmacia) {
         this.farmacia = farmacia;
     }
 

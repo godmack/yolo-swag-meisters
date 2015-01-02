@@ -59,7 +59,7 @@ public class TransferenciaBean {
     private List<TransferenciaDTO> copiarTransferenciasParaDTOs(List<Transferencia> transferencias) {
         List<TransferenciaDTO> dtos = new ArrayList<>();
         for (Transferencia transferencia : transferencias) {
-            dtos.add(new TransferenciaDTO(transferencia.getFarmaciaFornecedora(), transferencia.getFarmacia()));
+            dtos.add(new TransferenciaDTO(transferencia.getFarmaciaFornecedora().getIdFarmacia(), transferencia.getFarmacia().getIdFarmacia()));
         }
         return dtos;
     }

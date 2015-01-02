@@ -57,7 +57,7 @@ public class StockBean {
         List<StockDTO> dtos = new ArrayList<>();
 
         for (Stock stock : stocks) {
-            dtos.add(new StockDTO(stock.getId(), stock.getStockActual(), stock.getStockMinimo(), stock.getProdutoCatalogo(), stock.getFarmacia()));
+            dtos.add(new StockDTO(stock.getId(), stock.getStockActual(), stock.getStockMinimo(), stock.getProdutoCatalogo().getReferencia(), stock.getFarmacia().getIdFarmacia()));
         }
         return dtos;
     }

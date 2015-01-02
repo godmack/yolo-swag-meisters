@@ -18,10 +18,10 @@ public class StockDTO implements Serializable {
     private int id;
     private int stockActual;
     private int stockMinimo;
-    private ProdutoCatalogo catalogo;
-    private Farmacia farmacia;
+    private int catalogo;
+    private Long farmacia;
 
-    public StockDTO(int id, int stockActual, int stockMinimo, ProdutoCatalogo catalogo, Farmacia farmacia) {
+    public StockDTO(int id, int stockActual, int stockMinimo, int produtoCatalogoID, Long farmaciaCatalogoID) {
         this.id = id;
         this.stockActual = stockActual;
         this.stockMinimo = stockMinimo;
@@ -53,19 +53,19 @@ public class StockDTO implements Serializable {
         this.stockMinimo = stockMinimo;
     }
 
-    public ProdutoCatalogo getCatalogo() {
+    public int getCatalogo() {
         return catalogo;
     }
 
-    public void setCatalogo(ProdutoCatalogo catalogo) {
+    public void setCatalogo(int catalogo) {
         this.catalogo = catalogo;
     }
 
-    public Farmacia getFarmacia() {
+    public Long getFarmacia() {
         return farmacia;
     }
 
-    public void setFarmacia(Farmacia farmacia) {
+    public void setFarmacia(Long farmacia) {
         this.farmacia = farmacia;
     }
 
