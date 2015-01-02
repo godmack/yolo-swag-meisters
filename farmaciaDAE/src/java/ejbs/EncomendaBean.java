@@ -21,11 +21,20 @@ public class EncomendaBean {
     @PersistenceContext
     private EntityManager em;
 
-    public void criarEncomenda(Fornecedor fornecedor, Farmacia farmacia) throws EntidadeExistenteException, EntidadeNaoExistenteException {
+    public void criarEncomenda(String fornecedor, Long farmacia) throws EntidadeExistenteException, EntidadeNaoExistenteException {
         try {
-            Encomenda encomenda = new Encomenda(fornecedor, farmacia);
+            Fornecedor forn = em.find(Fornecedor.class, fornecedor);
+            if(forn == null){
+                throw new EntidadeNaoExistenteException("Fornecedor não existente!");
+            }
+            Farmacia farm = em.find(Farmacia.class, farmacia);
+            if(farm == null){
+                throw new EntidadeNaoExistenteException("Farmacia não existente!");
+            }
+            
+            Encomenda encomenda = new Encomenda(forn, farm);
             em.persist(encomenda);
-            farmacia.addEncomenda(encomenda);
+            farm.addEncomenda(encomenda);
         } catch (Exception e) {
             throw new EJBException(e.getMessage());
         }
@@ -54,14 +63,24 @@ public class EncomendaBean {
         return dtos;
     }
      
-     public void atualizar(Fornecedor fornecedor, Farmacia farmacia, long id) throws EntidadeExistenteException, EntidadeNaoExistenteException {
+     public void atualizar(String fornecedor, Long farmacia, int idEncomenda) throws EntidadeExistenteException, EntidadeNaoExistenteException {
         try {
-            Encomenda encomenda = em.find(Encomenda.class, id);
+            Encomenda encomenda = em.find(Encomenda.class, idEncomenda);
             if(encomenda == null){
-                throw new EntidadeNaoExistenteException("Encomenda nao existente!");
+                throw new EntidadeNaoExistenteException("Encomenda não existente!");
             }
-            encomenda.setFornecedor(fornecedor);
-            encomenda.setFarmacia(farmacia);
+            
+            Fornecedor forn = em.find(Fornecedor.class, fornecedor);
+            if(forn == null){
+                throw new EntidadeNaoExistenteException("Fornecedor não existente!");
+            }
+            Farmacia farm = em.find(Farmacia.class, farmacia);
+            if(farm == null){
+                throw new EntidadeNaoExistenteException("Farmacia não existente!");
+            }
+            
+            encomenda.setFornecedor(forn);
+            encomenda.setFarmacia(farm);
             em.persist(encomenda);
        } catch (EntidadeNaoExistenteException e) {
             throw e;

@@ -14,7 +14,7 @@
             </ui:define>         
 
             <ui:define name="left">            
-                <h:outputLink value="vendas_listar.xhtml"> Vendas</h:outputLink>
+                <h:outputLink value="vendas_criar.xhtml"> Vendas</h:outputLink>
                 <br /><br />  
             </ui:define>
             
@@ -27,33 +27,28 @@
                     cellpadding="5">
                     <h:column>
                         <f:facet name="header">
-                            <h:outputText value="Fornecedor" />
+                            <h:outputText value="Cliente" />
                         </f:facet>
-                        <h:outputText value="#{encomenda.fornecedor}"/>
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="Estado" />
-                        </f:facet>
-                        <h:outputText value="#{encomenda.estado}"/>
+                        <h:outputText value="#{venda.Cliente}"/>
                     </h:column>
                     <h:column>
                         <f:facet name="header">
                             <h:outputText value="Farmacia" />
                         </f:facet>
-                        <h:outputText value="#{encomenda.farmacia}"/>
+                        <h:outputText value="#{venda.Farmacia}"/>
                     </h:column>
                     <h:column>
                         <f:facet name="header">
                             <h:outputText value="Data" />
                         </f:facet>
-                        <h:outputText value="#{encomenda.data}"/>
+                        <h:outputText value="#{venda.Data}"/>
                     </h:column>
                     <h:column>
                         <f:facet name="header">
-                            <h:outputText value="Ações" />
+                            <h:outputText value="Linhas de Venda" />
                         </f:facet>
-                    </h:column>                        
+                        <h:outputText value="#{venda.linhasVenda}"/>
+                    </h:column>                   
                 </h:dataTable>
 				
 				<h:messages errorStyle="color: red" />
