@@ -30,8 +30,9 @@ public class LinhaEncomendaBean {
     @PersistenceContext
     private EntityManager em;
     
-    public void criarLinhaEncomenda(Encomenda encomenda, ProdutoCatalogo produtoCatalogo, int quantidade) throws EntidadeExistenteException{
+    public void criarLinhaEncomenda(Encomenda encomenda, int codigoProdutoCatalogo, int quantidade) throws EntidadeExistenteException{
         try {
+            ProdutoCatalogo produtoCatalogo = em.find(ProdutoCatalogo.class, codigoProdutoCatalogo);
             if(existeLinhaEncomenda(encomenda,produtoCatalogo)){
                 throw new EntidadeExistenteException("Já existe uma linha relativa a este produto");
             }            

@@ -7,6 +7,7 @@ import dtos.AdministradorDTO;
 import dtos.FarmaciaDTO;
 import dtos.FornecedorDTO;
 import dtos.FuncionarioDTO;
+import dtos.LinhaEncomendaDTO;
 import dtos.ProdutoCatalogoDTO;
 import dtos.UtilizadorDTO;
 import ejbs.AdministradorBean;
@@ -14,6 +15,7 @@ import ejbs.EncomendaBean;
 import ejbs.FarmaciaBean;
 import ejbs.FornecedorBean;
 import ejbs.FuncionarioBean;
+import ejbs.LinhaEncomendaBean;
 import ejbs.ProdutoCatalogoBean;
 import ejbs.UtilizadorBean;
 import java.util.List;
@@ -53,6 +55,8 @@ public class AdministradorManager implements Serializable {
 
     private AdministradorDTO administradorNovo;
     
+    private LinhaEncomendaDTO linhaEncomendaNovo;
+    
     
     @EJB
     FarmaciaBean farmaciaBean;
@@ -68,6 +72,8 @@ public class AdministradorManager implements Serializable {
     private AdministradorBean administradorBean;
     @EJB
     private ProdutoCatalogoBean produtoCatalogoBean;
+    @EJB
+    private LinhaEncomendaBean linhaEncomendaBean;
     private static final Logger logger = Logger.getLogger("web.AdministradorManager");
     private UIComponent componente;
 
@@ -77,6 +83,7 @@ public class AdministradorManager implements Serializable {
         this.fornecedorNovo = new FornecedorDTO();
         this.pCatalogoNovo = new ProdutoCatalogoDTO();
         this.administradorNovo = new AdministradorDTO();
+        this.linhaEncomendaNovo = new LinhaEncomendaDTO();
     }
 
     public UIComponent getComponente() {
@@ -437,4 +444,27 @@ public class AdministradorManager implements Serializable {
         this.pCatalogoAtual = pCatalogoAtual;
     }
 
+    /*********LINHA ENCOMENDA**************/
+    
+    public String criarLinhaEncomenda() {
+        try {
+            linhaEncomendaBean.criarLinhaEncomenda(null, linhaEncomendaNovo.getCodigoProdutoCatalogo(), linhaEncomendaNovo.getQuantidade());
+            
+            farmaciaNovo.reiniciar();
+            return "admin_farmacias_listar?faces-redirect=true";
+        } catch (Exception e) {
+            FacesExceptionHandler.tratarExcecao(e, "Erro do sistema.", logger);
+        }
+        return "admin_farmacias_criar";
+    }
+
+    public LinhaEncomendaDTO getLinhaEncomendaNovo() {
+        return linhaEncomendaNovo;
+    }
+
+    public void setLinhaEncomendaNovo(LinhaEncomendaDTO linhaEncomendaNovo) {
+        this.linhaEncomendaNovo = linhaEncomendaNovo;
+    }
+  
+ 
 }

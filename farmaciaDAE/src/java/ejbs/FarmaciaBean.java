@@ -20,7 +20,6 @@ public class FarmaciaBean {
     public void criarFarmacia( String nome) throws EntidadeExistenteException{
         try {     
             em.persist(new Farmacia(nome));
-            em.flush();
         } catch (Exception e) {
             throw new EJBException(e.getMessage());
         }
