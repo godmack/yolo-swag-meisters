@@ -54,4 +54,20 @@ public class EncomendaBean {
         }
         return dtos;
     }
+     
+     public void atualizar(Fornecedor fornecedor, Farmacia farmacia, long id) throws EntidadeExistenteException, EntidadeNaoExistenteException {
+        try {
+            Encomenda encomenda = em.find(Encomenda.class, id);
+            if(encomenda == null){
+                throw new EntidadeNaoExistenteException("Encomenda nao existente!");
+            }
+            encomenda.setFornecedor(fornecedor);
+            encomenda.setFarmacia(farmacia);
+            em.persist(encomenda);
+       } catch (EntidadeNaoExistenteException e) {
+            throw e;
+        } catch (Exception e) {
+            throw new EJBException(e.getMessage());
+        }
+    }
 }

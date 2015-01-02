@@ -14,7 +14,7 @@
             </ui:define>         
 
             <ui:define name="left">            
-                <h:outputLink value="encomendas_criar.xhtml"> Encomendas</h:outputLink>
+                <h:outputLink value="admin_encomendas_criar.xhtml">Criar Encomendas</h:outputLink>
                 <br /><br />  
                 <h:outputLink value="./../index.xhtml">Página inicial</h:outputLink> 
                 <br /><br /> 
@@ -24,7 +24,7 @@
                 <h:dataTable
                     var="encomenda"
                     summary="Encomendas"
-                    value="#{funcBalcaoManager.AllEncomendas}"
+                    value="#{administradorManager.AllEncomendas}"
                     rules="all"
                     cellpadding="5">
                     <h:column>
