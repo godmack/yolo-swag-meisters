@@ -2,6 +2,7 @@ package web;
 
 
 import Entidades.ProdutoCatalogo;
+import dtos.AdministradorDTO;
 import dtos.FarmaciaDTO;
 import dtos.FornecedorDTO;
 import dtos.FuncionarioDTO;
@@ -45,6 +46,9 @@ public class AdministradorManager implements Serializable{
     private ProdutoCatalogoDTO pCatalogoNovo;
     private ProdutoCatalogoDTO pCatalogoAtual;
     
+    private AdministradorDTO administradorNovo;
+    
+    
     @EJB
     FarmaciaBean farmaciaBean;
     @EJB
@@ -66,6 +70,7 @@ public class AdministradorManager implements Serializable{
         this.farmaciaNovo = new FarmaciaDTO();
         this.fornecedorNovo = new FornecedorDTO();
         this.pCatalogoNovo = new ProdutoCatalogoDTO();
+        this.administradorNovo = new AdministradorDTO();
     }
     
      public UIComponent getComponente() {
@@ -259,17 +264,27 @@ public class AdministradorManager implements Serializable{
       public String criarAdministrador() {
         try {
             administradorBean.criarAdministrador(
-                    funcionarioNovo.getNome(),
-                    funcionarioNovo.getUsername(),
-                    funcionarioNovo.getEmail(),
-                    funcionarioNovo.getPassword());
-            funcionarioNovo.reiniciar();
+                     administradorNovo.getUsername(),
+                    administradorNovo.getPassword(),
+                    administradorNovo.getNome(),
+                    administradorNovo.getEmail());
+            administradorNovo.reiniciar();
             return "admin_funcionarios_listar?faces-redirect=true";
         } catch (Exception e) {
             FacesExceptionHandler.tratarExcecao(e, "Erro do sistema.", logger);
         }
-        return "admin_funcionarios_criar";
+        return "admin_administradores_criar";
     }
+
+    public AdministradorDTO getAdministradorNovo() {
+        return administradorNovo;
+    }
+
+    public void setAdministradorNovo(AdministradorDTO administradorNovo) {
+        this.administradorNovo = administradorNovo;
+    }
+      
+      
      
       ////////////// Fornecedores ///////////////////
     public List<FornecedorDTO> getFornecedores() {

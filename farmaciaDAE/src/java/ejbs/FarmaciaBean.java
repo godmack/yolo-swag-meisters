@@ -18,8 +18,9 @@ public class FarmaciaBean {
     private EntityManager em;
 
     public void criarFarmacia( String nome) throws EntidadeExistenteException{
-        try {          
+        try {     
             em.persist(new Farmacia(nome));
+            em.flush();
         } catch (Exception e) {
             throw new EJBException(e.getMessage());
         }
