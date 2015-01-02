@@ -392,7 +392,7 @@ public class AdministradorManager implements Serializable {
     /**
      * **********ENCOMENDAS***************
      */
-    public List<EncomendaDTO> getAllEncomendas() {
+    public List<EncomendaDTO> getEncomendas() {
         try {
             return encomendaBean.getAllEncomendas();
         } catch (Exception e) {

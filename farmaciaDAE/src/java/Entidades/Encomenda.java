@@ -18,6 +18,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.TableGenerator;
 import javax.persistence.Temporal;
@@ -29,6 +30,7 @@ import javax.validation.constraints.NotNull;
  * @author Cristiano
  */
 @Entity
+@NamedQuery(name = "findAllEncomendas", query = "SELECT d FROM Encomenda d ORDER BY d.farmacia")
 public class Encomenda implements Serializable {
     private static final long serialVersionUID = 1L;
     @TableGenerator(
