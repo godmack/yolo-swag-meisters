@@ -1,7 +1,8 @@
 package web;
 
-
 import Entidades.ProdutoCatalogo;
+
+import dtos.EncomendaDTO;
 import dtos.AdministradorDTO;
 import dtos.FarmaciaDTO;
 import dtos.FornecedorDTO;
@@ -9,6 +10,7 @@ import dtos.FuncionarioDTO;
 import dtos.ProdutoCatalogoDTO;
 import dtos.UtilizadorDTO;
 import ejbs.AdministradorBean;
+import ejbs.EncomendaBean;
 import ejbs.FarmaciaBean;
 import ejbs.FornecedorBean;
 import ejbs.FuncionarioBean;
@@ -32,20 +34,23 @@ import utils.FacesExceptionHandler;
 
 @ManagedBean
 @SessionScoped
-public class AdministradorManager implements Serializable{
-    
+public class AdministradorManager implements Serializable {
+
     private FuncionarioDTO funcionarioNovo;
     private FuncionarioDTO funcionarioAtual;
-    
+
     private FarmaciaDTO farmaciaNovo;
     private FarmaciaDTO farmaciaAtual;
-    
+
     private FornecedorDTO fornecedorNovo;
     private FornecedorDTO fornecedorAtual;
-    
+
     private ProdutoCatalogoDTO pCatalogoNovo;
     private ProdutoCatalogoDTO pCatalogoAtual;
-    
+
+    private EncomendaDTO encomendaNovo;
+    private EncomendaDTO encomendaAtual;
+
     private AdministradorDTO administradorNovo;
     
     
@@ -56,6 +61,8 @@ public class AdministradorManager implements Serializable{
     @EJB
     private FuncionarioBean funcionarioBean;
     @EJB
+    private EncomendaBean encomendaBean;
+    @EJB
     private FornecedorBean fornecedorBean;
     @EJB
     private AdministradorBean administradorBean;
@@ -64,7 +71,6 @@ public class AdministradorManager implements Serializable{
     private static final Logger logger = Logger.getLogger("web.AdministradorManager");
     private UIComponent componente;
 
-
     public AdministradorManager() {
         this.funcionarioNovo = new FuncionarioDTO();
         this.farmaciaNovo = new FarmaciaDTO();
@@ -72,12 +78,10 @@ public class AdministradorManager implements Serializable{
         this.pCatalogoNovo = new ProdutoCatalogoDTO();
         this.administradorNovo = new AdministradorDTO();
     }
-    
-     public UIComponent getComponente() {
+
+    public UIComponent getComponente() {
         return componente;
     }
-
-    
 
     public void setComponente(UIComponent componente) {
         this.componente = componente;
@@ -92,11 +96,11 @@ public class AdministradorManager implements Serializable{
             return null;
         }
     }
-    
+
     public String criarFarmacia() {
         try {
-            farmaciaBean.criarFarmacia( farmaciaNovo.getNome() );
-            
+            farmaciaBean.criarFarmacia(farmaciaNovo.getNome());
+
             farmaciaNovo.reiniciar();
             return "admin_farmacias_listar?faces-redirect=true";
         } catch (EntidadeExistenteException e) {
@@ -106,7 +110,7 @@ public class AdministradorManager implements Serializable{
         }
         return "admin_farmacias_criar";
     }
-    
+
     public String atualizarFarmacia() {
         try {
             farmaciaBean.atualizar(farmaciaAtual.getIdFarmacia(), farmaciaAtual.getNome());
@@ -118,7 +122,7 @@ public class AdministradorManager implements Serializable{
         }
         return "admin_farmacias_editar";
     }
-    
+
     public List<UtilizadorDTO> getUtilizadoresPertencemFarmacia() {
         try {
             return utilizadorBean.getUtilizadoresPertencemFarmacia(farmaciaAtual.getIdFarmacia());
@@ -143,7 +147,7 @@ public class AdministradorManager implements Serializable{
             UIParameter param = (UIParameter) event.getComponent().findComponent("usernameFarmacia");
             System.out.println("Passou o component");
             String usernameUtilizador = param.getValue().toString();
- 
+
             utilizadorBean.atribuirUtilizadorFarmacia(farmaciaAtual.getIdFarmacia(), usernameUtilizador);
         } catch (Exception e) {
             FacesExceptionHandler.tratarExcecao(e, "Erro do sistema.", logger);
@@ -175,15 +179,7 @@ public class AdministradorManager implements Serializable{
     public void setFarmaciaAtual(FarmaciaDTO farmaciaAtual) {
         this.farmaciaAtual = farmaciaAtual;
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
     ////////////// FUNCIONARIOS ///////////////////
     public List<FuncionarioDTO> getFuncionarios() {
         try {
@@ -193,7 +189,7 @@ public class AdministradorManager implements Serializable{
             return null;
         }
     }
-    
+
     public FuncionarioDTO getFuncionarioNovo() {
         return funcionarioNovo;
     }
@@ -209,10 +205,8 @@ public class AdministradorManager implements Serializable{
     public void setFuncionarioAtual(FuncionarioDTO funcionarioAtual) {
         this.funcionarioAtual = funcionarioAtual;
     }
-    
-    
-    
-     public String criarFuncionario() {
+
+    public String criarFuncionario() {
         try {
             funcionarioBean.criarFuncionario(
                     funcionarioNovo.getNome(),
@@ -229,8 +223,8 @@ public class AdministradorManager implements Serializable{
         }
         return "admin_funcionarios_criar";
     }
-     
-     public String atualizarFuncionario() {
+
+    public String atualizarFuncionario() {
         try {
             funcionarioBean.atualizar(
                     funcionarioAtual.getUsername(),
@@ -244,10 +238,8 @@ public class AdministradorManager implements Serializable{
         }
         return "admin_funcionarios_editar";
     }
-     
-     
-     
-     public void validarUsername(FacesContext context, UIComponent toValidate, Object value) {
+
+    public void validarUsername(FacesContext context, UIComponent toValidate, Object value) {
         try {
             String username = (String) value;
             if (utilizadorBean.existeUsername(username)) {
@@ -260,8 +252,8 @@ public class AdministradorManager implements Serializable{
             FacesExceptionHandler.tratarExcecao(e, "Erro do sistema.", logger);
         }
     }
-     
-      public String criarAdministrador() {
+
+    public String criarAdministrador() {
         try {
             administradorBean.criarAdministrador(
                      administradorNovo.getUsername(),
@@ -295,10 +287,10 @@ public class AdministradorManager implements Serializable{
             return null;
         }
     }
-    
+
     public String criarFornecedor() {
         try {
-            
+
             fornecedorBean.criarFornecedor(fornecedorNovo.getLaboratorio(), fornecedorNovo.getEmail(), fornecedorNovo.getTelemovel(), fornecedorNovo.getMorada());
             fornecedorNovo.reiniciar();
             return "admin_index?faces-redirect=true";
@@ -309,7 +301,7 @@ public class AdministradorManager implements Serializable{
         }
         return "admin_fornecedores_criar";
     }
-    
+
     public String atualizarFornecedor() {
         try {
             fornecedorBean.atualizar(
@@ -341,6 +333,7 @@ public class AdministradorManager implements Serializable{
     public void setFornecedorAtual(FornecedorDTO fornecedorAtual) {
         this.fornecedorAtual = fornecedorAtual;
     }
+
     
     
     
@@ -358,10 +351,10 @@ public class AdministradorManager implements Serializable{
      public String criarProdutoCatalogo() {
         try {
             produtoCatalogoBean.criarProdutoCatalogo(
-                pCatalogoNovo.getReferencia(),
-                pCatalogoNovo.getNome(),
-                pCatalogoNovo.getLaboratorio(),
-                pCatalogoNovo.getPreco());
+                    pCatalogoNovo.getReferencia(),
+                    pCatalogoNovo.getNome(),
+                    pCatalogoNovo.getLaboratorio(),
+                    pCatalogoNovo.getPreco());
             pCatalogoNovo.reiniciar();
             return "admin_produtocatalogo_listar?faces-redirect=true";
         } catch (EntidadeExistenteException e) {
@@ -371,8 +364,8 @@ public class AdministradorManager implements Serializable{
         }
         return "admin_produtoCatalogo_criar";
     }
-     
-     public String atualizarProdutoCatalogo() {
+
+    public String atualizarProdutoCatalogo() {
         try {
             produtoCatalogoBean.atualizar(
                     pCatalogoAtual.getReferencia(),
@@ -387,6 +380,46 @@ public class AdministradorManager implements Serializable{
         }
         return "admin_produtocatalogo_editar";
     }
+
+
+    /**
+     * **********ENCOMENDAS***************
+     */
+    public List<EncomendaDTO> getAllEncomendas() {
+        try {
+            return encomendaBean.getAllEncomendas();
+        } catch (Exception e) {
+            FacesExceptionHandler.tratarExcecao(e, "Erro do sistema.", logger);
+            return null;
+        }
+    }
+
+    public String criarEncomenda() {
+        try {
+            encomendaBean.criarEncomenda(encomendaNovo.getFornecedor(), encomendaNovo.getFarmacia());
+            pCatalogoNovo.reiniciar();
+            return "admin_encomendas_listar?faces-redirect=true";
+        } catch (EntidadeExistenteException e) {
+            FacesExceptionHandler.tratarExcecaoBinding(e, e.getMessage(), componente, logger);
+        } catch (Exception e) {
+            FacesExceptionHandler.tratarExcecao(e, "Erro do sistema.", logger);
+        }
+        return "admin_encomendas_criar";
+    }
+
+    public String atualizarEncomenda() {
+        try {
+            encomendaBean.atualizar(encomendaAtual.getFornecedor(), encomendaAtual.getFarmacia(), encomendaAtual.getIdEncomenda());
+
+            return "admin_encomendas_listar?faces-redirect=true";
+        } catch (EntidadeNaoExistenteException e) {
+            FacesExceptionHandler.tratarExcecaoBinding(e, e.getMessage(), componente, logger);
+        } catch (Exception e) {
+            FacesExceptionHandler.tratarExcecao(e, "Erro do sistema.", logger);
+        }
+        return "admin_encomendas_editar";
+    }
+
 
     public ProdutoCatalogoDTO getpCatalogoNovo() {
         return pCatalogoNovo;
@@ -403,8 +436,5 @@ public class AdministradorManager implements Serializable{
     public void setpCatalogoAtual(ProdutoCatalogoDTO pCatalogoAtual) {
         this.pCatalogoAtual = pCatalogoAtual;
     }
-     
-     
-    
-    
+
 }
