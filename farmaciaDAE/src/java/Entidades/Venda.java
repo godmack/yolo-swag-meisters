@@ -8,6 +8,7 @@ package Entidades;
 import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
@@ -17,6 +18,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
 import javax.validation.constraints.NotNull;
 import javax.persistence.OneToMany;
 import javax.persistence.TableGenerator;
@@ -29,6 +31,7 @@ import static javax.persistence.TemporalType.DATE;
  * @author Cristiano
  */
 @Entity
+@NamedQuery(name = "findAllVendas", query = "SELECT d FROM Venda d")
 public class Venda implements Serializable {
     private static final long serialVersionUID = 1L;
         @TableGenerator(
@@ -57,12 +60,13 @@ public class Venda implements Serializable {
     private Date data;
         
     public Venda() {
+        this.linhasVenda = new ArrayList();
     }
 
-    public Venda(Cliente cliente, Farmacia farmacia, List<Venda> vendas) {
+    public Venda(Cliente cliente, Farmacia farmacia) {
         this.cliente = cliente;
         this.farmacia = farmacia;
-        this.linhasVenda = vendas;
+        this.linhasVenda = new ArrayList();
         this.data = new Date();
     }
     

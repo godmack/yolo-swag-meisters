@@ -12,9 +12,11 @@ import ejbs.ProdutoBean;
 import ejbs.StockBean;
 import ejbs.TransferenciaBean;
 import ejbs.VendaBean;
+import excecoes.EntidadeExistenteException;
 import java.util.List;
 import java.util.logging.Logger;
 import javax.ejb.EJB;
+import javax.faces.component.UIComponent;
 import utils.FacesExceptionHandler;
 
 /**
@@ -35,11 +37,26 @@ public class FuncBalcaoManager {
     @EJB
     private ProdutoBean produtoBean;
     
+    private VendaDTO vendaNovo;
+    private VendaDTO vendaAtual;
     @EJB
     private TransferenciaBean transferenciaBean;
     private static final Logger logger = Logger.getLogger("web.FuncBalcaoManager");
+    
+     private UIComponent componente;
+
+    public UIComponent getComponente() {
+        return componente;
+    }
+
+    public void setComponente(UIComponent componente) {
+        this.componente = componente;
+    }
+     
+     
 
     public FuncBalcaoManager() {
+        this.vendaNovo = new VendaDTO();
     }
     
     public List<EncomendaDTO> getAllEncomendas() {
@@ -53,9 +70,9 @@ public class FuncBalcaoManager {
     
     public String criarVenda() {
         try {
-
-            vendaBean.criarVenda(clienteID, farmaciaID, vendas);
-            fornecedorNovo.reiniciar();
+            
+            vendaBean.criarVenda(vendaNovo.getCliente(), vendaNovo.getFarmacia());
+            vendaNovo.reiniciar();
             return "admin_index?faces-redirect=true";
         } catch (EntidadeExistenteException e) {
             FacesExceptionHandler.tratarExcecaoBinding(e, e.getMessage(), componente, logger);
@@ -72,6 +89,16 @@ public class FuncBalcaoManager {
             FacesExceptionHandler.tratarExcecao(e, "Erro do sistema.", logger);
             return null;
         }
-    }  
+    }
+
+    public VendaDTO getVendaNovo() {
+        return vendaNovo;
+    }
+
+    public void setVendaNovo(VendaDTO vendaNovo) {
+        this.vendaNovo = vendaNovo;
+    }
+    
+    
     
 }

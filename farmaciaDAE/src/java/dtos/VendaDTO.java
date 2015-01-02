@@ -64,6 +64,15 @@ public class VendaDTO  implements Serializable{
         this.data = data;
     }
     
+    public void reiniciar(){
+        this.setCliente(0);
+        this.setFarmacia(null);
+        this.setLinhasVenda(null);
+        this.setData(null);
+        this.setIdVenda(null);
+        
+    }
+    
     
     
 }

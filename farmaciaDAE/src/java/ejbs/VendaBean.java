@@ -33,7 +33,7 @@ public class VendaBean {
         this.em = em;
     }
 
-    public void criarVenda(int clienteID, String farmaciaID, List<Venda> vendas) throws EntidadeExistenteException, EntidadeNaoExistenteException {
+    public void criarVenda(int clienteID, Long farmaciaID) throws EntidadeExistenteException, EntidadeNaoExistenteException {
         try {
             Cliente client = em.find(Cliente.class, clienteID);
             if(client == null){

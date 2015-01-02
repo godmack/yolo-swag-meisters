@@ -22,33 +22,27 @@
                 <h:dataTable
                     var="venda"
                     summary="Vendas"
-                    value="#{funcBalcaoManager.AllVendas}"
+                    value="#{funcBalcaoManager.allVendas}"
                     rules="all"
                     cellpadding="5">
                     <h:column>
                         <f:facet name="header">
                             <h:outputText value="Cliente" />
                         </f:facet>
-                        <h:outputText value="#{venda.Cliente}"/>
+                        <h:outputText value="#{venda.cliente}"/>
                     </h:column>
                     <h:column>
                         <f:facet name="header">
                             <h:outputText value="Farmacia" />
                         </f:facet>
-                        <h:outputText value="#{venda.Farmacia}"/>
+                        <h:outputText value="#{venda.farmacia}"/>
                     </h:column>
                     <h:column>
                         <f:facet name="header">
                             <h:outputText value="Data" />
                         </f:facet>
-                        <h:outputText value="#{venda.Data}"/>
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="Linhas de Venda" />
-                        </f:facet>
-                        <h:outputText value="#{venda.linhasVenda}"/>
-                    </h:column>                   
+                        <h:outputText value="#{venda.data}"/>
+                    </h:column>                
                 </h:dataTable>
 				
 				<h:messages errorStyle="color: red" />
