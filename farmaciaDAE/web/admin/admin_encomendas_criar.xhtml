@@ -21,14 +21,23 @@
                 <h:form>                  
                     <h:panelGrid columns="3">
                         
-                        <h:outputLabel for="nome" value="Nome " />
+                        <h:outputLabel for="fornecedor" value="Fornecedor " />
                         <h:inputText  
-                            id="nome"
+                            id="fornecedor"
                             size="20"
                             required="true"
-                            requiredMessage="Erro: Deve inserir um username."                            
-                            value="#{administradorManager.encomendaNovo.nome}"/>
-                        <h:message for="nome" errorStyle="color: red" />
+                            requiredMessage="Erro: Deve inserir um fornecedor."                            
+                            value="#{administradorManager.encomendaNova.fornecedor}"/>
+                        <h:message for="fornecedor" errorStyle="color: red" />
+                        
+                         <h:outputLabel for="farmacia" value="Farmacia" />
+                        <h:inputText  
+                            id="farmacia"
+                            size="20"
+                            required="true"
+                            requiredMessage="Erro: Deve inserir uma farmacia."                            
+                            value="#{administradorManager.encomendaNova.farmacia}"/>
+                        <h:message for="farmacia" errorStyle="color: red" />
                         
                         
                         <h:commandButton

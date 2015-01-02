@@ -12,10 +12,14 @@ import java.util.List;
 
 public class EncomendaDTO  implements Serializable{
 
+
     private int idEncomenda;
     private String fornecedor;
+
     private Estado estado;
+
     private Long farmacia;
+
     private Date data;
 
     public EncomendaDTO() {
@@ -23,8 +27,10 @@ public class EncomendaDTO  implements Serializable{
     }
 
     public EncomendaDTO(String fornecedorID, Long farmaciaID) {
+
         this.fornecedor = fornecedorID;
         this.farmacia = farmaciaID;
+
         estado = Estado.Rascunho;
         this.data = new Date();
     }
@@ -54,12 +60,15 @@ public class EncomendaDTO  implements Serializable{
     }
 
 
+
     public Long getFarmacia() {
         return farmacia;
     }
 
+
     public void setFarmacia(Long farmacia) {
         this.farmacia = farmacia;
+
     }
 
     public Date getData() {
@@ -68,6 +77,14 @@ public class EncomendaDTO  implements Serializable{
 
     public void setData(Date data) {
         this.data = data;
+    }
+
+    public void reiniciar(){
+        this.setData(null);
+        this.setEstado(null);
+        this.setFarmacia(null);
+        this.setFornecedor(null);
+        this.setIdEncomenda(0);
     }
 
     

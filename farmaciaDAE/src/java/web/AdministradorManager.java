@@ -50,7 +50,7 @@ public class AdministradorManager implements Serializable {
     private ProdutoCatalogoDTO pCatalogoNovo;
     private ProdutoCatalogoDTO pCatalogoAtual;
 
-    private EncomendaDTO encomendaNovo;
+    private EncomendaDTO encomendaNova;
     private EncomendaDTO encomendaAtual;
 
     private AdministradorDTO administradorNovo;
@@ -403,8 +403,8 @@ public class AdministradorManager implements Serializable {
 
     public String criarEncomenda() {
         try {
-            encomendaBean.criarEncomenda(encomendaNovo.getFornecedor(), encomendaNovo.getFarmacia());
-            pCatalogoNovo.reiniciar();
+            encomendaBean.criarEncomenda(encomendaNova.getFornecedor(), encomendaNova.getFarmacia());
+            encomendaNova.reiniciar();
             return "admin_encomendas_listar?faces-redirect=true";
         } catch (EntidadeExistenteException e) {
             FacesExceptionHandler.tratarExcecaoBinding(e, e.getMessage(), componente, logger);
@@ -413,6 +413,15 @@ public class AdministradorManager implements Serializable {
         }
         return "admin_encomendas_criar";
     }
+    
+     public EncomendaDTO getEncomendaNova() {
+        return encomendaNova;
+    }
+
+    public void setEncomendaDTO(EncomendaDTO encomendaNova) {
+        this.encomendaNova = encomendaNova;
+    }
+    
 
     public String atualizarEncomenda() {
         try {
