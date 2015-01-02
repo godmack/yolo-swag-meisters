@@ -64,7 +64,7 @@ public class EncomendaBean {
             encomenda.setFornecedor(fornecedor);
             encomenda.setFarmacia(farmacia);
             em.persist(encomenda);
-       } catch (EntidadeNaoExistenteException e)  {
+       } catch (EntidadeNaoExistenteException e) {
             throw e;
         } catch (Exception e) {
             throw new EJBException(e.getMessage());
