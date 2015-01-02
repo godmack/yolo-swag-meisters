@@ -59,10 +59,10 @@ public class Venda implements Serializable {
     public Venda() {
     }
 
-    public Venda(Cliente cliente, Farmacia farmacia) {
+    public Venda(Cliente cliente, Farmacia farmacia, List<Venda> vendas) {
         this.cliente = cliente;
         this.farmacia = farmacia;
-        this.linhasVenda = new LinkedList();
+        this.linhasVenda = vendas;
         this.data = new Date();
     }
     

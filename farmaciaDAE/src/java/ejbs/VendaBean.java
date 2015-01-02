@@ -33,16 +33,20 @@ public class VendaBean {
         this.em = em;
     }
 
-    public void criarVenda(Cliente cliente, Farmacia farmacia) throws EntidadeExistenteException, EntidadeNaoExistenteException {
+    public void criarVenda(int clienteID, String farmaciaID, List<Venda> vendas) throws EntidadeExistenteException, EntidadeNaoExistenteException {
         try {
-            if (existeCliente(cliente)) {
-                throw new EntidadeExistenteException("Contacto já associado a outro cliente!");
+            Cliente client = em.find(Cliente.class, clienteID);
+            if(client == null){
+                throw new EntidadeNaoExistenteException("Cliente não existente!");
             }
             
-            Venda venda = new Venda(cliente, farmacia);
+            Farmacia farm = em.find(Farmacia.class, farmaciaID);
+            if(client == null){
+                throw new EntidadeNaoExistenteException("Farmacia não existente!");
+            }
+            
+            Venda venda = new Venda(client, farm);
             em.persist(venda);
-        } catch (EntidadeExistenteException e) {
-            throw e;
         } catch (Exception e) {
             throw new EJBException(e.getMessage());
         }
@@ -67,10 +71,6 @@ public class VendaBean {
                     venda.getFarmacia().getIdFarmacia()));
         }
         return dtos;
-    }
-
-    public boolean existeCliente(Cliente cliente) {
-        return em.find(Cliente.class, cliente) != null;
     }
 
 }

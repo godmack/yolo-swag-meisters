@@ -51,6 +51,20 @@ public class FuncBalcaoManager {
         }
     }
     
+    public String criarVenda() {
+        try {
+
+            vendaBean.criarVenda(clienteID, farmaciaID, vendas);
+            fornecedorNovo.reiniciar();
+            return "admin_index?faces-redirect=true";
+        } catch (EntidadeExistenteException e) {
+            FacesExceptionHandler.tratarExcecaoBinding(e, e.getMessage(), componente, logger);
+        } catch (Exception e) {
+            FacesExceptionHandler.tratarExcecao(e, "Erro do sistema.", logger);
+        }
+        return "admin_fornecedores_criar";
+    }
+    
     public List<VendaDTO> getAllVendas() {
         try {
             return vendaBean.getAllVendas();
