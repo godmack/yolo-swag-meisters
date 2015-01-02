@@ -52,4 +52,11 @@ public class FornecedorDTO  implements Serializable{
         this.morada = morada;
     }
     
+    public void reiniciar(){
+        this.setEmail(null);
+        this.setLaboratorio(null);
+        this.setMorada(null);
+        this.setTelemovel(0);
+    }
+    
 }

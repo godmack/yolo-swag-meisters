@@ -1,18 +1,5 @@
 package ejbs;
 
-import java.util.List;
-import javax.annotation.PostConstruct;
-import javax.ejb.EJB;
-import javax.ejb.Singleton;
-import javax.ejb.Startup;
-import excecoes.EntidadeExistenteException;
-import excecoes.EntidadeNaoExistenteException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import Entidades.Farmacia;
-import Entidades.Fornecedor;
-import dtos.FarmaciaDTO;
-import dtos.FornecedorDTO;
 import excecoes.EntidadeExistenteException;
 import excecoes.EntidadeNaoExistenteException;
 import java.io.Serializable;
@@ -20,10 +7,6 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.ejb.Singleton;
 import javax.ejb.Startup;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 
 @Singleton
 @Startup
@@ -59,12 +42,12 @@ public class ConfigBean implements Serializable {
             funcionarioBean.criarFuncionario("Andre Rosado", "andrerosado", "andrerosado@maildae.com", "123", true);
             funcionarioBean.criarFuncionario("Ruben Nunes", "rubennunes", "rubennunes@maildae.com", "123", false);
             funcionarioBean.criarFuncionario("Andre Cristiano", "andrecristiano", "andrecristiano@maildae.com", "123", true);
-            //fornecedorBean.criarFornecedor("ruboratorio", "rua das pinhas", 917121212, "ruboratorio@gmail.com");
+            fornecedorBean.criarFornecedor("ruboratorio","ruboratorio@gmail.com" , 917121212, "rua das pinhas");
 
             administradorBean.criarAdministrador("admin", "admin123", "Admin", "rubacia@gmail.com");
 
            
-        } catch (EntidadeExistenteException e) {
+        } catch (EntidadeExistenteException | EntidadeNaoExistenteException e) {
             System.out.println("Erro: " + e.getMessage());
         }
     }

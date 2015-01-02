@@ -10,7 +10,7 @@
         <ui:composition template="./../templates/templateNECS.xhtml">
 
             <ui:define name="top">
-                Criar uma nova farmacia
+                Criar uma nova fornecedor
             </ui:define>
 
             <ui:define name="left">
@@ -21,21 +21,48 @@
                 <h:form>                  
                     <h:panelGrid columns="3">
                         
-                        <h:outputLabel for="nome" value="Nome " />
+                        <h:outputLabel for="laboratorio" value="Laboratorio " />
                         <h:inputText 
-                            id="nome"
+                            id="laboratorio"
                             size="20"
                             required="true"
-                            requiredMessage="Erro: Deve inserir um username."                            
-                            value="#{administradorManager.farmaciaNovo.nome}"/>
-                        <h:message for="nome" errorStyle="color: red" />
+                            requiredMessage="Erro: Deve inserir um nome de um laboratório."                            
+                            value="#{administradorManager.fornecedorNovo.laboratorio}"/>
+                        <h:message for="laboratorio" errorStyle="color: red" />
+                        
+                        <h:outputLabel for="email" value="Email " />
+                        <h:inputText 
+                            id="email"
+                            size="20"
+                            required="true"
+                            requiredMessage="Erro: Deve inserir um email válido."                            
+                            value="#{administradorManager.fornecedorNovo.email}"/>
+                        <h:message for="email" errorStyle="color: red" />
+                        
+                        <h:outputLabel for="telefone" value="Telefone " />
+                        <h:inputText 
+                            id="telefone"
+                            size="20"
+                            required="true"
+                            requiredMessage="Erro: Deve inserir um numero de telefone válido."                            
+                            value="#{administradorManager.fornecedorNovo.telemovel}"/>
+                        <h:message for="telefone" errorStyle="color: red" />
+                        
+                        <h:outputLabel for="morada" value="Morada " />
+                        <h:inputText 
+                            id="morada"
+                            size="20"
+                            required="true"
+                            requiredMessage="Erro: Deve inserir um numero de telefone válido."                            
+                            value="#{administradorManager.fornecedorNovo.morada}"/>
+                        <h:message for="morada" errorStyle="color: red" />
                         
                         
                         <h:commandButton
                             id="submit"
                             binding="#{administradorManager.componente}" 
                             value="Criar"
-                            action="#{administradorManager.criarFarmacia}" />
+                            action="#{administradorManager.criarFornecedor}" />
                         <h:message for="submit" style="color: red"/>                         
                     </h:panelGrid >                       
 

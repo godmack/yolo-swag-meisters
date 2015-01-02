@@ -3,9 +3,9 @@ package ejbs;
 
 import Entidades.Cliente;
 import Entidades.Fornecedor;
-import Entidades.Funcionario;
+import Entidades.Fornecedor;
 import dtos.FornecedorDTO;
-import dtos.FuncionarioDTO;
+import dtos.FornecedorDTO;
 import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.EJB;
@@ -36,6 +36,7 @@ public class FornecedorBean {
             if (existeLaboratorio(laboratorio)) {
                 throw new EntidadeExistenteException("Laboratorio já associado a outro fornecedor!");
             }
+            System.out.println("FOCK");
             
             Fornecedor fornecedor = new Fornecedor(laboratorio, email, telemovel, morada);
             em.persist(fornecedor);
@@ -74,6 +75,24 @@ public class FornecedorBean {
 
     public boolean existeLaboratorio(String laboratorio) {
         return em.find(Fornecedor.class, laboratorio) != null;
+    }
+    
+     public void atualizar(String laboratorio, String email, int telemovel, String morada) throws EntidadeNaoExistenteException{
+        try {
+            Fornecedor fornecedor = em.find(Fornecedor.class, laboratorio);
+            if(fornecedor == null){
+                throw new EntidadeNaoExistenteException("Fornecedor nao existente!");
+            }
+            fornecedor.setLaboratorio(laboratorio);
+            fornecedor.setEmail(email);
+            fornecedor.setTelemovel(telemovel);
+            fornecedor.setMorada(morada);
+            em.merge(fornecedor);
+        } catch (EntidadeNaoExistenteException e) {
+            throw e;
+        } catch (Exception e) {
+            throw new EJBException(e.getMessage());
+        }
     }
 
 }

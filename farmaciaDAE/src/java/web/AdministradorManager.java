@@ -2,9 +2,12 @@ package web;
 
 
 import dtos.FarmaciaDTO;
+import dtos.FornecedorDTO;
 import dtos.FuncionarioDTO;
 import dtos.UtilizadorDTO;
+import ejbs.AdministradorBean;
 import ejbs.FarmaciaBean;
+import ejbs.FornecedorBean;
 import ejbs.FuncionarioBean;
 import ejbs.UtilizadorBean;
 import java.util.List;
@@ -33,12 +36,19 @@ public class AdministradorManager implements Serializable{
     private FarmaciaDTO farmaciaNovo;
     private FarmaciaDTO farmaciaAtual;
     
+    private FornecedorDTO fornecedorNovo;
+    private FornecedorDTO fornecedorAtual;
+    
     @EJB
     FarmaciaBean farmaciaBean;
     @EJB
     private UtilizadorBean utilizadorBean;
     @EJB
     private FuncionarioBean funcionarioBean;
+    @EJB
+    private FornecedorBean fornecedorBean;
+    @EJB
+    private AdministradorBean administradorBean;
     private static final Logger logger = Logger.getLogger("web.AdministradorManager");
     private UIComponent componente;
 
@@ -46,6 +56,7 @@ public class AdministradorManager implements Serializable{
     public AdministradorManager() {
         this.funcionarioNovo = new FuncionarioDTO();
         this.farmaciaNovo = new FarmaciaDTO();
+        this.fornecedorNovo = new FornecedorDTO();
     }
     
      public UIComponent getComponente() {
@@ -235,6 +246,78 @@ public class AdministradorManager implements Serializable{
             FacesExceptionHandler.tratarExcecao(e, "Erro do sistema.", logger);
         }
     }
+     
+      public String criarAdministrador() {
+        try {
+            administradorBean.criarAdministrador(
+                    funcionarioNovo.getNome(),
+                    funcionarioNovo.getUsername(),
+                    funcionarioNovo.getEmail(),
+                    funcionarioNovo.getPassword());
+            funcionarioNovo.reiniciar();
+            return "admin_funcionarios_listar?faces-redirect=true";
+        } catch (Exception e) {
+            FacesExceptionHandler.tratarExcecao(e, "Erro do sistema.", logger);
+        }
+        return "admin_funcionarios_criar";
+    }
+     
+      ////////////// Fornecedores ///////////////////
+    public List<FornecedorDTO> getFornecedores() {
+        try {
+            return fornecedorBean.getAllFornecedores();
+        } catch (Exception e) {
+            FacesExceptionHandler.tratarExcecao(e, "Erro do sistema: Não foi possível devolver a lista de fornecedores.", logger);
+            return null;
+        }
+    }
+    
+    public String criarFornecedor() {
+        try {
+            
+            fornecedorBean.criarFornecedor(fornecedorNovo.getLaboratorio(), fornecedorNovo.getEmail(), fornecedorNovo.getTelemovel(), fornecedorNovo.getMorada());
+            fornecedorNovo.reiniciar();
+            return "admin_index?faces-redirect=true";
+        } catch (EntidadeExistenteException e) {
+            FacesExceptionHandler.tratarExcecaoBinding(e, e.getMessage(), componente, logger);
+        } catch (Exception e) {
+            FacesExceptionHandler.tratarExcecao(e, "Erro do sistema.", logger);
+        }
+        return "admin_fornecedores_criar";
+    }
+    
+    public String atualizarFornecedor() {
+        try {
+            fornecedorBean.atualizar(
+                    fornecedorAtual.getLaboratorio(),
+                    fornecedorAtual.getEmail(),
+                    fornecedorAtual.getTelemovel(),
+                    fornecedorAtual.getMorada());
+            return "admin_fornecedores_listar?faces-redirect=true";
+        } catch (EntidadeNaoExistenteException e) {
+            FacesExceptionHandler.tratarExcecaoBinding(e, e.getMessage(), componente, logger);
+        } catch (Exception e) {
+            FacesExceptionHandler.tratarExcecao(e, "Erro do sistema.", logger);
+        }
+        return "admin_funcionarios_editar";
+    }
 
+    public FornecedorDTO getFornecedorNovo() {
+        return fornecedorNovo;
+    }
+
+    public void setFornecedorNovo(FornecedorDTO fornecedorNovo) {
+        this.fornecedorNovo = fornecedorNovo;
+    }
+
+    public FornecedorDTO getFornecedorAtual() {
+        return fornecedorAtual;
+    }
+
+    public void setFornecedorAtual(FornecedorDTO fornecedorAtual) {
+        this.fornecedorAtual = fornecedorAtual;
+    }
+
+    
     
 }

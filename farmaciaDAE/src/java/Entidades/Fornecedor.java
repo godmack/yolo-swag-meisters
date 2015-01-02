@@ -13,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.NamedQuery;
 import javax.validation.constraints.NotNull;
 
 /**
@@ -20,6 +21,7 @@ import javax.validation.constraints.NotNull;
  * @author Cristiano
  */
 @Entity
+@NamedQuery(name = "findAllFornecedores", query = "SELECT d FROM Fornecedor d ORDER BY d.laboratorio")
 public class Fornecedor implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
