@@ -12,6 +12,7 @@ import static javax.persistence.CascadeType.ALL;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 
@@ -20,6 +21,7 @@ import javax.validation.constraints.NotNull;
  * @author Cristiano
  */
 @Entity
+@NamedQuery(name = "findAllProdutoCatalogos", query = "SELECT d FROM ProdutoCatalogo d ORDER BY d.nome")
 public class ProdutoCatalogo implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id

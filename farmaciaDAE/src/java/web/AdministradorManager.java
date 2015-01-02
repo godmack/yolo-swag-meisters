@@ -65,6 +65,7 @@ public class AdministradorManager implements Serializable{
         this.funcionarioNovo = new FuncionarioDTO();
         this.farmaciaNovo = new FarmaciaDTO();
         this.fornecedorNovo = new FornecedorDTO();
+        this.pCatalogoNovo = new ProdutoCatalogoDTO();
     }
     
      public UIComponent getComponente() {
@@ -329,6 +330,16 @@ public class AdministradorManager implements Serializable{
     
     
     /************PRODUTO CATALOGO*****************/
+    
+    public List<ProdutoCatalogoDTO> getProdutosCatalogo() {
+        try {
+            return produtoCatalogoBean.getAllProdutoCatalogo();
+        } catch (Exception e) {
+            FacesExceptionHandler.tratarExcecao(e, "Erro do sistema: Não foi possível devolver a lista de produtos no catalogo.", logger);
+            return null;
+        }
+    }
+    
      public String criarProdutoCatalogo() {
         try {
             produtoCatalogoBean.criarProdutoCatalogo(
@@ -337,13 +348,13 @@ public class AdministradorManager implements Serializable{
                 pCatalogoNovo.getLaboratorio(),
                 pCatalogoNovo.getPreco());
             pCatalogoNovo.reiniciar();
-            return "admin_produtosCatalogo_listar?faces-redirect=true";
+            return "admin_produtocatalogo_listar?faces-redirect=true";
         } catch (EntidadeExistenteException e) {
             FacesExceptionHandler.tratarExcecaoBinding(e, e.getMessage(), componente, logger);
         } catch (Exception e) {
             FacesExceptionHandler.tratarExcecao(e, "Erro do sistema.", logger);
         }
-        return "admin_produtosCatalogo_criar";
+        return "admin_produtoCatalogo_criar";
     }
      
      public String atualizarProdutoCatalogo() {
@@ -353,14 +364,32 @@ public class AdministradorManager implements Serializable{
                     pCatalogoAtual.getNome(),
                     pCatalogoAtual.getLaboratorio(),
                     pCatalogoAtual.getPreco());
-            return "admin_pCatalogoAtual_listar?faces-redirect=true";
+            return "admin_produtocatalogo_listar?faces-redirect=true";
         } catch (EntidadeNaoExistenteException e) {
             FacesExceptionHandler.tratarExcecaoBinding(e, e.getMessage(), componente, logger);
         } catch (Exception e) {
             FacesExceptionHandler.tratarExcecao(e, "Erro do sistema.", logger);
         }
-        return "admin_pCatalogoAtual_editar";
+        return "admin_produtocatalogo_editar";
     }
+
+    public ProdutoCatalogoDTO getpCatalogoNovo() {
+        return pCatalogoNovo;
+    }
+
+    public void setpCatalogoNovo(ProdutoCatalogoDTO pCatalogoNovo) {
+        this.pCatalogoNovo = pCatalogoNovo;
+    }
+
+    public ProdutoCatalogoDTO getpCatalogoAtual() {
+        return pCatalogoAtual;
+    }
+
+    public void setpCatalogoAtual(ProdutoCatalogoDTO pCatalogoAtual) {
+        this.pCatalogoAtual = pCatalogoAtual;
+    }
+     
+     
     
     
 }
