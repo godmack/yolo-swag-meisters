@@ -84,6 +84,7 @@ public class AdministradorManager implements Serializable {
         this.pCatalogoNovo = new ProdutoCatalogoDTO();
         this.administradorNovo = new AdministradorDTO();
         this.linhaEncomendaNovo = new LinhaEncomendaDTO();
+        this.encomendaNova = new EncomendaDTO();
     }
 
     public UIComponent getComponente() {

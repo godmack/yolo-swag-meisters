@@ -3,18 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/andre_000/Desktop/Universidade/DAE/projeto/trunk/farmaciaDAE/web/admin/admin_produtocatalogo_listar.xhtml</file>
-            <file>file:/C:/Users/andre_000/Desktop/Universidade/DAE/projeto/trunk/farmaciaDAE/web/admin/admin_fornecedores_criar.xhtml</file>
-            <file>file:/C:/Users/andre_000/Desktop/Universidade/DAE/projeto/trunk/farmaciaDAE/web/admin/admin_produtocatalogo_editar.xhtml</file>
-            <file>file:/C:/Users/andre_000/Desktop/Universidade/DAE/projeto/trunk/farmaciaDAE/src/java/ejbs/FuncionarioBean.java</file>
-            <file>file:/C:/Users/andre_000/Desktop/Universidade/DAE/projeto/trunk/farmaciaDAE/web/admin/admin_fornecedores_listar.xhtml</file>
-            <file>file:/C:/Users/andre_000/Desktop/Universidade/DAE/projeto/trunk/farmaciaDAE/src/java/ejbs/FarmaciaBean.java</file>
-            <file>file:/C:/Users/andre_000/Desktop/Universidade/DAE/projeto/trunk/farmaciaDAE/web/balcao/encomendas_listar.xhtml</file>
-            <file>file:/C:/Users/andre_000/Desktop/Universidade/DAE/projeto/trunk/farmaciaDAE/web/admin/admin_funcionarios_editar.xhtml</file>
-            <file>file:/C:/Users/andre_000/Desktop/Universidade/DAE/projeto/trunk/farmaciaDAE/src/java/web/AdministradorManager.java</file>
-            <file>file:/C:/Users/andre_000/Desktop/Universidade/DAE/projeto/trunk/farmaciaDAE/web/admin/admin_farmacias_listar.xhtml</file>
-            <file>file:/C:/Users/andre_000/Desktop/Universidade/DAE/projeto/trunk/farmaciaDAE/web/admin/admin_produtocatalogo_criar.xhtml</file>
-            <file>file:/C:/Users/andre_000/Desktop/Universidade/DAE/projeto/trunk/farmaciaDAE/src/java/Entidades/ProdutoCatalogo.java</file>
+            <file>file:/C:/Users/andre_000/Desktop/Universidade/DAE/projeto/trunk/farmaciaDAE/src/java/Entidades/LinhaEncomenda.java</file>
+            <file>file:/C:/Users/andre_000/Desktop/Universidade/DAE/projeto/trunk/farmaciaDAE/src/java/Entidades/Encomenda.java</file>
+            <file>file:/C:/Users/andre_000/Desktop/Universidade/DAE/projeto/trunk/farmaciaDAE/src/java/ejbs/ConfigBean.java</file>
         </group>
     </open-files>
 </project-private>
