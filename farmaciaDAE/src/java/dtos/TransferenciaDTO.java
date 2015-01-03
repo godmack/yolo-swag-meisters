@@ -5,20 +5,30 @@
  */
 package dtos;
 
+import Entidades.Estado;
 import Entidades.Farmacia;
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  *
  * @author Ruben
  */
 public class TransferenciaDTO implements Serializable{
-    Long farmacia;
-    Long farmaciaFornecedora;
+    private Long farmacia;
+    private Long farmaciaFornecedora;
+    private Estado estado;
+    private Date data;
+    
 
-    public TransferenciaDTO(Long farmaciaID, Long farmaciaFornecedoraID) {
-        this.farmacia = farmacia;
-        this.farmaciaFornecedora = farmaciaFornecedora;
+    public TransferenciaDTO() {
+    }
+    
+    public TransferenciaDTO(Long farmaciaID, Long farmaciaFornecedoraID, Estado estado, Date data) {
+        this.farmacia = farmaciaID;
+        this.farmaciaFornecedora = farmaciaFornecedoraID;
+        this.estado = estado;
+        this.data = data;
     }
 
     public Long getFarmacia() {
@@ -35,6 +45,30 @@ public class TransferenciaDTO implements Serializable{
 
     public void setFarmaciaFornecedora(Long farmaciaFornecedora) {
         this.farmaciaFornecedora = farmaciaFornecedora;
+    }
+
+    public Estado getEstado() {
+        return estado;
+    }
+
+    public void setEstado(Estado estado) {
+        this.estado = estado;
+    }
+
+    public Date getData() {
+        return data;
+    }
+
+    public void setData(Date data) {
+        this.data = data;
+    }
+    
+    
+    public void reiniciar(){
+        this.setFarmacia(null);
+        this.setFarmaciaFornecedora(null);
+        this.setEstado(null);
+        this.setData(null);
     }
     
     

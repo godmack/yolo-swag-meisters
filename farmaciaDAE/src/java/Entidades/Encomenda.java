@@ -106,6 +106,20 @@ public class Encomenda implements Serializable {
     public void removeLinhaEncomenda(LinhaEncomenda linha){
         this.linhasEncomenda.remove(linha);
     }
+    
+    public void setEstadoEnviado(){
+        this.estado = Estado.Enviado;
+    }
+
+    public Estado getEstado() {
+        return estado;
+    }
+
+    public void setEstado(Estado estado) {
+        this.estado = estado;
+    }
+    
+    
 
    
     

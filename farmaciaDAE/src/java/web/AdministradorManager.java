@@ -1,5 +1,6 @@
 package web;
 
+import Entidades.Estado;
 import Entidades.ProdutoCatalogo;
 
 import dtos.EncomendaDTO;
@@ -9,6 +10,7 @@ import dtos.FornecedorDTO;
 import dtos.FuncionarioDTO;
 import dtos.LinhaEncomendaDTO;
 import dtos.ProdutoCatalogoDTO;
+import dtos.TransferenciaDTO;
 import dtos.UtilizadorDTO;
 import ejbs.AdministradorBean;
 import ejbs.EncomendaBean;
@@ -16,7 +18,9 @@ import ejbs.FarmaciaBean;
 import ejbs.FornecedorBean;
 import ejbs.FuncionarioBean;
 import ejbs.LinhaEncomendaBean;
+import ejbs.LinhaTransferenciaBean;
 import ejbs.ProdutoCatalogoBean;
+import ejbs.TransferenciaBean;
 import ejbs.UtilizadorBean;
 import java.util.List;
 import javax.ejb.EJB;
@@ -52,6 +56,9 @@ public class AdministradorManager implements Serializable {
 
     private EncomendaDTO encomendaNova;
     private EncomendaDTO encomendaAtual;
+    
+    private TransferenciaDTO transferenciaNovo;
+    private TransferenciaDTO transferenciaAtual;
 
     private AdministradorDTO administradorNovo;
 
@@ -73,6 +80,11 @@ public class AdministradorManager implements Serializable {
     private ProdutoCatalogoBean produtoCatalogoBean;
     @EJB
     private LinhaEncomendaBean linhaEncomendaBean;
+    @EJB
+    private TransferenciaBean transferenciaBean;
+    @EJB
+    private LinhaTransferenciaBean linhaTransferenciaBean;
+    
     private static final Logger logger = Logger.getLogger("web.AdministradorManager");
     private UIComponent componente;
 
@@ -84,6 +96,7 @@ public class AdministradorManager implements Serializable {
         this.administradorNovo = new AdministradorDTO();
         this.linhaEncomendaNovo = new LinhaEncomendaDTO();
         this.encomendaNova = new EncomendaDTO();
+        this.transferenciaNovo = new TransferenciaDTO();
     }
 
     public UIComponent getComponente() {
@@ -134,7 +147,7 @@ public class AdministradorManager implements Serializable {
         try {
             return utilizadorBean.getUtilizadoresPertencemFarmacia(farmaciaAtual.getIdFarmacia());
         } catch (Exception e) {
-            FacesExceptionHandler.tratarExcecao(e, "Erro do sistema LOL.", logger);
+            FacesExceptionHandler.tratarExcecao(e, "Erro do sistema.", logger);
         }
         return null;
     }
@@ -450,6 +463,18 @@ public class AdministradorManager implements Serializable {
         return "admin_encomendas_editar";
         
     }
+    
+    public String confirmarEncomenda(){
+        try {
+                encomendaBean.confirmar(encomendaAtual.getIdEncomenda());
+            } catch (EntidadeNaoExistenteException e) {
+                FacesExceptionHandler.tratarExcecaoBinding(e, e.getMessage(), componente, logger);
+            } catch (Exception e) {
+                FacesExceptionHandler.tratarExcecao(e, "Erro do sistema.", logger);
+            }
+        return "admin_encomendas_listar?faces-redirect=true";
+    
+    }
 
     public void setEncomendaAtual(EncomendaDTO encomendaAtual) {
         this.encomendaAtual = encomendaAtual;
@@ -457,16 +482,19 @@ public class AdministradorManager implements Serializable {
 
    
 
-    /*********LINHA ENCOMENDA**************/
+    /********* LINHA ENCOMENDA ***************/
     
     public String criarLinhaEncomenda() {
         try {
+            if(encomendaAtual.getEstado() != Estado.Rascunho){
+                throw new Exception("Já não é possivel alterar a encomenda");
+            }
             linhaEncomendaBean.criarLinhaEncomenda(encomendaAtual.getIdEncomenda(), linhaEncomendaNovo.getCodigoProdutoCatalogo(), linhaEncomendaNovo.getQuantidade());
 
             farmaciaNovo.reiniciar();
             return "admin_encomendas_editar?faces-redirect=true";
         } catch (Exception e) {
-            FacesExceptionHandler.tratarExcecao(e, "Erro do sistema.", logger);
+            FacesExceptionHandler.tratarExcecao(e, e.getMessage(), logger);
         }
         return "admin_linhaencomenda_criar";
     }
@@ -497,5 +525,48 @@ public class AdministradorManager implements Serializable {
     public void setLinhaEncomendaNovo(LinhaEncomendaDTO linhaEncomendaNovo) {
         this.linhaEncomendaNovo = linhaEncomendaNovo;
     }
+    
+    /**
+     * **********TRANSFERENCIAS***************
+     */
+    public List<TransferenciaDTO> getTransferencias() {
+        try {
+            return transferenciaBean.getAllTransferencias();
+        } catch (Exception e) {
+            FacesExceptionHandler.tratarExcecao(e, "Erro do sistema.", logger);
+            return null;
+        }
+    }
 
+  
+    public String criarTransferencia() {
+        try {
+            if(transferenciaNovo.getFarmaciaFornecedora() == transferenciaNovo.getFarmacia()){
+                throw new Exception("A farmácia fornecedora deve diferir da recetora");
+            }
+            transferenciaBean.criarTransferencia(transferenciaNovo.getFarmaciaFornecedora(), transferenciaNovo.getFarmacia());
+            transferenciaNovo.reiniciar();
+            return "admin_transferencias_listar?faces-redirect=true";
+        } catch (Exception e) {
+            FacesExceptionHandler.tratarExcecao(e, e.getMessage(), logger);
+        }
+        return "admin_transferencias_criar";
+    }
+
+    public TransferenciaDTO getTransferenciaNovo() {
+        return transferenciaNovo;
+    }
+
+    public void setTransferenciaNovo(TransferenciaDTO transferenciaNovo) {
+        this.transferenciaNovo = transferenciaNovo;
+    }
+
+    public TransferenciaDTO getTransferenciaAtual() {
+        return transferenciaAtual;
+    }
+
+    public void setTransferenciaAtual(TransferenciaDTO transferenciaAtual) {
+        this.transferenciaAtual = transferenciaAtual;
+    }
+    
 }

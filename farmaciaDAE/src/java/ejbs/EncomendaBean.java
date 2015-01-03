@@ -2,6 +2,7 @@ package ejbs;
 
 import Entidades.Cliente;
 import Entidades.Encomenda;
+import Entidades.Estado;
 import Entidades.Farmacia;
 import Entidades.Fornecedor;
 import Entidades.Utilizador;
@@ -58,7 +59,8 @@ public class EncomendaBean {
         return new EncomendaDTO(
                 encomenda.getIdEncomenda(),
                 encomenda.getFornecedor().getLaboratorio(),
-                encomenda.getFarmacia().getIdFarmacia());
+                encomenda.getFarmacia().getIdFarmacia(),
+                encomenda.getEstado());
     }
 
     private List<EncomendaDTO> copiarEncomendasParaDTOs(List<Encomenda> encomendas) {
@@ -96,4 +98,23 @@ public class EncomendaBean {
             throw new EJBException(e.getMessage());
         }
     }
+     
+     public void confirmar(Long idEncomenda) throws EntidadeNaoExistenteException{
+         try {
+            Encomenda encomenda = em.find(Encomenda.class, idEncomenda);
+            
+            if (encomenda == null) {
+                throw new EntidadeNaoExistenteException("Encomenda não existente!");
+            }
+            
+            encomenda.setEstado(Estado.Enviado);
+            em.persist(encomenda);
+                    
+        } catch (EntidadeNaoExistenteException e) {
+            throw e;
+        } catch (Exception e) {
+            throw new EJBException(e.getMessage());
+        }
+     
+     }
 }

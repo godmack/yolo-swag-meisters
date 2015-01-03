@@ -18,6 +18,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.TableGenerator;
 import javax.persistence.Temporal;
@@ -29,6 +30,7 @@ import javax.validation.constraints.NotNull;
  * @author Cristiano
  */
 @Entity
+@NamedQuery(name = "findAllTransferencias", query = "SELECT d FROM Transferencia d")
 public class Transferencia implements Serializable {
     private static final long serialVersionUID = 1L;
     @TableGenerator(
@@ -111,6 +113,16 @@ public class Transferencia implements Serializable {
     public Date getData() {
         return data;
     }
+
+    public Estado getEstado() {
+        return estado;
+    }
+
+    public void setEstado(Estado estado) {
+        this.estado = estado;
+    }
+    
+    
 
     
     

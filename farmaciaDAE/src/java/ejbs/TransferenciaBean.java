@@ -16,6 +16,7 @@ import excecoes.EntidadeExistenteException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.EJBException;
+import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -23,19 +24,19 @@ import javax.persistence.PersistenceContext;
  *
  * @author Ruben
  */
+@Stateless
 public class TransferenciaBean {
 
     @PersistenceContext
     private EntityManager em;
 
-    public void criarStock(int id, Farmacia farmaciaFornecedora, Farmacia farmacia) throws EntidadeExistenteException {
+    public void criarTransferencia(Long farmaciaFornecedora, Long farmacia) {
         try {
-            if (existeTransferencia(id)) {
-                throw new EntidadeExistenteException("Transferencia já foi efetuada!");
-            }
-            em.persist(new Transferencia(farmaciaFornecedora, farmacia));
-        } catch (EntidadeExistenteException e) {
-            throw e;
+            
+            Farmacia fornecedora = em.find(Farmacia.class, farmaciaFornecedora);
+            Farmacia receptora = em.find(Farmacia.class, farmacia);
+            
+            em.persist(new Transferencia(fornecedora, receptora));
         } catch (Exception e) {
             throw new EJBException(e.getMessage());
         }
@@ -59,7 +60,10 @@ public class TransferenciaBean {
     private List<TransferenciaDTO> copiarTransferenciasParaDTOs(List<Transferencia> transferencias) {
         List<TransferenciaDTO> dtos = new ArrayList<>();
         for (Transferencia transferencia : transferencias) {
-            dtos.add(new TransferenciaDTO(transferencia.getFarmaciaFornecedora().getIdFarmacia(), transferencia.getFarmacia().getIdFarmacia()));
+            dtos.add(new TransferenciaDTO(transferencia.getFarmaciaFornecedora().getIdFarmacia(), 
+                                            transferencia.getFarmacia().getIdFarmacia(), 
+                                            transferencia.getEstado(),
+                                            transferencia.getData()));
         }
         return dtos;
     }

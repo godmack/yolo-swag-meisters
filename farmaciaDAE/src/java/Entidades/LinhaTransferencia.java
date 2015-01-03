@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.IdClass;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
 import javax.validation.constraints.NotNull;
 
 /**
@@ -18,6 +19,7 @@ import javax.validation.constraints.NotNull;
  * @author Andre
  */
 @Entity
+@NamedQuery(name = "findAllLinhasTransferencia", query = "SELECT d FROM LinhaTransferencia d")
 @IdClass(LinhaTransferenciaKey.class)
 public class LinhaTransferencia extends Linhas implements Serializable {
     private static final long serialVersionUID = 1L;

@@ -10,5 +10,5 @@ package Entidades;
  * @author Cristiano
  */
 public enum Estado {
-    Rascunho, Enviado, RecebidoIncompleto, RecebidoCompleto
+    Rascunho, Enviado, RecebidoIncompleto, RecebidoCompleto, Cancelado
 }
