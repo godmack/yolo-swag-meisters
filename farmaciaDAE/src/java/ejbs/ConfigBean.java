@@ -32,6 +32,9 @@ public class ConfigBean implements Serializable {
     @EJB
     private FuncionarioBean funcionarioBean;
     
+    @EJB
+    private ProdutoCatalogoBean pCatalogoBean;
+    
     @PostConstruct
     public void popularBD() {
 
@@ -47,6 +50,8 @@ public class ConfigBean implements Serializable {
             funcionarioBean.criarFuncionario("Andre Cristiano", "andrecristiano", "andrecristiano@maildae.com", "123", true);
             fornecedorBean.criarFornecedor("ruboratorio","ruboratorio@gmail.com" , 917121212, "rua das pinhas");
             administradorBean.criarAdministrador("admin", "admin123", "Admin", "rubacia@gmail.com");
+            pCatalogoBean.criarProdutoCatalogo(123, "ben u ron", "Bayer", 5.0);
+            pCatalogoBean.criarProdutoCatalogo(456, "voltaren", "Lab Medicamentos", 7.5);
 
            
         } catch (EntidadeExistenteException | EntidadeNaoExistenteException e) {

@@ -488,6 +488,16 @@ public class AdministradorManager implements Serializable {
         }
         return null;
     }
+    
+        public void retirarLinhaEncomenda(ActionEvent event) {
+        try {
+            UIParameter param = (UIParameter) event.getComponent().findComponent("linhaEncomenda2");
+            int codigoProduto = Integer.valueOf(param.getValue().toString());
+            linhaEncomendaBean.removerLinhaEncomenda(encomendaAtual.getIdEncomenda(), codigoProduto);
+        } catch (Exception e) {
+            FacesExceptionHandler.tratarExcecao(e, "Erro do sistema.", logger);
+        }
+    }
 
     public LinhaEncomendaDTO getLinhaEncomendaNovo() {
         return linhaEncomendaNovo;

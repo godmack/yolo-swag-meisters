@@ -8,6 +8,7 @@ package Entidades;
 import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.IdClass;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
@@ -21,6 +22,7 @@ import javax.validation.constraints.NotNull;
 
 //WHERE (le.encomenda = :encomenda AND le.produtoCatalogo = :produtoCatalogo)
 @Entity
+@IdClass(LinhaEncomendaKey.class)
 @NamedQueries({
 @NamedQuery(name = "findExistentEncomenda", query = "SELECT le FROM LinhaEncomenda le "),
 @NamedQuery(name="findAllLinhasEncomendaDeUmaEncomenda",query="SELECT le FROM LinhaEncomenda le WHERE le.encomenda = :encomenda"),

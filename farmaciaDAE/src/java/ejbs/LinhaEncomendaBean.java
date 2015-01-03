@@ -78,13 +78,13 @@ public class LinhaEncomendaBean {
         }
     }
     
-    public void removerLinhaEncomenda(int codigoEncomenda, int codigoProdutoCatalogo) throws EntidadeNaoExistenteException {
+    public void removerLinhaEncomenda(Long codigoEncomenda, int codigoProdutoCatalogo) throws EntidadeNaoExistenteException {
         try {
             if(em.find(Encomenda.class, codigoEncomenda) == null){
                 throw new EntidadeNaoExistenteException("UC não existente!");
             }
             
-            LinhaEncomendaKey chave = new LinhaEncomendaKey(codigoProdutoCatalogo, (long) codigoEncomenda);
+            LinhaEncomendaKey chave = new LinhaEncomendaKey(codigoProdutoCatalogo, codigoEncomenda);
             LinhaEncomenda le = em.find(LinhaEncomenda.class, chave);
             if(le == null){
                 throw new EntidadeNaoExistenteException("Elemento de avaliação não existente!");
