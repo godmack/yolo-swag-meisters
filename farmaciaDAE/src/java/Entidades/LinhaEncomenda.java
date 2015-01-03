@@ -23,7 +23,8 @@ import javax.validation.constraints.NotNull;
 @Entity
 @NamedQueries({
 @NamedQuery(name = "findExistentEncomenda", query = "SELECT le FROM LinhaEncomenda le "),
-@NamedQuery(name="findAllLinhasEncomendaDeUmaEncomenda",query="SELECT le FROM LinhaEncomenda le WHERE le.encomenda = :encomenda")
+@NamedQuery(name="findAllLinhasEncomendaDeUmaEncomenda",query="SELECT le FROM LinhaEncomenda le WHERE le.encomenda = :encomenda"),
+@NamedQuery(name="findExisteLinhaEncomendaProduto",query="SELECT le FROM LinhaEncomenda le WHERE (le.encomenda = :encomenda AND le.produtoCatalogo = :produtoCatalogo)")
 })
 public class LinhaEncomenda extends Linhas implements Serializable {
     private static final long serialVersionUID = 1L;

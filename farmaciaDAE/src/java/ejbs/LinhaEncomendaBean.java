@@ -30,13 +30,17 @@ public class LinhaEncomendaBean {
     @PersistenceContext
     private EntityManager em;
     
-    public void criarLinhaEncomenda(Encomenda encomenda, int codigoProdutoCatalogo, int quantidade) throws EntidadeExistenteException{
+    public void criarLinhaEncomenda(Long idEncomenda, int codigoProdutoCatalogo, int quantidade) throws EntidadeExistenteException{
         try {
             ProdutoCatalogo produtoCatalogo = em.find(ProdutoCatalogo.class, codigoProdutoCatalogo);
+            Encomenda encomenda = em.find(Encomenda.class, idEncomenda);
             if(existeLinhaEncomenda(encomenda,produtoCatalogo)){
                 throw new EntidadeExistenteException("Já existe uma linha relativa a este produto");
-            }            
-            em.persist(new LinhaEncomenda(encomenda, produtoCatalogo, quantidade));
+            }
+            
+            LinhaEncomenda linhaEncomenda = new LinhaEncomenda(encomenda, produtoCatalogo, quantidade);
+            em.persist(linhaEncomenda);
+            encomenda.addLinhaEncomenda(linhaEncomenda);
         } catch (EntidadeExistenteException e) {
             throw e;
         } catch (Exception e) {
@@ -47,19 +51,19 @@ public class LinhaEncomendaBean {
     public boolean existeLinhaEncomenda(Encomenda encomenda, ProdutoCatalogo produtoCatalogo){
         
         Query queryExisteLinhaEncomenda = em.createNamedQuery(
-            "findAllEmployeesByFirstName"
+            "findExisteLinhaEncomendaProduto"
         );
-        queryExisteLinhaEncomenda.setParameter("encomenda", encomenda.getIdEncomenda());
-        queryExisteLinhaEncomenda.setParameter("produtoCatalogo", produtoCatalogo.getReferencia());
-        int numResults = queryExisteLinhaEncomenda.getMaxResults();
+        queryExisteLinhaEncomenda.setParameter("encomenda", encomenda);
+        queryExisteLinhaEncomenda.setParameter("produtoCatalogo", produtoCatalogo);
+        int numResults = queryExisteLinhaEncomenda.getResultList().size();
         
-        if(numResults != 0){
+        if(numResults > 0){
             return true;
         }
         return false;
     }
     
-    public List<LinhaEncomendaDTO> getLinhasDeUmaEncomenda(int codigoEncomenda) throws EntidadeNaoExistenteException{
+    public List<LinhaEncomendaDTO> getLinhasDeUmaEncomenda(Long codigoEncomenda) throws EntidadeNaoExistenteException{
         try {
             Encomenda encomenda = em.find(Encomenda.class, codigoEncomenda);
             if(encomenda == null){
@@ -119,12 +123,12 @@ public class LinhaEncomendaBean {
         }
     }
     
-     public List<LinhaEncomendaDTO> getAllLinhasEncomendaDeUmaEncomenda(Encomenda encomenda) {
+     public List<LinhaEncomendaDTO> getAllLinhasEncomendaDeUmaEncomenda(int idEncomenda) {
         try {
              Query queryExisteLinhaEncomenda = em.createNamedQuery(
                 "findAllLinhasEncomendaDeUmaEncomenda"
             );
-            queryExisteLinhaEncomenda.setParameter("encomenda", encomenda.getIdEncomenda());
+            queryExisteLinhaEncomenda.setParameter("encomenda", idEncomenda);
             List<LinhaEncomenda> linhasEncomenda = (List<LinhaEncomenda>) queryExisteLinhaEncomenda.getResultList();
             return copiarLinhasEncomendaParaDTOs(linhasEncomenda);
         } catch (Exception e) {

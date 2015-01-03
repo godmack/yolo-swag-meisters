@@ -56,6 +56,7 @@ public class EncomendaBean {
 
     private EncomendaDTO copiarEncomendaParaDTO(Encomenda encomenda) {
         return new EncomendaDTO(
+                encomenda.getIdEncomenda(),
                 encomenda.getFornecedor().getLaboratorio(),
                 encomenda.getFarmacia().getIdFarmacia());
     }
@@ -69,7 +70,7 @@ public class EncomendaBean {
     }
 
      
-     public void atualizar(String fornecedor, Long farmacia, int idEncomenda) throws EntidadeExistenteException, EntidadeNaoExistenteException {
+     public void atualizar(String fornecedor, Long farmacia, Long idEncomenda) throws EntidadeExistenteException, EntidadeNaoExistenteException {
 
         try {
             Encomenda encomenda = em.find(Encomenda.class, idEncomenda);

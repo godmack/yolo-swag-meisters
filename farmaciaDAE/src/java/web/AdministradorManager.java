@@ -435,7 +435,19 @@ public class AdministradorManager implements Serializable {
             FacesExceptionHandler.tratarExcecao(e, "Erro do sistema.", logger);
         }
         return "admin_encomendas_editar";
+        
     }
+
+    public EncomendaDTO getEncomendaAtual() {
+        return encomendaAtual;
+    }
+
+    public void setEncomendaAtual(EncomendaDTO encomendaAtual) {
+        this.encomendaAtual = encomendaAtual;
+    }
+    
+    
+    
 
 
     public ProdutoCatalogoDTO getpCatalogoNovo() {
@@ -458,14 +470,23 @@ public class AdministradorManager implements Serializable {
     
     public String criarLinhaEncomenda() {
         try {
-            linhaEncomendaBean.criarLinhaEncomenda(null, linhaEncomendaNovo.getCodigoProdutoCatalogo(), linhaEncomendaNovo.getQuantidade());
+            linhaEncomendaBean.criarLinhaEncomenda(encomendaAtual.getIdEncomenda(), linhaEncomendaNovo.getCodigoProdutoCatalogo(), linhaEncomendaNovo.getQuantidade());
             
             farmaciaNovo.reiniciar();
-            return "admin_farmacias_listar?faces-redirect=true";
+            return "admin_encomendas_editar?faces-redirect=true";
         } catch (Exception e) {
             FacesExceptionHandler.tratarExcecao(e, "Erro do sistema.", logger);
         }
-        return "admin_farmacias_criar";
+        return "admin_linhaencomenda_criar";
+    }
+    
+    public List<LinhaEncomendaDTO> getLinhasPertencemEncomenda() {
+        try {
+            return linhaEncomendaBean.getLinhasDeUmaEncomenda(encomendaAtual.getIdEncomenda());
+        } catch (Exception e) {
+            FacesExceptionHandler.tratarExcecao(e, "Erro do sistema.", logger);
+        }
+        return null;
     }
 
     public LinhaEncomendaDTO getLinhaEncomendaNovo() {

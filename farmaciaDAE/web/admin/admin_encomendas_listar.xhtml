@@ -21,44 +21,56 @@
             </ui:define>
             
             <ui:define name="content">
-                <h:dataTable
-                    var="encomenda"
-                    summary="Encomendas"
-                    value="#{administradorManager.encomendas}"
-                    rules="all"
-                    cellpadding="5">
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="Fornecedor" />
-                        </f:facet>
-                        <h:outputText value="#{encomenda.fornecedor}"/>
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="Estado" />
-                        </f:facet>
-                        <h:outputText value="#{encomenda.estado}"/>
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="Farmacia" />
-                        </f:facet>
-                        <h:outputText value="#{encomenda.farmacia}"/>
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="Data" />
-                        </f:facet>
-                        <h:outputText value="#{encomenda.data}"/>
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="Ações" />
-                        </f:facet>
-                    </h:column>                        
-                </h:dataTable>
-				
-				<h:messages errorStyle="color: red" />
+                <h:form>
+                    <h:dataTable
+                        var="encomenda"
+                        summary="Encomendas"
+                        value="#{administradorManager.encomendas}"
+                        rules="all"
+                        cellpadding="5">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="ID" />
+                            </f:facet>
+                            <h:commandLink
+                                value="#{encomenda.idEncomenda}"
+                                action="admin_encomendas_editar?faces-redirect=true">
+                                <f:setPropertyActionListener target="#{administradorManager.encomendaAtual}" value="#{encomenda}" />
+                            </h:commandLink>
+                        </h:column> 
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Fornecedor" />
+                            </f:facet>
+                            <h:outputText value="#{encomenda.fornecedor}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Estado" />
+                            </f:facet>
+                            <h:outputText value="#{encomenda.estado}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Farmacia" />
+                            </f:facet>
+                            <h:outputText value="#{encomenda.farmacia}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Data" />
+                            </f:facet>
+                            <h:outputText value="#{encomenda.data}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Ações" />
+                            </f:facet>
+                        </h:column>                        
+                    </h:dataTable>
+
+                                    <h:messages errorStyle="color: red" />
+                </h:form>
             </ui:define>
 
         </ui:composition>
