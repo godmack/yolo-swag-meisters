@@ -54,10 +54,9 @@ public class AdministradorManager implements Serializable {
     private EncomendaDTO encomendaAtual;
 
     private AdministradorDTO administradorNovo;
-    
+
     private LinhaEncomendaDTO linhaEncomendaNovo;
-    
-    
+
     @EJB
     FarmaciaBean farmaciaBean;
     @EJB
@@ -264,7 +263,7 @@ public class AdministradorManager implements Serializable {
     public String criarAdministrador() {
         try {
             administradorBean.criarAdministrador(
-                     administradorNovo.getUsername(),
+                    administradorNovo.getUsername(),
                     administradorNovo.getPassword(),
                     administradorNovo.getNome(),
                     administradorNovo.getEmail());
@@ -283,10 +282,8 @@ public class AdministradorManager implements Serializable {
     public void setAdministradorNovo(AdministradorDTO administradorNovo) {
         this.administradorNovo = administradorNovo;
     }
-      
-      
-     
-      ////////////// Fornecedores ///////////////////
+
+    ////////////// Fornecedores ///////////////////
     public List<FornecedorDTO> getFornecedores() {
         try {
             return fornecedorBean.getAllFornecedores();
@@ -342,11 +339,9 @@ public class AdministradorManager implements Serializable {
         this.fornecedorAtual = fornecedorAtual;
     }
 
-    
-    
-    
-    /************PRODUTO CATALOGO*****************/
-    
+    /**
+     * **********PRODUTO CATALOGO****************
+     */
     public List<ProdutoCatalogoDTO> getProdutosCatalogo() {
         try {
             return produtoCatalogoBean.getAllProdutoCatalogo();
@@ -355,8 +350,8 @@ public class AdministradorManager implements Serializable {
             return null;
         }
     }
-    
-     public String criarProdutoCatalogo() {
+
+    public String criarProdutoCatalogo() {
         try {
             produtoCatalogoBean.criarProdutoCatalogo(
                     pCatalogoNovo.getReferencia(),
@@ -389,6 +384,21 @@ public class AdministradorManager implements Serializable {
         return "admin_produtocatalogo_editar";
     }
 
+    public ProdutoCatalogoDTO getpCatalogoNovo() {
+        return pCatalogoNovo;
+    }
+
+    public void setpCatalogoNovo(ProdutoCatalogoDTO pCatalogoNovo) {
+        this.pCatalogoNovo = pCatalogoNovo;
+    }
+
+    public ProdutoCatalogoDTO getpCatalogoAtual() {
+        return pCatalogoAtual;
+    }
+
+    public void setpCatalogoAtual(ProdutoCatalogoDTO pCatalogoAtual) {
+        this.pCatalogoAtual = pCatalogoAtual;
+    }
 
     /**
      * **********ENCOMENDAS***************
@@ -414,15 +424,18 @@ public class AdministradorManager implements Serializable {
         }
         return "admin_encomendas_criar";
     }
-    
-     public EncomendaDTO getEncomendaNova() {
+
+    public EncomendaDTO getEncomendaNova() {
         return encomendaNova;
+    }
+
+    public EncomendaDTO getEncomendaAtual() {
+        return encomendaAtual;
     }
 
     public void setEncomendaDTO(EncomendaDTO encomendaNova) {
         this.encomendaNova = encomendaNova;
     }
-    
 
     public String atualizarEncomenda() {
         try {
@@ -438,40 +451,18 @@ public class AdministradorManager implements Serializable {
         
     }
 
-    public EncomendaDTO getEncomendaAtual() {
-        return encomendaAtual;
-    }
-
     public void setEncomendaAtual(EncomendaDTO encomendaAtual) {
         this.encomendaAtual = encomendaAtual;
     }
-    
-    
-    
 
-
-    public ProdutoCatalogoDTO getpCatalogoNovo() {
-        return pCatalogoNovo;
-    }
-
-    public void setpCatalogoNovo(ProdutoCatalogoDTO pCatalogoNovo) {
-        this.pCatalogoNovo = pCatalogoNovo;
-    }
-
-    public ProdutoCatalogoDTO getpCatalogoAtual() {
-        return pCatalogoAtual;
-    }
-
-    public void setpCatalogoAtual(ProdutoCatalogoDTO pCatalogoAtual) {
-        this.pCatalogoAtual = pCatalogoAtual;
-    }
+   
 
     /*********LINHA ENCOMENDA**************/
     
     public String criarLinhaEncomenda() {
         try {
             linhaEncomendaBean.criarLinhaEncomenda(encomendaAtual.getIdEncomenda(), linhaEncomendaNovo.getCodigoProdutoCatalogo(), linhaEncomendaNovo.getQuantidade());
-            
+
             farmaciaNovo.reiniciar();
             return "admin_encomendas_editar?faces-redirect=true";
         } catch (Exception e) {
@@ -506,6 +497,5 @@ public class AdministradorManager implements Serializable {
     public void setLinhaEncomendaNovo(LinhaEncomendaDTO linhaEncomendaNovo) {
         this.linhaEncomendaNovo = linhaEncomendaNovo;
     }
-  
- 
+
 }

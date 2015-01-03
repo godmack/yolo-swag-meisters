@@ -13,16 +13,15 @@
             </ui:define>
 
             <ui:define name="left">
-                <h:outputLink value="./../index.xhtml">Página inicial</h:outputLink>                
+                <h:outputLink value="./../index.xhtml">Página inicial</h:outputLink>       
+                <br /><br />
+                <h:outputLink value="admin_funcionarios_criar.xhtml?faces-redirect=true">Criar Funcionário </h:outputLink>
+                <br /><br />
+                <h:outputLink value="admin_administradores_criar.xhtml?faces-redirect=true">Criar Administrador </h:outputLink>
             </ui:define>
 
             <ui:define name="content">
                 <h:form>                    
-                    <h:commandButton value="Criar Funcionario" action="admin_funcionarios_criar.xhtml?faces-redirect=true" />
-                    <br/>
-                    <h:commandButton value="Criar Administrador" action="admin_administradores_criar.xhtml?faces-redirect=true" />
-                    <br/>
-
                     <h:dataTable
                         var="funcionario"
                         summary="Lista de todos os funcionarios"
@@ -53,9 +52,9 @@
                         </h:column>                                      
                     </h:dataTable>
                 </h:form>
-                
+
                 <h:messages errorStyle="color: red" />                
-                
+
             </ui:define>
 
         </ui:composition>

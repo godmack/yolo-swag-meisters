@@ -13,7 +13,6 @@
             </ui:define>
 
             <ui:define name="left">
-                <h:outputLink value="admin_funcionarios_listar.xhtml">Gerir UCs</h:outputLink>
                 <br /><br />
                 <h:outputLink value="./../index.xhtml">Página inicial</h:outputLink>                
             </ui:define>
@@ -22,7 +21,7 @@
                 <h:form>                  
                     <h:panelGrid columns="3">
 
-                        <h:outputLabel for="username" value="User name: " />
+                        <h:outputLabel for="username" value="Username: " />
                         <h:outputText 
                             id="username"
                             value="#{administradorManager.funcionarioAtual.username}" />
