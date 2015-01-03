@@ -81,13 +81,13 @@ public class LinhaEncomendaBean {
     public void removerLinhaEncomenda(Long codigoEncomenda, int codigoProdutoCatalogo) throws EntidadeNaoExistenteException {
         try {
             if(em.find(Encomenda.class, codigoEncomenda) == null){
-                throw new EntidadeNaoExistenteException("UC não existente!");
+                throw new EntidadeNaoExistenteException("Encomenda não existente!");
             }
             
             LinhaEncomendaKey chave = new LinhaEncomendaKey(codigoProdutoCatalogo, codigoEncomenda);
             LinhaEncomenda le = em.find(LinhaEncomenda.class, chave);
             if(le == null){
-                throw new EntidadeNaoExistenteException("Elemento de avaliação não existente!");
+                throw new EntidadeNaoExistenteException("Linha de Encomenda não existente!");
             }
             
             le.getEncomenda().removeLinhaEncomenda(le);
