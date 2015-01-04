@@ -14,15 +14,12 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
  * @author Cristiano
  */
 @Entity
-@XmlRootElement
 public class Cliente implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -71,7 +68,6 @@ public class Cliente implements Serializable {
         this.contacto = contacto;
     }
 
-    @XmlTransient
     public List<Venda> getVendas() {
         return vendas;
     }

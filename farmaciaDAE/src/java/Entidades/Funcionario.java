@@ -9,7 +9,6 @@ import Entidades.GrupoUtilizador.GRUPO;
 import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.NamedQuery;
-import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
@@ -17,7 +16,6 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @Entity
 @NamedQuery(name = "findAllFuncionarios", query = "SELECT d FROM Funcionario d ORDER BY d.nome")
-@XmlRootElement
 public class Funcionario extends Utilizador implements Serializable {
 
     private boolean FuncBalcao;

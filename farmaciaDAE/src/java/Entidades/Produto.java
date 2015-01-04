@@ -17,7 +17,6 @@ import javax.persistence.TableGenerator;
 import javax.persistence.Temporal;
 import static javax.persistence.TemporalType.DATE;
 import javax.validation.constraints.NotNull;
-import javax.xml.bind.annotation.XmlRootElement;
 
 
 /**
@@ -25,7 +24,6 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author Cristiano
  */
 @Entity
-@XmlRootElement
 public class Produto implements Serializable {
     private static final long serialVersionUID = 1L;
 
