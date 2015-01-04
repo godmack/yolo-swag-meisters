@@ -23,6 +23,7 @@ public class EncomendaDTO  implements Serializable{
     private Date data;
 
     public EncomendaDTO() {
+
     }
 
     public EncomendaDTO(Long idEncomenda, String fornecedorID, Long farmaciaID, Estado estado) {
@@ -30,7 +31,6 @@ public class EncomendaDTO  implements Serializable{
         this.idEncomenda = idEncomenda;
         this.fornecedor = fornecedorID;
         this.farmacia = farmaciaID;
-
         this.estado = estado;
         this.data = new Date();
     }

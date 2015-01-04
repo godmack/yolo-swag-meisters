@@ -21,6 +21,7 @@ import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -32,7 +33,9 @@ import javax.validation.constraints.Pattern;
  * @author Cristiano
  */
 @Entity
-@NamedQuery(name = "findAllUtilizadores", query = "SELECT d FROM Utilizador d")
+@NamedQueries({
+@NamedQuery(name = "findAllUtilizadores", query = "SELECT d FROM Utilizador d"),
+@NamedQuery(name = "findUtilizador", query = "SELECT d FROM Utilizador d WHERE d.username = :username AND d.password = :password ")})
 @Table(name="UTILIZADOR")
 public class Utilizador implements Serializable {
     private static final long serialVersionUID = 1L;

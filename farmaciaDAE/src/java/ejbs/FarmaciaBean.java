@@ -14,7 +14,7 @@ import excecoes.EntidadeNaoExistenteException;
 @Stateless
 public class FarmaciaBean {
 
-    @PersistenceContext
+    @PersistenceContext(unitName = "farmaciaDAEPU")
     private EntityManager em;
 
     public void criarFarmacia( String nome) throws EntidadeExistenteException{
