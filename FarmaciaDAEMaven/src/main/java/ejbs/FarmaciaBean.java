@@ -43,9 +43,6 @@ public class FarmaciaBean {
         List<FarmaciaDTO> dtos = new ArrayList<>();
 
         for (Farmacia farmacia : farmacias) {
-            System.out.println(farmacia.getIdFarmacia());
-            System.out.println(farmacia.getNome());
-                    
             dtos.add(new FarmaciaDTO(farmacia.getIdFarmacia(), farmacia.getNome()));
         }
         return dtos;

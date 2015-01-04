@@ -60,6 +60,12 @@
                         </h:inputText>    
                         <h:message for="email" errorStyle="color: red" />
                         
+                        <h:outputLabel for="farmacia" value="Farmacia" />
+                        <h:selectOneMenu value="#{administradorManager.administradorNovo.idFarmacia}">
+                             <f:selectItems value="#{administradorManager.farmacias}" var="farmacia"
+                                            itemLabel="#{farmacia.nome}" itemValue="#{farmacia.idFarmacia}" />
+                        </h:selectOneMenu>
+                        
                         
                         <h:commandButton
                             id="submit"

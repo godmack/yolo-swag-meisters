@@ -7,6 +7,7 @@ package ejbs;
 
 import Entidades.Farmacia;
 import Entidades.Funcionario;
+import dtos.FarmaciaDTO;
 import dtos.FuncionarioDTO;
 import excecoes.EntidadeExistenteException;
 import excecoes.EntidadeNaoExistenteException;
@@ -17,6 +18,7 @@ import javax.ejb.EJBException;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -30,6 +32,8 @@ public class FuncionarioBean {
     private EntityManager em;
     @EJB
     UtilizadorBean uBean;
+    @EJB
+    FarmaciaBean fBean;
     
     
      public FuncionarioBean() {
@@ -45,7 +49,8 @@ public class FuncionarioBean {
             if (uBean.existeUsername(username)) {
                 throw new EntidadeExistenteException("Utilizador já existente!");
             }
-            Farmacia farmacia = em.find(Farmacia.class, idFarmacia);
+            List<FarmaciaDTO> farmacias = fBean.getAllFarmacias();
+            Farmacia farmacia = em.find(Farmacia.class, farmacias.get(0).getIdFarmacia());
             em.persist(new Funcionario(nome, username, email, password,  eFuncBalcao, farmacia));
         } catch (EntidadeExistenteException e) {
             throw e;
@@ -64,20 +69,11 @@ public class FuncionarioBean {
         }
     }
     
-     private FuncionarioDTO copiarFuncionarioParaDTO(Funcionario funcionario) {
-        return new FuncionarioDTO(
-                funcionario.getUsername(),
-                funcionario.getNome(),
-                funcionario.getEmail(),
-                funcionario.isFuncBalcao(),
-                funcionario.getFarmacia().getIdFarmacia()
-        );
-    }
      
      private List<FuncionarioDTO> copiarFuncionariosParaDTOs(List<Funcionario> Funcionarios) {
         List<FuncionarioDTO> dtos = new ArrayList<>();
-        for (Funcionario docente : Funcionarios) {
-            dtos.add(copiarFuncionarioParaDTO(docente));
+        for (Funcionario funcionario : Funcionarios) {
+            dtos.add(new FuncionarioDTO(funcionario.getUsername(),funcionario.getNome(),funcionario.getEmail(), funcionario.isFuncBalcao(), funcionario.getFarmacia().getIdFarmacia()));
         }
         return dtos;
     }

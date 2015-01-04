@@ -53,7 +53,7 @@ public class Utilizador implements Serializable {
             message = "{invalid.email}")
     @NotNull
     protected String email;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="ID_FARMACIA")
     private Farmacia farmacia;
     
