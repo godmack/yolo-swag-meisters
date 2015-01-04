@@ -2,7 +2,6 @@ dtos\UtilizadorDTO.class
 dtos\ProdutoCatalogoDTO.class
 Entidades\Produto.class
 Entidades\ProdutoCatalogo.class
-ejbs\ConfigBean.class
 Entidades\Cliente.class
 Entidades\Utilizador.class
 excecoes\EntidadeExistenteException.class
@@ -28,13 +27,11 @@ Entidades\Linhas.class
 Entidades\Transferencia.class
 dtos\LinhaVendaDTO.class
 Entidades\Stock.class
-web\FuncBalcaoManager.class
 Entidades\Venda.class
 Entidades\Encomenda.class
 dtos\EncomendaDTO.class
 pt\ipleiria\estg\mcm\iaupss\webservice\service\SecurityInterceptor.class
 ejbs\FarmaciaBean.class
-web\AdministradorManager.class
 Entidades\Estado.class
 dtos\FarmaciaDTO.class
 ejbs\ClienteBean.class
@@ -50,7 +47,6 @@ Entidades\Fornecedor.class
 ejbs\LinhaTransferenciaBean.class
 ejbs\TransferenciaBean.class
 excecoes\EntidadeNaoExistenteException.class
-ejbs\EncomendaBean.class
 dtos\TransferenciaDTO.class
 ejbs\AdministradorBean.class
 dtos\ClienteDTO.class

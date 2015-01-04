@@ -34,7 +34,7 @@ public class ConfigBean implements Serializable {
 
     @EJB
     private ProdutoCatalogoBean pCatalogoBean;
-    
+
     @PostConstruct
     public void popularBD() {
 
@@ -48,6 +48,7 @@ public class ConfigBean implements Serializable {
             funcionarioBean.criarFuncionario("Ruben Nunes", "rubennunes", "rubennunes@maildae.com", "123", false, 1L);
             funcionarioBean.criarFuncionario("Andre Cristiano", "andrecristiano", "andrecristiano@maildae.com", "123", true, 1L);
             fornecedorBean.criarFornecedor("ruboratorio", "ruboratorio@gmail.com", 917121212, "rua das pinhas");
+            fornecedorBean.criarFornecedor("andrisFêos", "ruben.n147@gmail.com", 917121212, "rua das pinhas");
             administradorBean.criarAdministrador("admin", "admin123", "Admin", "rubacia@gmail.com", (long) 1);
             pCatalogoBean.criarProdutoCatalogo(123, "ben u ron", "Bayer", 5.0);
             pCatalogoBean.criarProdutoCatalogo(456, "voltaren", "Lab Medicamentos", 7.5);

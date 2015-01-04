@@ -471,6 +471,9 @@ public class AdministradorManager implements Serializable {
     
     public String confirmarEncomenda(){
         try {
+            System.out.println("Vou enviar!");
+            encomendaBean.enviarMail(encomendaAtual.getIdEncomenda());
+            System.out.println("Muda o estado");
                 encomendaBean.confirmar(encomendaAtual.getIdEncomenda());
             } catch (EntidadeNaoExistenteException e) {
                 FacesExceptionHandler.tratarExcecaoBinding(e, e.getMessage(), componente, logger);
