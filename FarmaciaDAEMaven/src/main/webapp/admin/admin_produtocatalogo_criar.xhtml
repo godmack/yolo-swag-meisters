@@ -1,0 +1,77 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"               
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+    <h:body>
+
+        <ui:composition template="./../templates/templateNECS.xhtml">
+
+            <ui:define name="top">
+                Criar um novo produto de catalogo
+            </ui:define>
+
+            <ui:define name="left">
+                <h:outputLink value="./../index.xhtml">Página inicial</h:outputLink>                
+            </ui:define>
+
+            <ui:define name="content">
+                <h:form>                  
+                    <h:panelGrid columns="3">
+                        
+                        <h:outputLabel for="referencia" value="Referencia: " />
+                        <h:inputText 
+                            id="referencia"
+                            size="20"
+                            required="true"
+                            requiredMessage="Erro: Deve inserir uma referencia."                            
+                            value="#{administradorManager.pCatalogoNovo.referencia}"/>
+                        <h:message for="referencia" errorStyle="color: red" />
+
+                        <h:outputLabel for="nome" value="Nome: " />
+                        <h:inputText
+                            id="nome"
+                            size="20"
+                            required="true"
+                            requiredMessage="Erro: Deve inserir um nome."
+                            value="#{administradorManager.pCatalogoNovo.nome}"/>
+                        <h:message for="password" errorStyle="color: red" />                        
+
+                        <h:outputLabel for="laboratorio" value="Laboratorio: " />
+                        <h:inputText 
+                            id="laboratorio"
+                            size="52"
+                            required="true"
+                            requiredMessage="Erro: Deve inserir um laboratorio."                            
+                            value="#{administradorManager.pCatalogoNovo.laboratorio}" />
+                        <h:message for="nome" errorStyle="color: red" />
+                        
+                        <h:outputLabel for="preco" value="Preco: " />
+                        <h:inputText
+                            id="preco"
+                            size="52"
+                            required="true"
+                            requiredMessage="Erro: Deve inserir um preco."                            
+                            value="#{administradorManager.pCatalogoNovo.preco}" >
+                            <f:converter converterId="javax.faces.Double" />
+                        </h:inputText>    
+                        <h:message for="email" errorStyle="color: red" />
+
+                        <h:commandButton
+                            id="submit"
+                            binding="#{administradorManager.componente}" 
+                            value="Criar"
+                            action="#{administradorManager.criarProdutoCatalogo()}" />
+                        <h:message for="submit" style="color: red"/>                         
+                    </h:panelGrid >                       
+
+                </h:form>
+            </ui:define>
+
+        </ui:composition>
+
+    </h:body>
+</html>
+

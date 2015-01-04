@@ -1,0 +1,82 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"               
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+    <h:body>
+
+        <ui:composition template="./../templates/templateNECS.xhtml">
+
+            <ui:define name="top">
+                Criar uma nova linha de transferencia
+            </ui:define>
+
+            <ui:define name="left">
+                <h:outputLink value="./../index.xhtml">Página inicial</h:outputLink> 
+                <br /><br />  
+                <h:outputLink value="admin_linhatransferencia_criar.xhtml">Criar uma Linha de Transferencia</h:outputLink> 
+                <br /><br />
+            </ui:define>
+
+            <ui:define name="content">
+                <h:form>                  
+                    <h:panelGrid columns="1">
+                        
+                        <h:outputFormat value="Fornecedor: {0}">
+                            <f:param value="#{administradorManager.transferenciaAtual.farmaciaFornecedora}"/>
+                        </h:outputFormat>
+                        
+                        <h:outputFormat value="Farmacia: {0}">
+                            <f:param value="#{administradorManager.transferenciaAtual.farmacia}"/>
+                        </h:outputFormat>                        
+                    </h:panelGrid >   
+                    
+                    <h:dataTable
+                        var="linhaTransferencia"
+                        summary="Linhas da transferencia atual"
+                        value="#{administradorManager.linhasPertencemTransferencia}"
+                        rules="all"
+                        cellpadding="5">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Produto" />
+                            </f:facet>
+                            <h:outputText value="#{linhaTransferencia.codigoProdutoCatalogo}" />
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Quantidade" />
+                            </f:facet>
+                            <h:outputText value="#{linhaTransferencia.quantidade}" />
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Ações" />
+                            </f:facet>
+                            <h:commandLink value="Retirar" actionListener="#{administradorManager.retirarLinhaTransferencia}">
+                                <f:param name="linhaTransferencia2" id="linhaTransferencia2" value="#{linhaTransferencia.codigoProdutoCatalogo}" />
+                            </h:commandLink>
+                        </h:column>
+                    </h:dataTable>  
+                    
+                    <h:outputFormat value="Estado: {0}">
+                        <f:param value="#{administradorManager.transferenciaAtual.estado}"/>
+                    </h:outputFormat> 
+                    
+                    <h:commandButton
+                        id="submit"
+                        value="Confirmar"
+                        action="#{administradorManager.confirmarTransferencia}" 
+                        rendered="#{administradorManager.transferenciaAtual.estado == 'Rascunho'}"/>
+                    <h:message for="submit" style="color: red"/> 
+                </h:form>
+            </ui:define>
+
+        </ui:composition>
+
+    </h:body>
+</html>
+
+

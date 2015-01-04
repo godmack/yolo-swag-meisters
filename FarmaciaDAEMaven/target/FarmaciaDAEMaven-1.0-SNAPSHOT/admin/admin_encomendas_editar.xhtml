@@ -1,0 +1,82 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"               
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+    <h:body>
+
+        <ui:composition template="./../templates/templateNECS.xhtml">
+
+            <ui:define name="top">
+                Criar uma nova encomenda
+            </ui:define>
+
+            <ui:define name="left">
+                <h:outputLink value="./../index.xhtml">Página inicial</h:outputLink> 
+                <br /><br />  
+                <h:outputLink value="admin_linhaencomenda_criar.xhtml">Criar uma Linha de Encomenda</h:outputLink> 
+                <br /><br />
+            </ui:define>
+
+            <ui:define name="content">
+                <h:form>                  
+                    <h:panelGrid columns="1">
+                        
+                        <h:outputFormat value="Fornecedor: {0}">
+                            <f:param value="#{administradorManager.encomendaAtual.fornecedor}"/>
+                        </h:outputFormat>
+                        
+                        <h:outputFormat value="Farmacia: {0}">
+                            <f:param value="#{administradorManager.encomendaAtual.farmacia}"/>
+                        </h:outputFormat>                        
+                    </h:panelGrid >   
+                    
+                    <h:dataTable
+                        var="linhaEncomenda"
+                        summary="Linhas da encomenda atual"
+                        value="#{administradorManager.linhasPertencemEncomenda}"
+                        rules="all"
+                        cellpadding="5">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Produto" />
+                            </f:facet>
+                            <h:outputText value="#{linhaEncomenda.codigoProdutoCatalogo}" />
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Quantidade" />
+                            </f:facet>
+                            <h:outputText value="#{linhaEncomenda.quantidade}" />
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Ações" />
+                            </f:facet>
+                            <h:commandLink value="Retirar" actionListener="#{administradorManager.retirarLinhaEncomenda}">
+                                <f:param name="linhaEncomenda2" id="linhaEncomenda2" value="#{linhaEncomenda.codigoProdutoCatalogo}" />
+                            </h:commandLink>
+                        </h:column>
+                    </h:dataTable>  
+                    
+                    <h:outputFormat value="Estado: {0}">
+                        <f:param value="#{administradorManager.encomendaAtual.estado}"/>
+                    </h:outputFormat> 
+                    
+                    <h:commandButton
+                        id="submit"
+                        value="Confirmar"
+                        action="#{administradorManager.confirmarEncomenda}" 
+                        rendered="#{administradorManager.encomendaAtual.estado == 'Rascunho'}"/>
+                    <h:message for="submit" style="color: red"/> 
+                </h:form>
+            </ui:define>
+
+        </ui:composition>
+
+    </h:body>
+</html>
+
+

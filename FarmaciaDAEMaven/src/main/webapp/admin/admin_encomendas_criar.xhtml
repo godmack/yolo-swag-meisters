@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"               
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+    <h:body>
+
+        <ui:composition template="./../templates/templateNECS.xhtml">
+
+            <ui:define name="top">
+                Criar uma nova encomenda
+            </ui:define>
+
+            <ui:define name="left">
+                <h:outputLink value="./../index.xhtml">Página inicial</h:outputLink>                
+            </ui:define>
+
+            <ui:define name="content">
+                <h:form>                  
+                    <h:panelGrid columns="3">
+                        
+                        <h:outputLabel for="fornecedor" value="Fornecedor " />
+                        <h:selectOneMenu value="#{administradorManager.encomendaNova.fornecedor}">
+                            <f:selectItems value="#{administradorManager.fornecedores}" var="fornecedor"
+                                           itemLabel="#{fornecedor.laboratorio}" itemValue="#{fornecedor.laboratorio}" />
+                        </h:selectOneMenu>
+                        
+                         <h:outputLabel for="farmacia" value="Farmacia" />
+                         <h:selectOneMenu value="#{administradorManager.encomendaNova.farmacia}">
+                             <f:selectItems value="#{administradorManager.farmacias}" var="farmacia"
+                                            itemLabel="#{farmacia.nome}" itemValue="#{farmacia.idFarmacia}" />
+                        </h:selectOneMenu>
+                        
+                        
+                        <h:commandButton
+                            id="submit"
+                            binding="#{administradorManager.componente}" 
+                            value="Criar"
+                            action="#{administradorManager.criarEncomenda}" />
+                        <h:message for="submit" style="color: red"/>                         
+                    </h:panelGrid >                       
+
+                </h:form>
+            </ui:define>
+
+        </ui:composition>
+
+    </h:body>
+</html>
+

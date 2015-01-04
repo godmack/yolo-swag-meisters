@@ -1,0 +1,110 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:body>
+
+        <ui:composition template="./../templates/templateNECS.xhtml">
+
+            <ui:define name="top">
+                Editar Farmacia
+            </ui:define>
+
+            <ui:define name="left">
+                <h:outputLink value="admin_farmacias_listar.xhtml">Listar Farmacias</h:outputLink>
+                <br /><br />
+                <h:outputLink value="./../index.xhtml">Página inicial</h:outputLink>                
+            </ui:define>
+
+            <ui:define name="content">
+                <h:form>                  
+                    <h:panelGrid columns="3">
+                        
+                        <h:outputLabel for="nome" value="Nome: " />
+                        <h:inputText 
+                            id="nome"
+                            size="52"
+                            required="true"
+                            requiredMessage="Erro: Deve inserir um nome."
+                            value="#{administradorManager.farmaciaAtual.nome}" />
+                        <h:message for="nome" errorStyle="color: red" />
+                        
+                                
+
+                        <h:commandButton
+                            id="submit"
+                            value="Atualizar"
+                            action="#{administradorManager.atualizarFarmacia}" />
+                        <h:message for="submit" style="color: red"/>                        
+                    </h:panelGrid >
+                    
+                    <h:dataTable
+                        var="utilizador"
+                        summary="Utilizadores da farmácia"
+                        value="#{administradorManager.utilizadoresPertencemFarmacia}"
+                        rules="all"
+                        cellpadding="5">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="User name" />
+                            </f:facet>
+                            <h:outputText value="#{utilizador.username}" />
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Nome" />
+                            </f:facet>
+                            <h:outputText value="#{utilizador.nome}" />
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Ações" />
+                            </f:facet>
+                            <h:commandLink value="Retirar" actionListener="#{administradorManager.retirarUtilizadorFarmacia}">
+                                <f:param name="usernameUtilizador2" id="usernameUtilizador2" value="#{utilizador.username}" />
+                            </h:commandLink>
+                        </h:column>
+                    </h:dataTable>                
+
+                    <br /><br />
+                    <h:outputText value="Utilizadores não pertencentes a nenhuma farmácia" style="font-size: 14px; font-weight: bold; color: dimgrey"/>
+                    <br />
+                    
+                    <h:dataTable
+                        var="utilizador"
+                        summary="Utilizadores sem farmácia"
+                        value="#{administradorManager.utilizadoresNaoPertencemFarmacia}"
+                        rules="all"
+                        cellpadding="5">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="User name" />
+                            </f:facet>
+                            <h:outputText value="#{utilizador.username}" />
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Nome" />
+                            </f:facet>
+                            <h:outputText value="#{utilizador.nome}" />
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Ações" />
+                            </f:facet>
+                            <h:commandLink value="Atribuir" actionListener="#{administradorManager.atribuirUtilizadorFarmacia}">
+                                <f:param name="usernameFarmacia" id="usernameFarmacia" value="#{utilizador.username}" />
+                            </h:commandLink>
+                        </h:column>
+                    </h:dataTable>
+                </h:form>
+            </ui:define>
+
+        </ui:composition>
+
+    </h:body>
+</html>
+
