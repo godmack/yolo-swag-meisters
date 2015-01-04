@@ -21,17 +21,49 @@
     <welcome-file-list>
         <welcome-file>faces/index.xhtml</welcome-file>
     </welcome-file-list>
-    
-<!--    <security-constraint>
+    <security-constraint>
+        <display-name>AdministradorConstraint</display-name>
         <web-resource-collection>
-            <web-resource-name>FuncBalcaoConstraint</web-resource-name>
-            <url-pattern>/faces/balcao/*</url-pattern>
+            <web-resource-name>AdministradorConstraint</web-resource-name>
+            <url-pattern>/faces/admin/*</url-pattern>
         </web-resource-collection>
         <auth-constraint>
-            <role-name>FuncBalcao</role-name>
+            <role-name>Administrador</role-name>
         </auth-constraint>
         <user-data-constraint>
             <transport-guarantee>CONFIDENTIAL</transport-guarantee>
-        </user-data-constraint>        
-    </security-constraint>-->
+        </user-data-constraint>
+    </security-constraint>
+    <security-constraint>
+        <display-name>FuncionarioConstraint</display-name>
+        <web-resource-collection>
+            <web-resource-name>FuncionarioConstraint</web-resource-name>
+            <url-pattern>/faces/balcao/*</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>Funcionario</role-name>
+            <role-name>Administrador</role-name>
+        </auth-constraint>
+        <user-data-constraint>
+            <transport-guarantee>CONFIDENTIAL</transport-guarantee>
+        </user-data-constraint>
+    </security-constraint>
+    <login-config>
+        <auth-method>FORM</auth-method>
+        <realm-name>projeto_dae_realm</realm-name>
+        <form-login-config>
+            <form-login-page>/faces/login.xhtml</form-login-page>
+            <form-error-page>/faces/error.xhtml</form-error-page>
+        </form-login-config>
+    </login-config>
+    <security-role>
+        <role-name>Administrador</role-name>
+    </security-role>
+    <security-role>
+        <role-name>Funcionario</role-name>
+    </security-role>
+    <error-page>
+        <error-code>403</error-code>
+        <location>/faces/error.xhtml</location>
+    </error-page>
 </web-app>

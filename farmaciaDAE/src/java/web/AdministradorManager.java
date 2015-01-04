@@ -9,6 +9,7 @@ import dtos.FarmaciaDTO;
 import dtos.FornecedorDTO;
 import dtos.FuncionarioDTO;
 import dtos.LinhaEncomendaDTO;
+import dtos.LinhaTransferenciaDTO;
 import dtos.ProdutoCatalogoDTO;
 import dtos.TransferenciaDTO;
 import dtos.UtilizadorDTO;
@@ -63,6 +64,7 @@ public class AdministradorManager implements Serializable {
     private AdministradorDTO administradorNovo;
 
     private LinhaEncomendaDTO linhaEncomendaNovo;
+    private LinhaTransferenciaDTO linhaTransferenciaNovo;
 
     @EJB
     FarmaciaBean farmaciaBean;
@@ -97,6 +99,7 @@ public class AdministradorManager implements Serializable {
         this.linhaEncomendaNovo = new LinhaEncomendaDTO();
         this.encomendaNova = new EncomendaDTO();
         this.transferenciaNovo = new TransferenciaDTO();
+        this.linhaTransferenciaNovo = new LinhaTransferenciaDTO();
     }
 
     public UIComponent getComponente() {
@@ -490,8 +493,6 @@ public class AdministradorManager implements Serializable {
                 throw new Exception("Já não é possivel alterar a encomenda");
             }
             linhaEncomendaBean.criarLinhaEncomenda(encomendaAtual.getIdEncomenda(), linhaEncomendaNovo.getCodigoProdutoCatalogo(), linhaEncomendaNovo.getQuantidade());
-
-            farmaciaNovo.reiniciar();
             return "admin_encomendas_editar?faces-redirect=true";
         } catch (Exception e) {
             FacesExceptionHandler.tratarExcecao(e, e.getMessage(), logger);
@@ -568,5 +569,64 @@ public class AdministradorManager implements Serializable {
     public void setTransferenciaAtual(TransferenciaDTO transferenciaAtual) {
         this.transferenciaAtual = transferenciaAtual;
     }
+    
+    
+    /********* LINHA Transferencia ***************/
+    
+    public String criarLinhaTransferencia() {
+        try {
+            if(transferenciaAtual.getEstado() != Estado.Rascunho){
+                throw new Exception("Já não é possivel alterar a transferencia");
+            }
+            linhaTransferenciaBean.criarLinhaTransferencia(transferenciaAtual.getIdTransferencia(), linhaTransferenciaNovo.getCodigoProdutoCatalogo(), linhaTransferenciaNovo.getQuantidade());
+            return "admin_transferencias_editar?faces-redirect=true";
+        } catch (Exception e) {
+            FacesExceptionHandler.tratarExcecao(e, e.getMessage(), logger);
+        }
+        return "admin_linhatransferencia_criar";
+    }
+    
+    public List<LinhaTransferenciaDTO> getLinhasPertencemTransferencia() {
+        try {
+            return linhaTransferenciaBean.getLinhasDeUmaTransferencia(transferenciaAtual.getIdTransferencia());
+        } catch (Exception e) {
+            FacesExceptionHandler.tratarExcecao(e, "Erro do sistema.", logger);
+        }
+        return null;
+    }
+    
+        public void retirarLinhaTransferencia(ActionEvent event) {
+        try {
+            UIParameter param = (UIParameter) event.getComponent().findComponent("linhaTransferencia2");
+            int codigoProduto = Integer.valueOf(param.getValue().toString());
+            linhaTransferenciaBean.removerLinhaTransferencia(transferenciaAtual.getIdTransferencia(), codigoProduto);
+        } catch (Exception e) {
+            FacesExceptionHandler.tratarExcecao(e, "Erro do sistema.", logger);
+        }
+    }
+        
+        public String confirmarTransferencia(){
+        try {
+                transferenciaBean.confirmar(transferenciaAtual.getIdTransferencia());
+            } catch (EntidadeNaoExistenteException e) {
+                FacesExceptionHandler.tratarExcecaoBinding(e, e.getMessage(), componente, logger);
+            } catch (Exception e) {
+                FacesExceptionHandler.tratarExcecao(e, "Erro do sistema.", logger);
+            }
+        return "admin_transferencias_listar?faces-redirect=true";
+    
+    }
+
+    public LinhaTransferenciaDTO getLinhaTransferenciaNovo() {
+        return linhaTransferenciaNovo;
+    }
+
+    public void setLinhaTransferenciaNovo(LinhaTransferenciaDTO linhaTransferenciaNovo) {
+        this.linhaTransferenciaNovo = linhaTransferenciaNovo;
+    }
+        
+        
+
+
     
 }

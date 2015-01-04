@@ -19,7 +19,7 @@ public class LinhaTransferenciaKey implements Serializable{
     public LinhaTransferenciaKey() {
     }
 
-    public LinhaTransferenciaKey(int produtoCatalogo, Long encomenda) {
+    public LinhaTransferenciaKey(int produtoCatalogo, Long transferencia) {
         this.produtoCatalogo = produtoCatalogo;
         this.transferencia = transferencia;
     }

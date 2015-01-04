@@ -56,6 +56,11 @@
                             <f:facet name="header">
                                 <h:outputText value="Ações" />
                             </f:facet>
+                            <h:commandLink
+                                value="Editar"
+                                action="admin_transferencias_editar?faces-redirect=true">
+                                <f:setPropertyActionListener target="#{administradorManager.transferenciaAtual}" value="#{transferencia}" />
+                            </h:commandLink>
                         </h:column>                        
                     </h:dataTable>
 

@@ -5,6 +5,7 @@
  */
 package Entidades;
 
+import Entidades.GrupoUtilizador.GRUPO;
 import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.NamedQuery;
@@ -24,7 +25,7 @@ public class Funcionario extends Utilizador implements Serializable {
     }    
     
     public Funcionario(String nome, String username,String password, String email, boolean eFuncBalcao){
-        super(username, password, nome, email);
+        super(username, password, GRUPO.Funcionario, nome, email);
         this.FuncBalcao = eFuncBalcao;
     }
 

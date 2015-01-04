@@ -5,6 +5,7 @@
  */
 package Entidades;
 
+import Entidades.GrupoUtilizador.GRUPO;
 import java.io.Serializable;
 import javax.persistence.Entity;
 
@@ -21,7 +22,7 @@ public class Administrador extends Utilizador  implements Serializable {
     }
     
     public Administrador(String userName, String password, String nome, String email){
-       super(userName, password, nome, email);
+       super(userName, password, GRUPO.Administrador, nome, email);
     }
     
 }

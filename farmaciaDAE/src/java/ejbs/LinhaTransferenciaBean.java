@@ -30,12 +30,20 @@ public class LinhaTransferenciaBean {
     @PersistenceContext
     private EntityManager em;
     
-    public void criarLinhaTransferencia(Transferencia transferencia, ProdutoCatalogo produtoCatalogo, int quantidade) throws EntidadeExistenteException{
+    public void criarLinhaTransferencia(Long idTransferencia, int idProdutoCatalogo, int quantidade) throws EntidadeExistenteException{
         try {
+            
+            Transferencia transferencia = em.find(Transferencia.class, idTransferencia);
+            ProdutoCatalogo produtoCatalogo = em.find(ProdutoCatalogo.class, idProdutoCatalogo);
+            
             if(existeLinhaTransferencia(transferencia,produtoCatalogo)){
                 throw new EntidadeExistenteException("Já existe uma linha relativa a este produto");
             }            
-            em.persist(new LinhaTransferencia(transferencia, produtoCatalogo, quantidade));
+            
+            LinhaTransferencia linhaTransferencia = new LinhaTransferencia(transferencia, produtoCatalogo, quantidade);
+            
+            em.persist(linhaTransferencia);
+            transferencia.addLinhaTransferencia(linhaTransferencia);
         } catch (EntidadeExistenteException e) {
             throw e;
         } catch (Exception e) {
@@ -46,19 +54,19 @@ public class LinhaTransferenciaBean {
     public boolean existeLinhaTransferencia(Transferencia transferencia, ProdutoCatalogo produtoCatalogo){
         
         Query queryExisteLinhaTransferencia = em.createNamedQuery(
-            "findAllEmployeesByFirstName"
+            "findExisteLinhaTransferenciaProduto"
         );
-        queryExisteLinhaTransferencia.setParameter("transferencia", transferencia.getIdTransferencia());
-        queryExisteLinhaTransferencia.setParameter("produtoCatalogo", produtoCatalogo.getReferencia());
-        int numResults = queryExisteLinhaTransferencia.getMaxResults();
+        queryExisteLinhaTransferencia.setParameter("transferencia", transferencia);
+        queryExisteLinhaTransferencia.setParameter("produtoCatalogo", produtoCatalogo);
+        int numResults = queryExisteLinhaTransferencia.getResultList().size();
         
-        if(numResults != 0){
+        if(numResults > 0){
             return true;
         }
         return false;
     }
     
-    public List<LinhaTransferenciaDTO> getLinhasDeUmaTransferencia(int codigoTransferencia) throws EntidadeNaoExistenteException{
+    public List<LinhaTransferenciaDTO> getLinhasDeUmaTransferencia(Long codigoTransferencia) throws EntidadeNaoExistenteException{
         try {
             Transferencia transferencia = em.find(Transferencia.class, codigoTransferencia);
             if(transferencia == null){
@@ -73,16 +81,16 @@ public class LinhaTransferenciaBean {
         }
     }
     
-    public void removerLinhaTransferencia(int codigoTransferencia, int codigoProdutoCatalogo) throws EntidadeNaoExistenteException {
+    public void removerLinhaTransferencia(Long codigoTransferencia, int codigoProdutoCatalogo) throws EntidadeNaoExistenteException {
         try {
             if(em.find(Transferencia.class, codigoTransferencia) == null){
-                throw new EntidadeNaoExistenteException("UC não existente!");
+                throw new EntidadeNaoExistenteException("Transferencia não existente!");
             }
             
             LinhaTransferenciaKey chave = new LinhaTransferenciaKey(codigoProdutoCatalogo, (long) codigoTransferencia);
             LinhaTransferencia le = em.find(LinhaTransferencia.class, chave);
             if(le == null){
-                throw new EntidadeNaoExistenteException("Elemento de avaliação não existente!");
+                throw new EntidadeNaoExistenteException("Linha Transferencia não existente!");
             }
             
             le.getTransferencia().removeLinhaTransferencia(le);

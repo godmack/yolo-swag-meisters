@@ -67,7 +67,7 @@ public class Transferencia implements Serializable {
     }
 
     public Transferencia(Farmacia farmaciaFornecedora, Farmacia farmacia) {
-        this.farmaciaFornecedora = farmacia;
+        this.farmaciaFornecedora = farmaciaFornecedora;
         this.linhasTransferencia = new LinkedList();
         this.farmacia = farmacia;
         estado = Estado.Rascunho;

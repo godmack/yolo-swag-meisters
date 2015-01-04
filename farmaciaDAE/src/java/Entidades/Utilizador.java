@@ -5,12 +5,24 @@
  */
 package Entidades;
 
+import Entidades.GrupoUtilizador.GRUPO;
 import java.io.Serializable;
+import java.math.BigInteger;
+import java.nio.ByteBuffer;
+import java.nio.CharBuffer;
+import java.nio.charset.Charset;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
@@ -28,6 +40,8 @@ public class Utilizador implements Serializable {
     private String username;
     @NotNull
     private String password;
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "utilizador")
+    protected GrupoUtilizador grupo; 
     @NotNull
     protected String nome;
     @Pattern(regexp = "[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\."
@@ -44,9 +58,10 @@ public class Utilizador implements Serializable {
         
     }
 
-    public Utilizador(String username, String password, String nome, String email) {
+    public Utilizador(String username, String password, GRUPO grupo, String nome, String email) {
         this.username = username;
-        this.password = password;
+        this.password = hashPassword(password);
+        this.grupo = new GrupoUtilizador(grupo, this);
         this.nome = nome;
         this.email = email;
         this.farmacia = null;
@@ -75,7 +90,7 @@ public class Utilizador implements Serializable {
     }
 
     public void setPassword(String password) {
-        this.password = password;
+        this.password = hashPassword(password);
     }
 
     public String getNome() {
@@ -93,6 +108,58 @@ public class Utilizador implements Serializable {
     public void setEmail(String email) {
         this.email = email;
     }
+
+    public GrupoUtilizador getGrupo() {
+        return grupo;
+    }
+
+    public void setGrupo(GrupoUtilizador grupo) {
+        this.grupo = grupo;
+        grupo.setUtilizador(this);
+    }
+    
+        @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Utilizador other = (Utilizador) obj;
+        if ((this.username == null) ? (other.username != null) : !this.username.equals(other.username)) {
+            return false;
+        }
+        return true;
+    }
+ 
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 83 * hash + (this.username != null ? this.username.hashCode() : 0);
+        return hash;
+    }
+ 
+    @Override
+    public String toString() {
+        return "Utilizador: " + username;
+    }
+ 
+    private String hashPassword(String password) {
+        char[] encoded = null;
+        try {
+            ByteBuffer passwdBuffer = Charset.defaultCharset().encode(CharBuffer.wrap(password));
+            byte[] passwdBytes = passwdBuffer.array();
+            MessageDigest mdEnc = MessageDigest.getInstance("SHA-256");
+            mdEnc.update(passwdBytes, 0, password.toCharArray().length);
+            encoded = new BigInteger(1, mdEnc.digest()).toString(16).toCharArray();
+        } catch (NoSuchAlgorithmException ex) {
+            Logger.getLogger(Utilizador.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return new String(encoded);
+    }
+    
+    
     
     
     
