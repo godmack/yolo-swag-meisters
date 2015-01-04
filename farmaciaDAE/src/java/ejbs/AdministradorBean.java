@@ -10,6 +10,7 @@ import excecoes.EntidadeExistenteException;
 import javax.ejb.EJB;
 import javax.ejb.EJBException;
 import Entidades.Administrador;
+import Entidades.Farmacia;
 import Entidades.Utilizador;
 import excecoes.EntidadeExistenteException;
 import javax.ejb.EJBException;
@@ -37,12 +38,13 @@ public class AdministradorBean {
     }
     
     
-    public void criarAdministrador(String username, String password, String nome, String email) throws EntidadeExistenteException{
+    public void criarAdministrador(String username, String password, String nome, String email, Long idFarmacia) throws EntidadeExistenteException{
         try {
             if(uBean.existeUsername(username)){
                 throw new EntidadeExistenteException("Utilizador já existente!");
             }
-            em.persist(new Administrador(username, password, nome, email));
+            Farmacia farmacia = em.find(Farmacia.class, idFarmacia);
+            em.persist(new Administrador(username, password, nome, email, farmacia));
         } catch (EntidadeExistenteException e) {
             throw e;
         } catch (Exception e) {

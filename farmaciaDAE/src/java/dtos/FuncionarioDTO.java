@@ -9,15 +9,17 @@ public class FuncionarioDTO  implements Serializable{
     private String nome;
     private String email;
     private boolean eFuncBalcao;
+    private Long idFarmacia;
 
     public FuncionarioDTO() {
     }    
     
-    public FuncionarioDTO(String username, String nome, String email, boolean eFuncBalcao) {
+    public FuncionarioDTO(String username, String nome, String email, boolean eFuncBalcao, Long idFarmacia) {
         this.username = username;     
         this.nome = nome;
         this.email = email;
         this.eFuncBalcao = eFuncBalcao;
+        this.idFarmacia = idFarmacia;
     }
     
     public void reiniciar(){
@@ -67,4 +69,14 @@ public class FuncionarioDTO  implements Serializable{
     public void setEFuncBalcao(boolean eFuncBalcao) {
         this.eFuncBalcao = eFuncBalcao;
     }
+
+    public Long getIdFarmacia() {
+        return idFarmacia;
+    }
+
+    public void setIdFarmacia(Long idFarmacia) {
+        this.idFarmacia = idFarmacia;
+    }
+    
+    
 }

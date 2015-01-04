@@ -8,14 +8,16 @@ public class AdministradorDTO  implements Serializable{
     private String password;
     private String nome;
     private String email;
+    private Long idFarmacia;
 
     public AdministradorDTO() {
     }    
     
-    public AdministradorDTO(String username, String nome, String email) {
+    public AdministradorDTO(String username, String nome, String email, Long idFarmacia) {
         this.username = username;     
         this.nome = nome;
         this.email = email;
+        this.idFarmacia = idFarmacia;
     }
     
     public void reiniciar(){
@@ -56,5 +58,15 @@ public class AdministradorDTO  implements Serializable{
     public void setEmail(String email) {
         this.email = email;
     }
+
+    public Long getIdFarmacia() {
+        return idFarmacia;
+    }
+
+    public void setIdFarmacia(Long idFarmacia) {
+        this.idFarmacia = idFarmacia;
+    }
+    
+    
 
 }

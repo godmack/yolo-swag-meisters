@@ -61,13 +61,13 @@ public class Utilizador implements Serializable {
         
     }
 
-    public Utilizador(String username, String password, GRUPO grupo, String nome, String email) {
+    public Utilizador(String username, String password, GRUPO grupo, String nome, String email, Farmacia farmacia) {
         this.username = username;
         this.password = hashPassword(password);
         this.grupo = new GrupoUtilizador(grupo, this);
         this.nome = nome;
         this.email = email;
-        this.farmacia = null;
+        this.farmacia = farmacia;
     }
 
     public Farmacia getFarmacia() {

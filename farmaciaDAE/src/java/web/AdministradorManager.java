@@ -236,7 +236,8 @@ public class AdministradorManager implements Serializable {
                     funcionarioNovo.getUsername(),
                     funcionarioNovo.getEmail(),
                     funcionarioNovo.getPassword(),
-                    funcionarioNovo.getEFuncBalcao());
+                    funcionarioNovo.getEFuncBalcao(),
+                    funcionarioNovo.getIdFarmacia());
             funcionarioNovo.reiniciar();
             return "admin_funcionarios_listar?faces-redirect=true";
         } catch (EntidadeExistenteException e) {
@@ -282,7 +283,8 @@ public class AdministradorManager implements Serializable {
                     administradorNovo.getUsername(),
                     administradorNovo.getPassword(),
                     administradorNovo.getNome(),
-                    administradorNovo.getEmail());
+                    administradorNovo.getEmail(),
+                    administradorNovo.getIdFarmacia());
             administradorNovo.reiniciar();
             return "admin_funcionarios_listar?faces-redirect=true";
         } catch (Exception e) {

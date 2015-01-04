@@ -39,13 +39,14 @@ public class FuncionarioBean {
         this.em = em;
     }
     
-    public void criarFuncionario(String nome, String username, String password, String email, boolean eFuncBalcao) throws EntidadeExistenteException{
+    public void criarFuncionario(String nome, String username, String password, String email, boolean eFuncBalcao, Long idFarmacia) throws EntidadeExistenteException{
         
         try {
             if (uBean.existeUsername(username)) {
                 throw new EntidadeExistenteException("Utilizador já existente!");
             }
-            em.persist(new Funcionario(nome, username, email, password,  eFuncBalcao));
+            Farmacia farmacia = em.find(Farmacia.class, idFarmacia);
+            em.persist(new Funcionario(nome, username, email, password,  eFuncBalcao, farmacia));
         } catch (EntidadeExistenteException e) {
             throw e;
         } catch (Exception e) {
@@ -68,7 +69,8 @@ public class FuncionarioBean {
                 funcionario.getUsername(),
                 funcionario.getNome(),
                 funcionario.getEmail(),
-                funcionario.isFuncBalcao()
+                funcionario.isFuncBalcao(),
+                funcionario.getFarmacia().getIdFarmacia()
         );
     }
      

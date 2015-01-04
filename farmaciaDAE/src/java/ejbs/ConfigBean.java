@@ -44,11 +44,11 @@ public class ConfigBean implements Serializable {
             farmaciaBean.criarFarmacia("rubacia");
             farmaciaBean.criarFarmacia("farmacia2");
             farmaciaBean.criarFarmacia("farmacia3");
-            funcionarioBean.criarFuncionario("Andre Rosado", "andrerosado", "andrerosado@maildae.com", "123", true);
-            funcionarioBean.criarFuncionario("Ruben Nunes", "rubennunes", "rubennunes@maildae.com", "123", false);
-            funcionarioBean.criarFuncionario("Andre Cristiano", "andrecristiano", "andrecristiano@maildae.com", "123", true);
+            funcionarioBean.criarFuncionario("Andre Rosado", "andrerosado", "andrerosado@maildae.com", "123", true, (long) 1);
+            funcionarioBean.criarFuncionario("Ruben Nunes", "rubennunes", "rubennunes@maildae.com", "123", false,(long) 2);
+            funcionarioBean.criarFuncionario("Andre Cristiano", "andrecristiano", "andrecristiano@maildae.com", "123", true, (long) 3);
             fornecedorBean.criarFornecedor("ruboratorio", "ruboratorio@gmail.com", 917121212, "rua das pinhas");
-            administradorBean.criarAdministrador("admin", "admin123", "Admin", "rubacia@gmail.com");
+            administradorBean.criarAdministrador("admin", "admin123", "Admin", "rubacia@gmail.com", (long) 1);
             pCatalogoBean.criarProdutoCatalogo(123, "ben u ron", "Bayer", 5.0);
             pCatalogoBean.criarProdutoCatalogo(456, "voltaren", "Lab Medicamentos", 7.5);
 

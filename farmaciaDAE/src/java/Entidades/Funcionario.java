@@ -24,8 +24,8 @@ public class Funcionario extends Utilizador implements Serializable {
 
     }    
     
-    public Funcionario(String nome, String username,String password, String email, boolean eFuncBalcao){
-        super(username, password, GRUPO.Funcionario, nome, email);
+    public Funcionario(String nome, String username,String password, String email, boolean eFuncBalcao, Farmacia farmacia){
+        super(username, password, GRUPO.Funcionario, nome, email, farmacia);
         this.FuncBalcao = eFuncBalcao;
     }
 
