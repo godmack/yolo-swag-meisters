@@ -24,6 +24,8 @@ import javax.persistence.TableGenerator;
 import javax.persistence.Temporal;
 import static javax.persistence.TemporalType.DATE;
 import javax.validation.constraints.NotNull;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -31,6 +33,7 @@ import javax.validation.constraints.NotNull;
  */
 @Entity
 @NamedQuery(name = "findAllEncomendas", query = "SELECT d FROM Encomenda d ORDER BY d.farmacia")
+@XmlRootElement
 public class Encomenda implements Serializable {
     private static final long serialVersionUID = 1L;
     @TableGenerator(
@@ -94,6 +97,7 @@ public class Encomenda implements Serializable {
         this.farmacia = farmacia;
     }
 
+    @XmlTransient
     public List<LinhaEncomenda> getLinhasEncomenda() {
         return linhasEncomenda;
     }

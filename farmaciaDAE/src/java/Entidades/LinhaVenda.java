@@ -15,6 +15,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.TableGenerator;
 import javax.validation.constraints.NotNull;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
@@ -22,6 +23,7 @@ import javax.validation.constraints.NotNull;
  */
 @Entity
 @IdClass(LinhaVendaKey.class)
+@XmlRootElement
 public class LinhaVenda extends Linhas implements Serializable {
 
     private static final long serialVersionUID = 1L;

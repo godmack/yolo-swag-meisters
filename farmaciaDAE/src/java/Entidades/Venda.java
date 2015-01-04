@@ -24,6 +24,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.TableGenerator;
 import javax.persistence.Temporal;
 import static javax.persistence.TemporalType.DATE;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 
 /**
@@ -32,6 +34,7 @@ import static javax.persistence.TemporalType.DATE;
  */
 @Entity
 @NamedQuery(name = "findAllVendas", query = "SELECT d FROM Venda d")
+@XmlRootElement
 public class Venda implements Serializable {
     private static final long serialVersionUID = 1L;
         @TableGenerator(
@@ -90,6 +93,7 @@ public class Venda implements Serializable {
         this.farmacia = farmacia;
     }
 
+    @XmlTransient
     public List<LinhaVenda> getLinhasVenda() {
         return linhasVenda;
     }

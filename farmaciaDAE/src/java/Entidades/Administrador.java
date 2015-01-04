@@ -8,12 +8,14 @@ package Entidades;
 import Entidades.GrupoUtilizador.GRUPO;
 import java.io.Serializable;
 import javax.persistence.Entity;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
  * @author Cristiano
  */
 @Entity
+@XmlRootElement
 public class Administrador extends Utilizador  implements Serializable {
   
     

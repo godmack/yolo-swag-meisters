@@ -17,6 +17,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.TableGenerator;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -24,6 +26,7 @@ import javax.persistence.TableGenerator;
  */
 @Entity
 @NamedQuery(name = "findAllFarmacias", query = "SELECT d FROM Farmacia d ORDER BY d.nome")
+@XmlRootElement
 public class Farmacia implements Serializable {
 
     @Id
@@ -85,6 +88,7 @@ public class Farmacia implements Serializable {
         this.nome = nome;
     }
 
+    @XmlTransient
     public List<Transferencia> getTransferenciasEnviadas() {
         return transferenciasEnviadas;
     }
@@ -101,6 +105,7 @@ public class Farmacia implements Serializable {
     
     
 
+    @XmlTransient
     public List<Transferencia> getTransferenciasRecebidas() {
         return transferenciasRecebidas;
     }
@@ -120,6 +125,7 @@ public class Farmacia implements Serializable {
         return idFarmacia;
     }
 
+    @XmlTransient
     public List<Produto> getProdutos() {
         return produtos;
     }
@@ -132,6 +138,7 @@ public class Farmacia implements Serializable {
         this.produtos.remove(produto);
     }
 
+    @XmlTransient
     public List<Utilizador> getUtilizadores() {
         return utilizadores;
     }
@@ -148,6 +155,7 @@ public class Farmacia implements Serializable {
         this.utilizadores.remove(utilizador);
     }
 
+    @XmlTransient
     public List<Venda> getVendas() {
         return vendas;
     }
@@ -160,6 +168,7 @@ public class Farmacia implements Serializable {
         this.vendas.remove(venda);
     }
 
+    @XmlTransient
     public List<Encomenda> getEncomendas() {
         return encomendas;
     }
@@ -172,6 +181,7 @@ public class Farmacia implements Serializable {
         this.encomendas.remove(encomenda);
     }
 
+    @XmlTransient
     public List<Stock> getStocks() {
         return stocks;
     }
@@ -184,6 +194,7 @@ public class Farmacia implements Serializable {
         this.stocks.remove(stock);
     }
 
+    @XmlTransient
     public List<Fornecedor> getFornecedores() {
         return fornecedores;
     }

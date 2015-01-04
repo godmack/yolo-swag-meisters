@@ -13,12 +13,14 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
  * @author Cristiano
  */
 @Entity
+@XmlRootElement
 public class Stock implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id

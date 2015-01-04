@@ -15,6 +15,8 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.NamedQuery;
 import javax.validation.constraints.NotNull;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -22,6 +24,7 @@ import javax.validation.constraints.NotNull;
  */
 @Entity
 @NamedQuery(name = "findAllFornecedores", query = "SELECT d FROM Fornecedor d ORDER BY d.laboratorio")
+@XmlRootElement
 public class Fornecedor implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -97,6 +100,7 @@ public class Fornecedor implements Serializable {
         this.morada = morada;
     }
 
+    @XmlTransient
     public List<Farmacia> getFarmacias() {
         return farmacias;
     }
@@ -109,6 +113,7 @@ public class Fornecedor implements Serializable {
         this.farmacias.remove(farmacia);
     }
 
+    @XmlTransient
     public List<ProdutoCatalogo> getProdutosCatalogo() {
         return produtosCatalogo;
     }

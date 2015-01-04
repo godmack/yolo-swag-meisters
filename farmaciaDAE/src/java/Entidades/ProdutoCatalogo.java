@@ -15,6 +15,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -22,6 +24,7 @@ import javax.validation.constraints.NotNull;
  */
 @Entity
 @NamedQuery(name = "findAllProdutoCatalogos", query = "SELECT d FROM ProdutoCatalogo d ORDER BY d.nome")
+@XmlRootElement
 public class ProdutoCatalogo implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -68,6 +71,7 @@ public class ProdutoCatalogo implements Serializable {
         this.referencia = referencia;
     }
 
+    @XmlTransient
     public List<Produto> getProdutos() {
         return produtos;
     }
@@ -84,6 +88,7 @@ public class ProdutoCatalogo implements Serializable {
         this.produtos.remove(produtos);
     }
 
+    @XmlTransient
     public List<Stock> getStocks() {
         return stocks;
     }
@@ -96,6 +101,7 @@ public class ProdutoCatalogo implements Serializable {
         this.stocks.remove(stock);
     }
 
+    @XmlTransient
     public List<Fornecedor> getFornecedores() {
         return fornecedores;
     }

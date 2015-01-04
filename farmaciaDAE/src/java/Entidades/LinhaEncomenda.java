@@ -14,6 +14,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.validation.constraints.NotNull;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
@@ -28,6 +29,7 @@ import javax.validation.constraints.NotNull;
 @NamedQuery(name="findAllLinhasEncomendaDeUmaEncomenda",query="SELECT le FROM LinhaEncomenda le WHERE le.encomenda = :encomenda"),
 @NamedQuery(name="findExisteLinhaEncomendaProduto",query="SELECT le FROM LinhaEncomenda le WHERE (le.encomenda = :encomenda AND le.produtoCatalogo = :produtoCatalogo)")
 })
+@XmlRootElement
 public class LinhaEncomenda extends Linhas implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
