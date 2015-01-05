@@ -18,21 +18,22 @@
                 <br /><br />  
                 <h:outputLink value="admin_linhatransferencia_criar.xhtml">Criar uma Linha de Transferencia</h:outputLink> 
                 <br /><br />
+                <h:outputLink value="admin_transferencias_listar.xhtml">Voltar</h:outputLink>
             </ui:define>
 
             <ui:define name="content">
                 <h:form>                  
                     <h:panelGrid columns="1">
-                        
+
                         <h:outputFormat value="Fornecedor: {0}">
                             <f:param value="#{administradorManager.transferenciaAtual.farmaciaFornecedora}"/>
                         </h:outputFormat>
-                        
+
                         <h:outputFormat value="Farmacia: {0}">
                             <f:param value="#{administradorManager.transferenciaAtual.farmacia}"/>
                         </h:outputFormat>                        
                     </h:panelGrid >   
-                    
+
                     <h:dataTable
                         var="linhaTransferencia"
                         summary="Linhas da transferencia atual"
@@ -60,11 +61,11 @@
                             </h:commandLink>
                         </h:column>
                     </h:dataTable>  
-                    
+
                     <h:outputFormat value="Estado: {0}">
                         <f:param value="#{administradorManager.transferenciaAtual.estado}"/>
                     </h:outputFormat> 
-                    
+
                     <h:commandButton
                         id="submit"
                         value="Confirmar"

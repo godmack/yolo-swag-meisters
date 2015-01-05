@@ -13,9 +13,10 @@
             </ui:define>
 
             <ui:define name="left">
-                <h:outputLink value="admin_fornecedores_listar.xhtml">Lista de Fornecedores</h:outputLink>
+                <h:outputLink value="./../index.xhtml">Página inicial</h:outputLink>   
                 <br /><br />
-                <h:outputLink value="./../index.xhtml">Página inicial</h:outputLink>                
+                <h:outputLink value="admin_fornecedores_listar.xhtml">Voltar</h:outputLink>
+
             </ui:define>
 
             <ui:define name="content">
@@ -27,7 +28,7 @@
                             id="laboratorio"
                             value="#{administradorManager.fornecedorAtual.laboratorio}" />
                         <br></br>
-                        
+
                         <h:outputLabel for="email" value="Email: " />
                         <h:inputText 
                             id="email"
@@ -36,7 +37,7 @@
                             requiredMessage="Erro: Deve inserir um email."
                             value="#{administradorManager.fornecedorAtual.email}" />
                         <h:message for="nome" errorStyle="color: red" />
-                        
+
                         <h:outputLabel for="telemovel" value="Telemóvel: " />
                         <h:inputText 
                             id="telemovel"
@@ -45,7 +46,7 @@
                             requiredMessage="Erro: Deve inserir numero de telemovel."
                             value="#{administradorManager.fornecedorAtual.telemovel}" />
                         <h:message for="telemovel" errorStyle="color: red" />
-                        
+
                         <h:outputLabel for="morada" value="Morada " />
                         <h:inputText 
                             id="morada"

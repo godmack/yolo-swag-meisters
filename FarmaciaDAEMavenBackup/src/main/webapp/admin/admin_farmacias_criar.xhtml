@@ -14,13 +14,15 @@
             </ui:define>
 
             <ui:define name="left">
-                <h:outputLink value="./../index.xhtml">Página inicial</h:outputLink>                
+                <h:outputLink value="./../index.xhtml">Página inicial</h:outputLink>  
+                <br /><br />
+                <h:outputLink value="admin_farmacias_listar.xhtml">Voltar</h:outputLink>
             </ui:define>
 
             <ui:define name="content">
                 <h:form>                  
                     <h:panelGrid columns="3">
-                        
+
                         <h:outputLabel for="nome" value="Nome " />
                         <h:inputText 
                             id="nome"
@@ -29,8 +31,8 @@
                             requiredMessage="Erro: Deve inserir um username."                            
                             value="#{administradorManager.farmaciaNovo.nome}"/>
                         <h:message for="nome" errorStyle="color: red" />
-                        
-                        
+
+
                         <h:commandButton
                             id="submit"
                             binding="#{administradorManager.componente}" 

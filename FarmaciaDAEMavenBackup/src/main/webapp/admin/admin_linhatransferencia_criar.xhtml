@@ -14,18 +14,21 @@
             </ui:define>
 
             <ui:define name="left">
-                <h:outputLink value="./../index.xhtml">Página inicial</h:outputLink>                
+                <h:outputLink value="./../index.xhtml">Página inicial</h:outputLink>      
+                <br /><br /> 
+                <h:outputLink value="./admin_transferencias_editar.xhtml">Voltar</h:outputLink> 
+
             </ui:define>
 
             <ui:define name="content">
                 <h:form>                  
                     <h:panelGrid columns="3">
-                        
+
                         <h:selectOneMenu value="#{administradorManager.linhaTransferenciaNovo.codigoProdutoCatalogo}">
                             <f:selectItems value="#{administradorManager.produtosCatalogo}" var="produtoCatalogo"
                                            itemLabel="#{produtoCatalogo.nome}" itemValue="#{produtoCatalogo.referencia}" />
                         </h:selectOneMenu>
-                        
+
                         <h:outputLabel for="quantidade" value="Quantidade " />
                         <h:inputText 
                             id="quantidade"
@@ -34,8 +37,8 @@
                             requiredMessage="Erro: Deve inserir um valor de quantidade"                            
                             value="#{administradorManager.linhaTransferenciaNovo.quantidade}"/>
                         <h:message for="quantidade" errorStyle="color: red" />
-                        
-                        
+
+
                         <h:commandButton
                             id="submit"
                             binding="#{administradorManager.componente}" 

@@ -13,14 +13,15 @@
             </ui:define>
 
             <ui:define name="left">
-                <h:outputLink value="admin_stocks_criar.xhtml">Criar Stock</h:outputLink>
-                <br /><br /> 
-                <h:outputLink value="./../index.xhtml">Página inicial</h:outputLink>                
+                <h:outputLink value="./../index.xhtml">Página inicial</h:outputLink>  
+                <br /><br />                 
+                <h:outputLink value="./admin_index.xhtml">Voltar</h:outputLink> 
             </ui:define>
 
             <ui:define name="content">
                 <h:form>                    
                     <h:commandButton value="Criar Stock" action="admin_stocks_criar.xhtml?faces-redirect=true" />
+                    
                     <br/>
 
                     <h:dataTable

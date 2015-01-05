@@ -13,14 +13,15 @@
             </ui:define>
 
             <ui:define name="left">
-                <h:outputLink value="./../index.xhtml">Página inicial</h:outputLink>                
+                <h:outputLink value="./../index.xhtml">Página inicial</h:outputLink>    
+                <br /><br />
+                <h:outputLink value="admin_fornecedores_criar.xhtml?faces-redirect=true">Criar Fornecedor </h:outputLink>
+                <br /><br />
+                <h:outputLink value="admin_index.xhtml">Voltar</h:outputLink>
             </ui:define>
 
             <ui:define name="content">
                 <h:form>                    
-                    <h:commandButton value="Criar fornecedor" action="admin_fornecedores_criar.xhtml?faces-redirect=true" />
-                    <br/>
-
                     <h:dataTable
                         var="fornecedor"
                         summary="Lista de todos os fornecedores"
@@ -57,9 +58,9 @@
                         </h:column> 
                     </h:dataTable>
                 </h:form>
-                
+
                 <h:messages errorStyle="color: red" />                
-                
+
             </ui:define>
 
         </ui:composition>

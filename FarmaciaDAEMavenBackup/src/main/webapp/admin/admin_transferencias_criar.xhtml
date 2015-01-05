@@ -14,26 +14,29 @@
             </ui:define>
 
             <ui:define name="left">
-                <h:outputLink value="./../index.xhtml">Página inicial</h:outputLink>                
+                <h:outputLink value="./../index.xhtml">Página inicial</h:outputLink>    
+                <br /><br /> 
+                <h:outputLink value="admin_transferencias_listar.xhtml">Voltar</h:outputLink>
+
             </ui:define>
 
             <ui:define name="content">
                 <h:form>                  
                     <h:panelGrid columns="3">
-                        
+
                         <h:outputLabel for="farmaciaFornecedora" value="Farmácia Fornecedora : " />
                         <h:selectOneMenu value="#{administradorManager.transferenciaNovo.farmaciaFornecedora}">
                             <f:selectItems value="#{administradorManager.farmacias}" var="farmacia"
                                            itemLabel="#{farmacia.nome}" itemValue="#{farmacia.idFarmacia}" />
                         </h:selectOneMenu>
-                        
-                         <h:outputLabel for="farmacia" value="Farmacia Recetora : " />
-                         <h:selectOneMenu value="#{administradorManager.transferenciaNovo.farmacia}">
-                             <f:selectItems value="#{administradorManager.farmacias}" var="farmacia"
-                                            itemLabel="#{farmacia.nome}" itemValue="#{farmacia.idFarmacia}" />
+
+                        <h:outputLabel for="farmacia" value="Farmacia Recetora : " />
+                        <h:selectOneMenu value="#{administradorManager.transferenciaNovo.farmacia}">
+                            <f:selectItems value="#{administradorManager.farmacias}" var="farmacia"
+                                           itemLabel="#{farmacia.nome}" itemValue="#{farmacia.idFarmacia}" />
                         </h:selectOneMenu>
-                        
-                        
+
+
                         <h:commandButton
                             id="submit"
                             binding="#{administradorManager.componente}" 

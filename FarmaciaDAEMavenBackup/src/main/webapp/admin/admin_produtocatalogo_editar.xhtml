@@ -14,13 +14,15 @@
             </ui:define>
 
             <ui:define name="left">
-                <h:outputLink value="./../index.xhtml">Página inicial</h:outputLink>                
+                <h:outputLink value="./../index.xhtml">Página inicial</h:outputLink>      
+                <br /><br />
+                <h:outputLink value="admin_produtocatalogo_listar.xhtml">Voltar</h:outputLink>
             </ui:define>
 
             <ui:define name="content">
                 <h:form>                  
                     <h:panelGrid columns="3">
-                        
+
                         <h:outputLabel for="referencia" value="Referencia: " />
                         <h:inputText 
                             id="referencia"
@@ -47,7 +49,7 @@
                             requiredMessage="Erro: Deve inserir um laboratorio."                            
                             value="#{administradorManager.pCatalogoAtual.laboratorio}" />
                         <h:message for="nome" errorStyle="color: red" />
-                        
+
                         <h:outputLabel for="preco" value="Preco: " />
                         <h:inputText
                             id="preco"

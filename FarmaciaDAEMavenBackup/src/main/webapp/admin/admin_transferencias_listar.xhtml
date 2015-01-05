@@ -14,12 +14,13 @@
             </ui:define>         
 
             <ui:define name="left">            
-                <h:outputLink value="admin_transferencias_criar.xhtml">Criar Transferencias</h:outputLink>
-                <br /><br />  
                 <h:outputLink value="./../index.xhtml">Página inicial</h:outputLink> 
                 <br /><br /> 
+                <h:outputLink value="admin_transferencias_criar.xhtml">Criar Transferencias</h:outputLink>
+                <br /><br />  
+                <h:outputLink value="admin_index.xhtml">Voltar</h:outputLink>
             </ui:define>
-            
+
             <ui:define name="content">
                 <h:form>
                     <h:dataTable
@@ -27,12 +28,22 @@
                         summary="Transferencias"
                         value="#{administradorManager.transferencias}"
                         rules="all"
-                        cellpadding="5">
+                        cellpadding="6">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="ID Transferência" />
+                            </f:facet>
+                            <h:commandLink
+                                value="#{transferencia.idTransferencia}"
+                                action="admin_transferencias_editar?faces-redirect=true">
+                                <f:setPropertyActionListener target="#{administradorManager.transferenciaAtual}" value="#{transferencia}" />
+                            </h:commandLink>
+                        </h:column> 
                         <h:column>
                             <f:facet name="header">
                                 <h:outputText value="Farmacia Receptora" />
                             </f:facet>
-                                <h:outputText value="#{transferencia.farmacia}"/>
+                            <h:outputText value="#{transferencia.farmacia}"/>
                         </h:column> 
                         <h:column>
                             <f:facet name="header">
@@ -56,15 +67,10 @@
                             <f:facet name="header">
                                 <h:outputText value="Ações" />
                             </f:facet>
-                            <h:commandLink
-                                value="Editar"
-                                action="admin_transferencias_editar?faces-redirect=true">
-                                <f:setPropertyActionListener target="#{administradorManager.transferenciaAtual}" value="#{transferencia}" />
-                            </h:commandLink>
                         </h:column>                        
                     </h:dataTable>
 
-                                    <h:messages errorStyle="color: red" />
+                    <h:messages errorStyle="color: red" />
                 </h:form>
             </ui:define>
 
@@ -72,4 +78,3 @@
 
     </h:body>
 </html>
- 
