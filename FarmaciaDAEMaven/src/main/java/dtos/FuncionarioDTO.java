@@ -1,6 +1,11 @@
 package dtos;
 
+import Entidades.Farmacia;
+import ejbs.FarmaciaBean;
 import java.io.Serializable;
+import java.util.List;
+import java.util.Objects;
+import javax.ejb.EJB;
 
 public class FuncionarioDTO  implements Serializable{
 
@@ -10,16 +15,18 @@ public class FuncionarioDTO  implements Serializable{
     private String email;
     private boolean eFuncBalcao;
     private Long idFarmacia;
+    private String farmaciaNome;
 
     public FuncionarioDTO() {
     }    
     
-    public FuncionarioDTO(String username, String nome, String email, boolean eFuncBalcao, Long idFarmacia) {
+    public FuncionarioDTO(String username, String nome, String email, boolean eFuncBalcao, Long idFarmacia, String farmaciaNome) {
         this.username = username;     
         this.nome = nome;
         this.email = email;
         this.eFuncBalcao = eFuncBalcao;
         this.idFarmacia = idFarmacia;
+        this.farmaciaNome = farmaciaNome;
     }
     
     public void reiniciar(){
@@ -77,6 +84,14 @@ public class FuncionarioDTO  implements Serializable{
     public void setIdFarmacia(Long idFarmacia) {
         this.idFarmacia = idFarmacia;
     }
+
+    public String getFarmaciaNome() {
+        return farmaciaNome;
+    }
+
+    public void setFarmaciaNome(String farmaciaNome) {
+        this.farmaciaNome = farmaciaNome;
+    }
     
-    
+
 }

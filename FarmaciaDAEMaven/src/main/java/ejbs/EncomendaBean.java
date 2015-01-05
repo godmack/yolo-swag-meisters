@@ -6,6 +6,7 @@ import Entidades.Farmacia;
 import Entidades.Fornecedor;
 import Entidades.LinhaEncomenda;
 import Entidades.Utilizador;
+import com.sun.xml.internal.messaging.saaj.packaging.mime.MessagingException;
 import dtos.EncomendaDTO;
 import ejbs.EmailBean;
 import ejbs.FarmaciaBean;
@@ -19,7 +20,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import excecoes.EntidadeExistenteException;
 import excecoes.EntidadeNaoExistenteException;
-import javax.mail.MessagingException;
 
 
 
@@ -143,10 +143,10 @@ public class EncomendaBean {
                     + les
                     + "\n\nCom os melhores cumprimentos\n" + encomenda.getFarmacia().getNome());
 
-        } catch (MessagingException | EntidadeNaoExistenteException e) {
+        } catch (/*MessagingException |*/ EntidadeNaoExistenteException e) {
             throw e;
         } catch (Exception e) {
-            throw new EJBException(e.getMessage());
+           throw new EJBException(e.getMessage());
         }
     }
 }

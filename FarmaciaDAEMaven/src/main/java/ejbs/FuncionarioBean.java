@@ -32,8 +32,7 @@ public class FuncionarioBean {
     private EntityManager em;
     @EJB
     UtilizadorBean uBean;
-    @EJB
-    FarmaciaBean fBean;
+
     
     
      public FuncionarioBean() {
@@ -49,8 +48,10 @@ public class FuncionarioBean {
             if (uBean.existeUsername(username)) {
                 throw new EntidadeExistenteException("Utilizador já existente!");
             }
-            List<FarmaciaDTO> farmacias = fBean.getAllFarmacias();
-            Farmacia farmacia = em.find(Farmacia.class, farmacias.get(0).getIdFarmacia());
+
+              Farmacia  farmacia = em.find(Farmacia.class, idFarmacia);
+            
+            
             em.persist(new Funcionario(nome, username, email, password,  eFuncBalcao, farmacia));
         } catch (EntidadeExistenteException e) {
             throw e;
@@ -73,7 +74,7 @@ public class FuncionarioBean {
      private List<FuncionarioDTO> copiarFuncionariosParaDTOs(List<Funcionario> Funcionarios) {
         List<FuncionarioDTO> dtos = new ArrayList<>();
         for (Funcionario funcionario : Funcionarios) {
-            dtos.add(new FuncionarioDTO(funcionario.getUsername(),funcionario.getNome(),funcionario.getEmail(), funcionario.isFuncBalcao(), funcionario.getFarmacia().getIdFarmacia()));
+            dtos.add(new FuncionarioDTO(funcionario.getUsername(),funcionario.getNome(),funcionario.getEmail(), funcionario.isFuncBalcao(), funcionario.getFarmacia().getIdFarmacia(), funcionario.getFarmacia().getNome()));
         }
         return dtos;
     }

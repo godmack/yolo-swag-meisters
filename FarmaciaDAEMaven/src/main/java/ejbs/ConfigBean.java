@@ -44,9 +44,9 @@ public class ConfigBean implements Serializable {
             farmaciaBean.criarFarmacia("rubacia");
             farmaciaBean.criarFarmacia("farmacia2");
             farmaciaBean.criarFarmacia("farmacia3");
-            funcionarioBean.criarFuncionario("Andre Rosado", "andrerosado", "andrerosado@maildae.com", "123", true, 1L);
-            funcionarioBean.criarFuncionario("Ruben Nunes", "rubennunes", "rubennunes@maildae.com", "123", false, 1L);
-            funcionarioBean.criarFuncionario("Andre Cristiano", "andrecristiano", "andrecristiano@maildae.com", "123", true, 1L);
+            //funcionarioBean.criarFuncionario("Andre Rosado", "andrerosado", "andrerosado@maildae.com", "123", true, null);
+            //funcionarioBean.criarFuncionario("Ruben Nunes", "rubennunes", "rubennunes@maildae.com", "123", false, null);
+            //funcionarioBean.criarFuncionario("Andre Cristiano", "andrecristiano", "andrecristiano@maildae.com", "123", true, null);
             fornecedorBean.criarFornecedor("ruboratorio", "ruboratorio@gmail.com", 917121212, "rua das pinhas");
             fornecedorBean.criarFornecedor("andrisFêos", "ruben.n147@gmail.com", 917121212, "rua das pinhas");
             administradorBean.criarAdministrador("admin", "admin123", "Admin", "rubacia@gmail.com", (long) 1);

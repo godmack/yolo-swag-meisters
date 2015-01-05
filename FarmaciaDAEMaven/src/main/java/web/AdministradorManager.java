@@ -14,6 +14,7 @@ import dtos.ProdutoCatalogoDTO;
 import dtos.TransferenciaDTO;
 import dtos.UtilizadorDTO;
 import ejbs.AdministradorBean;
+import ejbs.EmailBean;
 import ejbs.EncomendaBean;
 import ejbs.FarmaciaBean;
 import ejbs.FornecedorBean;
