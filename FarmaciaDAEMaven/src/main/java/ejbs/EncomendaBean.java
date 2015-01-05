@@ -6,7 +6,6 @@ import Entidades.Farmacia;
 import Entidades.Fornecedor;
 import Entidades.LinhaEncomenda;
 import Entidades.Utilizador;
-import com.sun.xml.internal.messaging.saaj.packaging.mime.MessagingException;
 import dtos.EncomendaDTO;
 import ejbs.EmailBean;
 import ejbs.FarmaciaBean;
@@ -20,6 +19,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import excecoes.EntidadeExistenteException;
 import excecoes.EntidadeNaoExistenteException;
+import java.util.LinkedList;
+import javax.mail.MessagingException;
 
 
 
@@ -126,7 +127,6 @@ public class EncomendaBean {
     }
 
     public void enviarMail(Long idEncomenda) throws MessagingException, EntidadeNaoExistenteException {
-        System.out.println("Entrei no enviarMail");
         try {
             Encomenda encomenda = em.find(Encomenda.class, idEncomenda);
 
@@ -134,14 +134,17 @@ public class EncomendaBean {
                 throw new EntidadeNaoExistenteException("Encomenda não existente!");
             }
             List<LinhaEncomenda> les = (List<LinhaEncomenda>) encomenda.getLinhasEncomenda();
+//            for(List<LinhaEncomenda> li: les){
+               
+//            }
+            System.out.println(les.toString());
             String email = encomenda.getFornecedor().getEmail();
-            System.out.println("vou para o send!");
-            emailBean.send(
-                    email,
-                    "Encomenda  ",
-                    "Foram encomendados os seguintes produtos "
-                    + les
-                    + "\n\nCom os melhores cumprimentos\n" + encomenda.getFarmacia().getNome());
+//            emailBean.send(
+//                    email,
+//                    "Encomenda  ",
+//                    "Foram encomendados os seguintes produtos "
+//                    + les
+//                    + "\n\nCom os melhores cumprimentos\n" + encomenda.getFarmacia().getNome());
 
         } catch (/*MessagingException |*/ EntidadeNaoExistenteException e) {
             throw e;
@@ -149,4 +152,10 @@ public class EncomendaBean {
            throw new EJBException(e.getMessage());
         }
     }
+
+    @Override
+    public String toString() {
+        return "EncomendaBean{" + "em=" + em + ", fornecedorBean=" + fornecedorBean + ", farmaciaBean=" + farmaciaBean + ", emailBean=" + emailBean + '}';
+    }
+    
 }
