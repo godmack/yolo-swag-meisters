@@ -293,6 +293,7 @@ public class AdministradorManager implements Serializable {
         }
         return "admin_administradores_criar";
     }
+    
 
     public AdministradorDTO getAdministradorNovo() {
         return administradorNovo;
