@@ -56,6 +56,7 @@ public class ConfigBean implements Serializable {
             pCatalogoBean.criarProdutoCatalogo(123, "ben u ron", "Bayer", 5.0);
             pCatalogoBean.criarProdutoCatalogo(456, "voltaren", "Lab Medicamentos", 7.5);
             clienteBean.criarCliente("Anónimo", "", 000000000);
+            clienteBean.criarCliente("Joao", "", 000000001);
 
         } catch (EntidadeExistenteException | EntidadeNaoExistenteException e) {
             System.out.println("Erro: " + e.getMessage());

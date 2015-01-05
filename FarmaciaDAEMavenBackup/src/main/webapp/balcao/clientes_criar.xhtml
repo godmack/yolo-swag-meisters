@@ -21,18 +21,38 @@
                 <h:form>                  
                     <h:panelGrid columns="3">
                         
-                        <h:outputLabel for="cliente" value="Cliente " />
-                        <h:selectOneMenu value="#{funcBalcaoManager.vendaNovo.cliente}">
-                            <f:selectItems value="#{funcBalcaoManager.clientes}" var="cliente"
-                                           itemLabel="#{cliente.nome} - #{cliente.contacto}" itemValue="#{cliente.contacto}" />
-                        </h:selectOneMenu>
-                        
+                        <h:outputLabel for="nome" value="Nome: " />
+                        <h:inputText 
+                            id="nome"
+                            size="20"
+                            required="true"
+                            requiredMessage="Erro: Deve inserir um nome."                            
+                            value="#{funcBalcaoManager.clienteNovo.nome}"/>
+                        <h:message for="nome" errorStyle="color: red" />
+
+                        <h:outputLabel for="contacto" value="Contacto: " />
+                        <h:inputText
+                            id="contacto"
+                            size="20"
+                            required="true"
+                            requiredMessage="Erro: Deve inserir um contacto."
+                            value="#{funcBalcaoManager.clienteNovo.contacto}"/>
+                        <h:message for="contacto" errorStyle="color: red" />                        
+
+                        <h:outputLabel for="email" value="Email: " />
+                        <h:inputText 
+                            id="email"
+                            size="52"
+                            required="true"
+                            requiredMessage="Erro: Deve inserir um email."                            
+                            value="#{funcBalcaoManager.clienteNovo.email}" />
+                        <h:message for="email" errorStyle="color: red" />                        
                         
                         <h:commandButton
                             id="submit"
                             binding="#{funcBalcaoManager.componente}" 
                             value="Criar"
-                            action="#{funcBalcaoManager.criarVenda}" />
+                            action="#{funcBalcaoManager.criarCliente()}" />
                         <h:message for="submit" style="color: red"/>                         
                     </h:panelGrid >                       
 

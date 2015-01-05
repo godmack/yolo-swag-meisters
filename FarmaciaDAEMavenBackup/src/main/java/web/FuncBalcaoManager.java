@@ -202,6 +202,59 @@ public class FuncBalcaoManager implements Serializable {
     }
     
     
+         ////////////// Clientes ///////////////////
+    public List<ClienteDTO> getClientes() {
+        try {
+            return clienteBean.getAllClientes();
+        } catch (Exception e) {
+            FacesExceptionHandler.tratarExcecao(e, "Erro do sistema.", logger);
+            return null;
+        }
+    }
+
+    public String criarCliente() {
+        try {
+
+            clienteBean.criarCliente(clienteNovo.getEmail(), clienteNovo.getNome(), clienteNovo.getContacto());
+            clienteNovo.reiniciar();
+            return "balcao_index?faces-redirect=true";
+        } catch (EntidadeExistenteException e) {
+            FacesExceptionHandler.tratarExcecaoBinding(e, e.getMessage(), componente, logger);
+        } catch (Exception e) {
+            FacesExceptionHandler.tratarExcecao(e, "Erro do sistema.", logger);
+        }
+        return "admin_fornecedores_criar";
+    }
+
+    public String atualizarCliente() {
+        try {
+            clienteBean.atualizar(
+                    clienteNovo.getNome(),
+                    clienteNovo.getContacto(),
+                    clienteNovo.getEmail());
+            clienteNovo.reiniciar();
+            return "clientes_listar?faces-redirect=true";
+        } catch (Exception e) {
+            FacesExceptionHandler.tratarExcecao(e, "Erro do sistema.", logger);
+        }
+        return "clientes_editar";
+    }
+
+    public ClienteDTO getClienteNovo() {
+        return clienteNovo;
+    }
+
+    public void setClienteNovo(ClienteDTO clienteNovo) {
+        this.clienteNovo = clienteNovo;
+    }
+
+    public ClienteDTO getClienteAtual() {
+        return clienteAtual;
+    }
+
+    public void setClienteAtual(ClienteDTO clienteAtual) {
+        this.clienteAtual = clienteAtual;
+    }
 
 
     

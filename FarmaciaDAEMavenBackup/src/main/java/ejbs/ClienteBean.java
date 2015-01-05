@@ -74,4 +74,8 @@ public class ClienteBean {
         return em.find(Cliente.class, contacto) != null;
     }
 
+    public void atualizar(String nome, int contacto, String email) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }

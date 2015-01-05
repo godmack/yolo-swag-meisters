@@ -29,6 +29,7 @@ public class ClienteDTO  implements Serializable{
     }
 
     public String getNome() {
+        System.out.println("+++++++++++++++++++++++++++++++");
         return nome;
     }
 
@@ -42,6 +43,12 @@ public class ClienteDTO  implements Serializable{
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public void reiniciar() {
+        this.setContacto(0);
+        this.setEmail(null);
+        this.setNome(null);
     }
     
     
