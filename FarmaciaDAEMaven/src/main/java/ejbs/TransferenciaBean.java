@@ -89,5 +89,32 @@ public class TransferenciaBean {
         }
      
      }
+	 
+	   public void enviarMail(Long idTransferencia) throws MessagingException, EntidadeNaoExistenteException {
+        try {
+            Transferencia transferencia = em.find(Transferencia.class, idTransferencia);
+
+            if (transferencia == null) {
+                throw new EntidadeNaoExistenteException("Encomenda não existente!");
+            }
+            String em = " ";
+            List<LinhaTransferencia> les = (List<LinhaTransferencia>) transferencia.getLinhasTransferencia();
+            for (LinhaTransferencia li : les) {
+                em = ("Referencia Produto: " + li.getProdutoCatalogo().getReferencia() + " - Produto: " + li.getProdutoCatalogo().getNome() + " - Quantidade: " + li.getQuantidade() + "\n");
+            }
+//            String email = transferencia.getFornecedor().getEmail();
+//            emailBean.send(
+//                    email,
+//                    "Encomenda  ",
+//                    "Foram encomendados os seguintes produtos "
+//                    + em
+//                    + "\n\nCom os melhores cumprimentos\n" + transferencia.getFarmacia().getNome());
+
+        } catch (/*MessagingException |*/EntidadeNaoExistenteException e) {
+            throw e;
+        } catch (Exception e) {
+            throw new EJBException(e.getMessage());
+        }
+    }
 
 }

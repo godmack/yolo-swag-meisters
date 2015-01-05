@@ -8,10 +8,6 @@ package webservice.service;
 import java.util.Set;
 import javax.ws.rs.core.Application;
 
-/**
- *
- * @author Ivo
- */
 @javax.ws.rs.ApplicationPath("farmacia")
 public class ApplicationConfig extends Application {
 

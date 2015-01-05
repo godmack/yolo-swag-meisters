@@ -136,7 +136,14 @@ public class UtilizadorBean {
         return dtos;
     }
 
-    public void loginWebservice(String username, String password) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+   public String loginWebservice(String username, String password) {
+              Utilizador utilizador = em.find(Utilizador.class, username);
+            if(utilizador == null){
+                return null;
+            }  
+//            if(!utilizador.getPassword().equals(password)){
+//                return null;
+//            }
+      return username; 
     }
 }

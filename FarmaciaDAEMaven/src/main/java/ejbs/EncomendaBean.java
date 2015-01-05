@@ -126,36 +126,31 @@ public class EncomendaBean {
 
     }
 
-    public void enviarMail(Long idEncomenda) throws MessagingException, EntidadeNaoExistenteException {
+     public void enviarMail(Long idEncomenda) throws MessagingException, EntidadeNaoExistenteException {
         try {
             Encomenda encomenda = em.find(Encomenda.class, idEncomenda);
 
             if (encomenda == null) {
                 throw new EntidadeNaoExistenteException("Encomenda não existente!");
             }
+            String em = " ";
             List<LinhaEncomenda> les = (List<LinhaEncomenda>) encomenda.getLinhasEncomenda();
-//            for(List<LinhaEncomenda> li: les){
-               
-//            }
-            System.out.println(les.toString());
+            for(LinhaEncomenda li: les){
+               em = ("Referencia Produto: " + li.getProdutoCatalogo().getReferencia() + " - Produto: " + li.getProdutoCatalogo().getNome() + " - Quantidade: " +li.getQuantidade() + "\n");
+            }
             String email = encomenda.getFornecedor().getEmail();
-//            emailBean.send(
-//                    email,
-//                    "Encomenda  ",
-//                    "Foram encomendados os seguintes produtos "
-//                    + les
-//                    + "\n\nCom os melhores cumprimentos\n" + encomenda.getFarmacia().getNome());
+            emailBean.send(
+                    email,
+                    "Encomenda  ",
+                    "Foram encomendados os seguintes produtos "
+                    + em
+                    + "\n\nCom os melhores cumprimentos\n" + encomenda.getFarmacia().getNome());
 
-        } catch (/*MessagingException |*/ EntidadeNaoExistenteException e) {
+        } catch (MessagingException | EntidadeNaoExistenteException e) {
             throw e;
         } catch (Exception e) {
            throw new EJBException(e.getMessage());
         }
-    }
-
-    @Override
-    public String toString() {
-        return "EncomendaBean{" + "em=" + em + ", fornecedorBean=" + fornecedorBean + ", farmaciaBean=" + farmaciaBean + ", emailBean=" + emailBean + '}';
     }
     
 }

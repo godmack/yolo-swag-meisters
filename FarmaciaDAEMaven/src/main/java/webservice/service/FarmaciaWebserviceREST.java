@@ -5,6 +5,9 @@
  */
 package webservice.service;
 
+import Entidades.Encomenda;
+import Entidades.Produto;
+import ejbs.EncomendaBean;
 import ejbs.UtilizadorBean;
 import java.util.List;
 import javafx.scene.media.Media;
@@ -20,16 +23,14 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
-/**
- *
- * @author Ivo
- */
+
 @Stateless
 @Path("/farmacias")
 public class FarmaciaWebserviceREST {
 
     @Inject
     UtilizadorBean utilizadorBean;
+    EncomendaBean encomendaBean;
     
     public FarmaciaWebserviceREST() {
         super();
@@ -38,9 +39,15 @@ public class FarmaciaWebserviceREST {
     @POST
     @Path("/login")
     public String searchRecipes(@FormParam("username") String username, @FormParam("password") String password) {
-        utilizadorBean.loginWebservice(username, password);
-        return null;
+         return utilizadorBean.loginWebservice(username, password);
     }
+    
+    
+    @POST
+    @Path("/encomenda")
+     public List encomendas() {
+         return encomendaBean.receberEncomendas();
+     }
 //    @POST
 //    @Path("/login")
 //    @Produces({"application/json"})
