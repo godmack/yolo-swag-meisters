@@ -152,5 +152,9 @@ public class EncomendaBean {
            throw new EJBException(e.getMessage());
         }
     }
+	
+	  public List receberEncomendas() {
+        return (List<Encomenda>) em.createNamedQuery("findAllEncomendas").getResultList();
+    } 
     
 }
