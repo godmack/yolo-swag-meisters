@@ -1,0 +1,85 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"               
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+    <h:body>
+
+        <ui:composition template="./../templates/templateNECS.xhtml">
+
+            <ui:define name="top">
+                Criar uma nova venda
+            </ui:define>
+
+            <ui:define name="left">
+                <h:outputLink value="./../index.xhtml">Página inicial</h:outputLink> 
+                <br /><br />  
+                <h:outputLink value="linhavenda_criar.xhtml">Criar uma Linha de Venda</h:outputLink> 
+                <br /><br />
+            </ui:define>
+
+            <ui:define name="content">
+                <h:form>                  
+                    <h:panelGrid columns="1">
+                        
+                        <h:outputFormat value="Cliente: {0}">
+                            <f:param value="#{funcBalcaoManager.vendaAtual.cliente}"/>
+                        </h:outputFormat>
+                        
+                    </h:panelGrid >   
+                    
+                    <h:dataTable
+                        var="linhaVenda"
+                        summary="Linhas da venda atual"
+                        value="#{funcBalcaoManager.linhasPertencemVenda}"
+                        rules="all"
+                        cellpadding="5">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Produto" />
+                            </f:facet>
+                            <h:outputText value="#{linhaVenda.codigoProdutoCatalogo}" />
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Quantidade" />
+                            </f:facet>
+                            <h:outputText value="#{linhaVenda.quantidade}" />
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Preço" />
+                            </f:facet>
+                            <h:outputText value="#{linhaVenda.preco}" />
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Ações" />
+                            </f:facet>
+                            <h:commandLink value="Retirar" actionListener="#{funcBalcaoManager.retirarLinhaVenda}">
+                                <f:param name="linhaVenda2" id="linhaVenda2" value="#{linhaVenda.codigoProdutoCatalogo}" />
+                            </h:commandLink>
+                        </h:column>
+                    </h:dataTable>  
+                    
+                    <h:outputFormat value="Estado: {0}">
+                        <f:param value="#{funcBalcaoManager.vendaAtual.estado}"/>
+                    </h:outputFormat> 
+                    
+                    <h:commandButton
+                        id="submit"
+                        value="Confirmar"
+                        action="#{funcBalcaoManager.confirmarVenda}" 
+                        rendered="#{funcBalcaoManager.vendaAtual.estado == 'Rascunho'}"/>
+                    <h:message for="submit" style="color: red"/> 
+                </h:form>
+            </ui:define>
+
+        </ui:composition>
+
+    </h:body>
+</html>
+
+

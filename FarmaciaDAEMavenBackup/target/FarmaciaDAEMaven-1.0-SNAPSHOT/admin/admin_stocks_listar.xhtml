@@ -1,0 +1,75 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"      
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+    <h:body>
+        <ui:composition template="./../templates/templateNECS.xhtml">
+
+            <ui:define name="top">
+                Lista de todos os stocks de todas as farmácias
+            </ui:define>
+
+            <ui:define name="left">
+                <h:outputLink value="admin_stocks_criar.xhtml">Criar Stock</h:outputLink>
+                <br /><br /> 
+                <h:outputLink value="./../index.xhtml">Página inicial</h:outputLink>                
+            </ui:define>
+
+            <ui:define name="content">
+                <h:form>                    
+                    <h:commandButton value="Criar Stock" action="admin_stocks_criar.xhtml?faces-redirect=true" />
+                    <br/>
+
+                    <h:dataTable
+                        var="stock"
+                        summary="Lista de todos os stocks"
+                        value="#{administradorManager.stocks}"
+                        rules="all"
+                        cellpadding="5">                       
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="ID" />
+                            </f:facet>
+                            <h:commandLink
+                                value="#{stock.id}"
+                                action="admin_stocks_editar?faces-redirect=true">
+                                <f:setPropertyActionListener target="#{administradorManager.stockAtual}" value="#{stock}" />
+                            </h:commandLink>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Produto" />
+                            </f:facet>
+                            <h:outputText value="#{stock.catalogo}" />
+                        </h:column> 
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Farmacia" />
+                            </f:facet>
+                            <h:outputText value="#{stock.farmacia}" />
+                        </h:column> 
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Quantidade Atual" />
+                            </f:facet>
+                            <h:outputText value="#{stock.stockActual}" />
+                        </h:column> 
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Quantidade Limite" />
+                            </f:facet>
+                            <h:outputText value="#{stock.stockMinimo}" />
+                        </h:column> 
+                    </h:dataTable>
+                </h:form>
+                
+                <h:messages errorStyle="color: red" />                
+                
+            </ui:define>
+
+        </ui:composition>
+    </h:body>
+</html>

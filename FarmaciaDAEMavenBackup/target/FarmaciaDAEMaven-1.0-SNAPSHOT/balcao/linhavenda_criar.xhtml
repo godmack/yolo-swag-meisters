@@ -1,0 +1,56 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"               
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+    <h:body>
+
+        <ui:composition template="./../templates/templateNECS.xhtml">
+
+            <ui:define name="top">
+                Criar uma nova linha venda
+            </ui:define>
+
+            <ui:define name="left">
+                <h:outputLink value="./../index.xhtml">Página inicial</h:outputLink> 
+                <br/><br/>
+                <h:outputLink value="vendas_listar.xhtml">Listar Vendas</h:outputLink>
+            </ui:define>
+
+            <ui:define name="content">
+                <h:form>                  
+                    <h:panelGrid columns="3">
+                        
+                        <h:selectOneMenu value="#{funcBalcaoManager.linhaVendaNovo.codigoProdutoCatalogo}">
+                            <f:selectItems value="#{funcBalcaoManager.produtosCatalogoEmStock}" var="stock"
+                                           itemLabel="#{stock.nomeProduto} - Preço Unidade: #{stock.preco} || Quantidade Disponivel #{stock.stockActual}(lim: #{stock.stockMinimo})" itemValue="#{stock.catalogo}" />
+                        </h:selectOneMenu>
+                        
+                        <h:outputLabel for="quantidade" value="Quantidade " />
+                        <h:inputText 
+                            id="quantidade"
+                            size="20"
+                            required="true"
+                            requiredMessage="Erro: Deve inserir um valor de quantidade"                            
+                            value="#{funcBalcaoManager.linhaVendaNovo.quantidade}"/>
+                        <h:message for="morada" errorStyle="color: red" />
+                        
+                        
+                        <h:commandButton
+                            id="submit"
+                            binding="#{funcBalcaoManager.componente}" 
+                            value="Criar"
+                            action="#{funcBalcaoManager.criarLinhaVenda}" />
+                        <h:message for="submit" style="color: red"/>                         
+                    </h:panelGrid >                       
+
+                </h:form>
+            </ui:define>
+
+        </ui:composition>
+
+    </h:body>
+</html>
+

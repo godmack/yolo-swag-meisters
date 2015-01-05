@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+    <h:body>
+
+        <ui:composition template="./../templates/templateNECS.xhtml">
+
+            <ui:define name="top">
+                GESTÃO FARMÁCIA
+            </ui:define>
+            
+            <ui:define name="left">
+                <h:outputLink value="encomendas_listar.xhtml">Lista Encomendas</h:outputLink>
+                <br /> <br />
+                <h:outputLink value="vendas_listar.xhtml">Listar Vendas</h:outputLink>
+                <br /> <br />
+            </ui:define>
+
+            <ui:define name="content">
+                BEM VINDO!
+                <br />                                              
+                <br />
+                <br />
+                <h:form>
+                    <h:commandButton
+                        value="Logout"
+                        binding="#{administradorManager.componente}"
+                        id="logout"
+                        action="#{utilizadorManager.logout()}"
+                        />
+                </h:form>
+                <br />
+                <br />
+                <br />
+            </ui:define>
+
+        </ui:composition>
+
+    </h:body>
+</html>

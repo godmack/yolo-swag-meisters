@@ -1,0 +1,60 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+    <h:body>
+
+        <ui:composition template="./../templates/templateNECS.xhtml">
+
+            <ui:define name="top">
+                GESTÃO FARMÁCIA
+            </ui:define>
+
+            <ui:define name="left">            
+                <h:outputLink value="admin_farmacias_listar.xhtml">Lista Farmácias</h:outputLink>
+                <br /><br />  
+                <h:outputLink value="admin_funcionarios_listar.xhtml">Lista Funcionarios</h:outputLink>
+                <br /><br /> 
+                <h:outputLink value="admin_fornecedores_listar.xhtml">Lista Fornecedores</h:outputLink>
+                <br /><br /> 
+                <h:outputLink value="admin_encomendas_listar.xhtml">Lista Encomendas</h:outputLink>
+                <br /><br /> 
+                <h:outputLink value="admin_produtocatalogo_listar.xhtml">Lista Produtos</h:outputLink>
+                <br /><br /> 
+                <h:outputLink value="admin_transferencias_listar.xhtml">Lista Transferencias</h:outputLink>
+                <br /><br /> 
+                <h:outputLink value="admin_stocks_listar.xhtml">Lista Stocks</h:outputLink>
+                <br /><br /> 
+            </ui:define>
+
+            <ui:define name="content">
+                BEM VINDO!
+                <br />                                              
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <h:form>
+                    <h:commandButton
+                        value="Logout"
+                        binding="#{administradorManager.componente}"
+                        id="logout"
+                        action="#{utilizadorManager.logout()}"
+                        />
+                </h:form>
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+            </ui:define>
+
+        </ui:composition>
+
+    </h:body>
+</html>

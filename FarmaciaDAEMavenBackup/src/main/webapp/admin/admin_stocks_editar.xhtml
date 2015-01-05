@@ -1,0 +1,69 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"               
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+    <h:body>
+
+        <ui:composition template="./../templates/templateNECS.xhtml">
+
+            <ui:define name="top">
+                Editar Stock
+            </ui:define>
+
+            <ui:define name="left">
+                <h:outputLink value="./../index.xhtml">Página inicial</h:outputLink> 
+                <br /><br />  
+                <h:outputLink value="admin_stocks_listar.xhtml">Lista de Stocks</h:outputLink> 
+                <br /><br />
+            </ui:define>
+
+            <ui:define name="content">
+                <h:form>                  
+                    <h:panelGrid columns="1">
+                        
+                        <h:outputFormat value="Farmacia: {0}">
+                            <f:param value="#{administradorManager.stockAtual.farmacia}"/>
+                        </h:outputFormat>
+                        
+                        <h:outputFormat value="Produto: {0}">
+                            <f:param value="#{administradorManager.stockAtual.catalogo}"/>
+                        </h:outputFormat>                        
+                    </h:panelGrid >   
+                    
+                    <h:outputLabel for="stockAtual" value="Stock Atual : " />
+                        <h:inputText 
+                            id="stockAtual"
+                            size="52"
+                            required="true"
+                            requiredMessage="Erro: Deve inserir um valor."
+                            value="#{administradorManager.stockAtual.stockActual}" />
+                        <h:message for="stockAtual" errorStyle="color: red" />
+                        
+                        <h:outputLabel for="stockMin" value="Stock Atual : " />
+                        <h:inputText 
+                            id="stockMin"
+                            size="52"
+                            required="true"
+                            requiredMessage="Erro: Deve inserir um valor."
+                            value="#{administradorManager.stockAtual.stockMinimo}" />
+                        <h:message for="stockMin" errorStyle="color: red" />
+                    
+                    
+                    
+                    <h:commandButton
+                        id="submit"
+                        value="Atualizar"
+                        action="#{administradorManager.atualizarStock}"/>
+                    <h:message for="submit" style="color: red"/> 
+                </h:form>
+            </ui:define>
+
+        </ui:composition>
+
+    </h:body>
+</html>
+
+

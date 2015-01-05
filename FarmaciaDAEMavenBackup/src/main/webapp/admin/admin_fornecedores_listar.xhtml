@@ -1,0 +1,67 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"      
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+    <h:body>
+        <ui:composition template="./../templates/templateNECS.xhtml">
+
+            <ui:define name="top">
+                Lista de todos os fornecedores
+            </ui:define>
+
+            <ui:define name="left">
+                <h:outputLink value="./../index.xhtml">Página inicial</h:outputLink>                
+            </ui:define>
+
+            <ui:define name="content">
+                <h:form>                    
+                    <h:commandButton value="Criar fornecedor" action="admin_fornecedores_criar.xhtml?faces-redirect=true" />
+                    <br/>
+
+                    <h:dataTable
+                        var="fornecedor"
+                        summary="Lista de todos os fornecedores"
+                        value="#{administradorManager.fornecedores}"
+                        rules="all"
+                        cellpadding="5">                       
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Laboratorio" />
+                            </f:facet>
+                            <h:commandLink
+                                value="#{fornecedor.laboratorio}"
+                                action="admin_fornecedores_editar?faces-redirect=true">
+                                <f:setPropertyActionListener target="#{administradorManager.fornecedorAtual}" value="#{fornecedor}" />
+                            </h:commandLink>
+                        </h:column>   
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Email" />
+                            </f:facet>
+                            <h:outputText value="#{fornecedor.email}" />
+                        </h:column> 
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Telemovel" />
+                            </f:facet>
+                            <h:outputText value="#{fornecedor.telemovel}" />
+                        </h:column> 
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="morada" />
+                            </f:facet>
+                            <h:outputText value="#{fornecedor.morada}" />
+                        </h:column> 
+                    </h:dataTable>
+                </h:form>
+                
+                <h:messages errorStyle="color: red" />                
+                
+            </ui:define>
+
+        </ui:composition>
+    </h:body>
+</html>

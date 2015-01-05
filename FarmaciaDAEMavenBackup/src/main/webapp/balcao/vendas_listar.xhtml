@@ -1,0 +1,72 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"      
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+    <h:body>
+
+        <ui:composition template="./../templates/templateNECS.xhtml">
+
+            <ui:define name="top">
+                Vendas
+            </ui:define>         
+
+            <ui:define name="left">            
+                <h:outputLink value="vendas_criar.xhtml"> Vendas</h:outputLink>
+                <br /><br />  
+                
+                
+            </ui:define>
+            
+            <ui:define name="content">
+                <h:form>
+                    <h:dataTable
+                        var="venda"
+                        summary="Vendas"
+                        value="#{funcBalcaoManager.vendas}"
+                        rules="all"
+                        cellpadding="5">
+                        
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="ID" />
+                            </f:facet>
+                            <h:commandLink
+                                value="#{venda.idVenda}"
+                                action="vendas_editar?faces-redirect=true">
+                                <f:setPropertyActionListener target="#{funcBalcaoManager.vendaAtual}" value="#{venda}" />
+                            </h:commandLink>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Cliente" />
+                            </f:facet>
+                            <h:outputText value="#{venda.cliente}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Farmacia" />
+                            </f:facet>
+                            <h:outputText value="#{venda.farmacia}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Data" />
+                            </f:facet>
+                            <h:outputText value="#{venda.data}"/>
+                        </h:column>  
+                        
+                    </h:dataTable>
+                </h:form>
+                                    <h:messages errorStyle="color: red" />
+
+            </ui:define>
+            
+                            
+
+        </ui:composition>
+
+    </h:body>
+</html>

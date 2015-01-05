@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"      
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+    <h:body>
+        <ui:composition template="./../templates/templateNECS.xhtml">
+
+            <ui:define name="top">
+                Lista de todas as farmácias
+            </ui:define>
+
+            <ui:define name="left">
+                <h:outputLink value="./../index.xhtml">Página inicial</h:outputLink>                
+            </ui:define>
+
+            <ui:define name="content">
+                <h:form>                    
+                    <h:commandButton value="Criar farmácia" action="admin_farmacias_criar.xhtml?faces-redirect=true" />
+                    <br/>
+
+                    <h:dataTable
+                        var="farmacia"
+                        summary="Lista de todas as farmacias"
+                        value="#{administradorManager.farmacias}"
+                        rules="all"
+                        cellpadding="5">                       
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Nome" />
+                            </f:facet>
+                            <h:commandLink
+                                value="#{farmacia.nome}"
+                                action="admin_farmacias_editar?faces-redirect=true">
+                                <f:setPropertyActionListener target="#{administradorManager.farmaciaAtual}" value="#{farmacia}" />
+                            </h:commandLink>
+                        </h:column>                                      
+                    </h:dataTable>
+                </h:form>
+                
+                <h:messages errorStyle="color: red" />                
+                
+            </ui:define>
+
+        </ui:composition>
+    </h:body>
+</html>
